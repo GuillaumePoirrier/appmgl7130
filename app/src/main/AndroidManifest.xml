@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".pages.activity_splash_screen"></activity>
+        <activity android:name=".pages.SplashScreenActivity" />
+        <activity android:name=".pages.SignInActivity"></activity>
     </application>
 
 </manifest>
