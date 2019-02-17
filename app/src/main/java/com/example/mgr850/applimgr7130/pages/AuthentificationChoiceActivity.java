@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.example.mgr850.applimgr7130.R;
 
-public class SignInActivity extends AppCompatActivity {
+public class AuthentificationChoiceActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
