@@ -73,34 +73,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_40pct" />
 
-    <EditText
-        android:id="@+id/editText_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/color_purple"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="@color/color_purple"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_37_5pct"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_37_5pct" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginBottom="8dp"
-        android:textColor="@color/color_purple"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText_name"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="@string/name" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -138,16 +110,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent=".5" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline_37_5pct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent=".375" />
+        app:layout_constraintGuide_begin="238dp"
+        app:layout_constraintGuide_percent=".4" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_62_5pct"
@@ -155,7 +119,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent=".625" />
+        app:layout_constraintGuide_percent=".55" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_75pct"
@@ -164,6 +128,30 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="0dp"
         app:layout_constraintGuide_percent=".75" />
+
+    <RadioButton
+        android:id="@+id/radioButton_remember_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:buttonTint="@color/color_purple"
+        android:textColor="@color/color_purple"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_password"
+        tools:text="@string/remember_me" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/color_purple"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/radioButton_remember_me"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/radioButton_remember_me"
+        tools:text="@string/forgot_password" />
 
 
 </android.support.constraint.ConstraintLayout>
