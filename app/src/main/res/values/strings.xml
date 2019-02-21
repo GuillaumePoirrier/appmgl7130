@@ -8,4 +8,6 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="first_last_name">First and Last Name</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_password">Forgot password</string>
 </resources>
