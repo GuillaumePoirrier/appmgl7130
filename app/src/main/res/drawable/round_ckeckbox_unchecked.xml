@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- larger circle at the back -->
+    <item android:height="@dimen/round_checkbox_outer_radius" android:width="@dimen/round_checkbox_outer_radius" android:gravity="center">
+        <shape android:shape="oval">
+            <stroke android:width="@dimen/round_checkbox_stoke_width" android:color="@color/color_purple"/>
+        </shape>
+    </item>
+</layer-list>

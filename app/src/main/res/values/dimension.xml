@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="left_margin">16dp</dimen>
+    <dimen name="right_margin">16dp</dimen>
+    <dimen name="label_margin">21dp</dimen>
+
+    <!--Round Checkbox size-->
+    <dimen name="round_checkbox_outer_radius">18dp</dimen>
+    <dimen name="round_checkbox_inner_radius">8dp</dimen>
+    <dimen name="round_checkbox_stoke_width">2dp</dimen>
+
+</resources>
