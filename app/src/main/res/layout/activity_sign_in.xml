@@ -8,7 +8,7 @@
     tools:layout_editor_absoluteY="25dp">
 
     <Button
-        android:id="@+id/button_sign_up"
+        android:id="@+id/button_sign_in"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -45,8 +45,8 @@
         android:id="@+id/editText_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/left_margin"
+        android:layout_marginEnd="@dimen/right_margin"
         android:backgroundTint="@color/color_purple"
         android:ems="10"
         android:inputType="textPassword"
@@ -61,24 +61,23 @@
         android:id="@+id/editText_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/left_margin"
+        android:layout_marginEnd="@dimen/right_margin"
         android:backgroundTint="@color/color_purple"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:textColor="@color/color_purple"
         app:layout_constraintBottom_toTopOf="@+id/guideline_40pct"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_40pct" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
+        android:layout_marginStart="@dimen/label_margin"
         android:layout_marginBottom="8dp"
+        android:text="@string/email"
         android:textColor="@color/color_purple"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/editText_email"
@@ -89,8 +88,9 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
+        android:layout_marginStart="@dimen/label_margin"
         android:layout_marginBottom="8dp"
+        android:text="@string/password"
         android:textColor="@color/color_purple"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/editText_password"
@@ -129,29 +129,32 @@
         app:layout_constraintGuide_begin="0dp"
         app:layout_constraintGuide_percent=".75" />
 
-    <RadioButton
-        android:id="@+id/radioButton_remember_me"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:buttonTint="@color/color_purple"
-        android:textColor="@color/color_purple"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_password"
-        tools:text="@string/remember_me" />
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="@dimen/label_margin"
+        android:text="@string/forgot_password"
         android:textColor="@color/color_purple"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/radioButton_remember_me"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/radioButton_remember_me"
+        app:layout_constraintTop_toBottomOf="@+id/editText_password"
         tools:text="@string/forgot_password" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="129dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="16dp"
+        android:button="@drawable/round_checkbox"
+        android:checked="false"
+        android:text="@string/remember_me"
+        android:textAlignment="center"
+        android:textColor="@color/color_purple"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView4" />
 
 
 </android.support.constraint.ConstraintLayout>
