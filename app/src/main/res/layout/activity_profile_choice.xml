@@ -65,7 +65,7 @@
         app:layout_constraintHorizontal_bias="0.50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:srcCompat="@drawable/teacher_logo" />
+        app:srcCompat="@drawable/ic_teacher" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -77,11 +77,11 @@
         android:contentDescription="@string/student_logo"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintHeight_percent=".2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:srcCompat="@drawable/student_logo" />
+        app:srcCompat="@drawable/ic_student" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline4"

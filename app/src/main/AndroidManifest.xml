@@ -9,19 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         <activity android:name=".pages.Splash.SplashScreenActivity"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" /></intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".pages.Auth.AuthentificationChoiceActivity" />
         <activity android:name=".pages.Auth.SignUpActivity" />
         <activity android:name=".pages.Auth.SignInActivity" />
-        <activity android:name=".pages.ProfileChoiceActivity"/>
+        <activity android:name=".pages.ProfileChoiceActivity" />
+        <activity android:name=".pages.student.MainStudentActivity"/>
+        <activity android:name=".pages.teacher.MainTeacherActivity"/>
+
     </application>
 
 </manifest>
