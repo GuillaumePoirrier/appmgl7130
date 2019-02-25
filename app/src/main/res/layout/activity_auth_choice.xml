@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pages.AuthentificationChoiceActivity">
+    tools:context=".pages.Auth.AuthentificationChoiceActivity">
 
     <Button
         android:id="@+id/button_sign_in"
@@ -39,7 +39,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/curvre_logo" />
+        app:srcCompat="@drawable/curve_logo" />
 
     <TextView
         android:id="@+id/textView_no_account"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Curve</string>
+    <string name="app_name" translatable="false">Curve</string>
     <string name="curve_logo">Curve Logo</string>
     <string name="sign_in">Sign In</string>
     <string name="no_account">Don\'t have an account ?</string>
@@ -10,4 +10,17 @@
     <string name="first_last_name">First and Last Name</string>
     <string name="remember_me">Remember me</string>
     <string name="forgot_password">Forgot password</string>
+    <string name="teacher">Teacher</string>
+    <string name="Student">Student</string>
+    <string name="Students">Students</string>
+    <string name="teacher_logo">Teacher\'s Logo</string>
+    <string name="student_logo">Student\'s_logo</string>
+    <string name="title_activity_main_student">MainStudentActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="classes">Classes</string>
+    <string name="title_activity_main_teacher">MainTeacherActivity</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
 </resources>
