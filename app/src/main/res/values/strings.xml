@@ -10,4 +10,8 @@
     <string name="first_last_name">First and Last Name</string>
     <string name="remember_me">Remember me</string>
     <string name="forgot_password">Forgot password</string>
+    <string name="teacher">Teacher</string>
+    <string name="Student">Student</string>
+    <string name="teacher_logo">Teacher\'s Logo</string>
+    <string name="student_logo">Student\'s_logo</string>
 </resources>

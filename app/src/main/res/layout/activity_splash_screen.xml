@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".pages.SplashScreenActivity">
+    tools:context=".pages.Splash.SplashScreenActivity">
 
 
     <ImageView
@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent=".75"
-        app:srcCompat="@drawable/curvre_logo_white" />
+        app:srcCompat="@drawable/curve_logo_white" />
 
 
 </android.support.constraint.ConstraintLayout>

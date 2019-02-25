@@ -1,4 +1,4 @@
-package com.example.mgr850.applimgr7130.pages;
+package com.example.mgr850.applimgr7130.pages.Auth;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -36,5 +36,11 @@ public class AuthentificationChoiceActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+//    prevent user to go back to splash screen
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }

@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".pages.SplashScreenActivity">
+        <activity android:name=".pages.Splash.SplashScreenActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,9 +18,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".pages.AuthentificationChoiceActivity" />
-        <activity android:name=".pages.SignUpActivity" />
-        <activity android:name=".pages.SignInActivity"></activity>
+        <activity android:name=".pages.Auth.AuthentificationChoiceActivity" />
+        <activity android:name=".pages.Auth.SignUpActivity" />
+        <activity android:name=".pages.Auth.SignInActivity" />
+        <activity android:name=".pages.ProfileChoiceActivity"/>
     </application>
 
 </manifest>
