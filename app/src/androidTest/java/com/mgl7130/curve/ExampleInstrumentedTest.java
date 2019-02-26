@@ -1,4 +1,4 @@
-package com.example.mgr850.applimgr7130;
+package com.mgl7130.curve;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.mgr850.applimgr7130", appContext.getPackageName());
+        assertEquals("com.mgl7130.applimgr7130", appContext.getPackageName());
     }
 }

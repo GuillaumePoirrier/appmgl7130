@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mgr850.applimgr7130">
+    package="com.mgl7130.curve">
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <activity android:name=".pages.teacher.MainTeacherActivity"
+        <activity android:name="com.mgl7130.curve.pages.teacher.MainTeacherActivity"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,14 +22,14 @@
                 <!--<action android:name="android.intent.action.MAIN" />-->
                 <!--<category android:name="android.intent.category.LAUNCHER" /></intent-filter>-->
         <!--</activity>-->
-        <activity android:name=".MainActivity" />
-        <activity android:name=".pages.Auth.AuthentificationChoiceActivity" />
-        <activity android:name=".pages.Auth.SignUpActivity" />
-        <activity android:name=".pages.Auth.SignInActivity" />
-        <activity android:name=".pages.ProfileChoiceActivity" />
-        <activity android:name=".pages.student.MainStudentActivity"/>
+        <activity android:name="com.mgl7130.curve.MainActivity" />
+        <activity android:name="com.mgl7130.curve.pages.auth.AuthentificationChoiceActivity" />
+        <activity android:name="com.mgl7130.curve.pages.auth.SignUpActivity" />
+        <activity android:name="com.mgl7130.curve.pages.auth.SignInActivity" />
+        <activity android:name="com.mgl7130.curve.pages.ProfileChoiceActivity" />
+        <activity android:name="com.mgl7130.curve.pages.student.MainStudentActivity"/>
         <!--<activity android:name=".pages.teacher.MainTeacherActivity"/>-->
-        <activity android:name=".pages.Splash.SplashScreenActivity"/>
+        <activity android:name="com.mgl7130.curve.pages.splash.SplashScreenActivity"/>
 
     </application>
 
