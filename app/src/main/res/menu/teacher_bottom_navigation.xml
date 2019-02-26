@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_students"
+        android:id="@+id/navigation_teacher_students"
         android:icon="@drawable/ic_students"
         android:title="@string/Students" />
 
     <item
-        android:id="@+id/navigation_classes"
+        android:id="@+id/navigation_teacher_classes"
         android:icon="@drawable/ic_book"
         android:title="@string/classes" />
 
 
     <item
-        android:id="@+id/navigation_profile"
+        android:id="@+id/navigation_teacher_profile"
         android:icon="@drawable/ic_profile"
         android:title="@string/profile" />
 
