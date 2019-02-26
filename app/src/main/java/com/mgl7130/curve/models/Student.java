@@ -1,4 +1,4 @@
-package com.example.mgr850.applimgr7130.models;
+package com.mgl7130.curve.models;
 
 import java.util.Date;
 

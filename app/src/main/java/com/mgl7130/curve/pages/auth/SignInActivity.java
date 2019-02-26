@@ -1,11 +1,10 @@
-package com.example.mgr850.applimgr7130.pages.Auth;
+package com.mgl7130.curve.pages.auth;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.RadioButton;
 
-import com.example.mgr850.applimgr7130.R;
+import com.mgl7130.curve.R;
 
 public class SignInActivity extends AppCompatActivity {
 

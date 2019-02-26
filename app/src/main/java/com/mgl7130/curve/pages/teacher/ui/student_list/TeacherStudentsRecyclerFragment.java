@@ -1,4 +1,4 @@
-package com.example.mgr850.applimgr7130.pages.teacher.ui.student_list;
+package com.mgl7130.curve.pages.teacher.ui.student_list;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,11 +13,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mgr850.applimgr7130.R;
-import com.example.mgr850.applimgr7130.models.Cour;
-import com.example.mgr850.applimgr7130.models.Student;
-import com.example.mgr850.applimgr7130.models.Subject;
-import com.example.mgr850.applimgr7130.models.Teacher;
+import com.mgl7130.curve.R;
+import com.mgl7130.curve.models.Cour;
+import com.mgl7130.curve.models.Student;
+import com.mgl7130.curve.models.Subject;
+import com.mgl7130.curve.models.Teacher;
 
 import java.util.ArrayList;
 import java.util.Date;

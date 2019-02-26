@@ -1,15 +1,15 @@
-package com.example.mgr850.applimgr7130.pages.Auth;
+package com.mgl7130.curve.pages;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.mgr850.applimgr7130.R;
+import com.mgl7130.curve.R;
 
-public class SignUpActivity extends AppCompatActivity {
+public class ProfileChoiceActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_profile_choice);
     }
 }

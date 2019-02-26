@@ -1,4 +1,4 @@
-package com.example.mgr850.applimgr7130;
+package com.mgl7130.curve;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
