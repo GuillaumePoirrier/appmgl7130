@@ -20,11 +20,11 @@ public class MainStudentActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_classes:
+                case R.id.navigation_student_classes:
                     return true;
-                case R.id.navigation_search:
+                case R.id.navigation_student_profile:
                     return true;
-                case R.id.navigation_profile:
+                case R.id.navigation_student_search:
                     return true;
             }
             return false;
