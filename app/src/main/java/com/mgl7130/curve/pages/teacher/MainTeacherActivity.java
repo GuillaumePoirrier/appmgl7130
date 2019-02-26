@@ -1,4 +1,4 @@
-package com.example.mgr850.applimgr7130.pages.teacher;
+package com.mgl7130.curve.pages.teacher;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,8 +8,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.example.mgr850.applimgr7130.R;
-import com.example.mgr850.applimgr7130.pages.teacher.ui.student_list.TeacherStudentsRecyclerFragment;
+import com.mgl7130.curve.R;
+import com.mgl7130.curve.pages.teacher.ui.student_list.TeacherStudentsRecyclerFragment;
 
 public class MainTeacherActivity extends AppCompatActivity {
 
