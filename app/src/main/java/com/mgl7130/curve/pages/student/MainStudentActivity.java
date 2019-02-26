@@ -1,4 +1,4 @@
-package com.example.mgr850.applimgr7130.pages.student;
+package com.mgl7130.curve.pages.student;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.mgr850.applimgr7130.R;
+import com.mgl7130.curve.R;
 
 public class MainStudentActivity extends AppCompatActivity {
 
