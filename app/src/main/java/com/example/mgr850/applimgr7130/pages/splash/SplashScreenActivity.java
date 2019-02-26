@@ -1,11 +1,11 @@
-package com.example.mgr850.applimgr7130.pages.Splash;
+package com.example.mgr850.applimgr7130.pages.splash;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.mgr850.applimgr7130.R;
-import com.example.mgr850.applimgr7130.pages.Auth.AuthentificationChoiceActivity;
+import com.example.mgr850.applimgr7130.pages.auth.AuthentificationChoiceActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

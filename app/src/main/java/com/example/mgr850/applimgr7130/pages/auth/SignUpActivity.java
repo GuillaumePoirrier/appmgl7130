@@ -1,7 +1,7 @@
-package com.example.mgr850.applimgr7130.pages.Auth;
+package com.example.mgr850.applimgr7130.pages.auth;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.mgr850.applimgr7130.R;
 

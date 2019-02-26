@@ -2,14 +2,14 @@ package com.example.mgr850.applimgr7130.models;
 
 import java.util.Date;
 
-public class Cour {
+public class Cours {
 
     private Date date;
     private Student student;
     private Teacher teacher;
     private Subject subject;
 
-    public Cour(Date date, Student student, Teacher teacher, Subject subject) {
+    public Cours(Date date, Student student, Teacher teacher, Subject subject) {
         this.date = date;
         this.student = student;
         this.teacher = teacher;

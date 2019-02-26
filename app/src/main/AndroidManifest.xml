@@ -23,13 +23,13 @@
                 <!--<category android:name="android.intent.category.LAUNCHER" /></intent-filter>-->
         <!--</activity>-->
         <activity android:name=".MainActivity" />
-        <activity android:name=".pages.Auth.AuthentificationChoiceActivity" />
-        <activity android:name=".pages.Auth.SignUpActivity" />
-        <activity android:name=".pages.Auth.SignInActivity" />
+        <activity android:name=".pages.auth.AuthentificationChoiceActivity" />
+        <activity android:name=".pages.auth.SignUpActivity" />
+        <activity android:name=".pages.auth.SignInActivity" />
         <activity android:name=".pages.ProfileChoiceActivity" />
         <activity android:name=".pages.student.MainStudentActivity"/>
         <!--<activity android:name=".pages.teacher.MainTeacherActivity"/>-->
-        <activity android:name=".pages.Splash.SplashScreenActivity"/>
+        <activity android:name=".pages.splash.SplashScreenActivity" />
 
     </application>
 
