@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mgl7130.curve.R;
-import com.mgl7130.curve.models.Cour;
+import com.mgl7130.curve.models.Cours;
 import com.mgl7130.curve.models.Student;
 import com.mgl7130.curve.models.Subject;
 import com.mgl7130.curve.models.Teacher;
@@ -37,22 +37,22 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
         return view;
     }
 
-    public List<Cour> getListofCour(){
+    public List<Cours> getListofCour(){
         //@TODO get cours for the connecterd teacher
         Student studentA = new Student("Jean", "Dupuis", new Date());
         Student studentB = new Student("Anne", "Muller", new Date());
         Teacher teacher = new Teacher("Yves", "Courtois", new Date());
 
-        List<Cour> cours = new ArrayList<>();
-        cours.add(new Cour(new Date(), studentA, teacher, Subject.Mathematics));
-        cours.add(new Cour(new Date(), studentB, teacher, Subject.Physics));
-        cours.add(new Cour(new Date(), studentA, teacher, Subject.Chemistry));
-        cours.add(new Cour(new Date(), studentA, teacher, Subject.Chemistry));
-        cours.add(new Cour(new Date(), studentA, teacher, Subject.Chemistry));
-        cours.add(new Cour(new Date(), studentA, teacher, Subject.Chemistry));
-        cours.add(new Cour(new Date(), studentA, teacher, Subject.Chemistry));
-        cours.add(new Cour(new Date(), studentA, teacher, Subject.Chemistry));
-        cours.add(new Cour(new Date(), studentA, teacher, Subject.Chemistry));
+        List<Cours> cours = new ArrayList<>();
+        cours.add(new Cours(new Date(), studentA, teacher, Subject.Mathematics));
+        cours.add(new Cours(new Date(), studentB, teacher, Subject.Physics));
+        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
+        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
+        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
+        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
+        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
+        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
+        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
 
         return cours;
     }
@@ -88,9 +88,9 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
 
     public class TeacherStudentsRecyclerViewAdapter extends RecyclerView.Adapter<TeacherStudentsRecyclerViewHolder> {
 
-        List<Cour> cours;
+        List<Cours> cours;
 
-        public TeacherStudentsRecyclerViewAdapter(List<Cour> list){
+        public TeacherStudentsRecyclerViewAdapter(List<Cours> list){
             this.cours = list;
         }
 
