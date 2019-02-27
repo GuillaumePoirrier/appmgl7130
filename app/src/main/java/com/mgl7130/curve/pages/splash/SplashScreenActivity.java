@@ -4,17 +4,21 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.pages.auth.AuthentificationChoiceActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    Intent authChoiceIntent;
+    private Intent authChoiceIntent;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override

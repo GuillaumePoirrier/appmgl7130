@@ -16,9 +16,9 @@
         android:elevation="0dp"
         android:text="@string/teacher"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView_teacher"
+        app:layout_constraintStart_toStartOf="@+id/imageView_teacher"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_teacher" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
@@ -45,13 +45,13 @@
         android:backgroundTint="@android:color/transparent"
         android:text="@string/Student"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_student"
         app:layout_constraintHorizontal_bias="0.415"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintStart_toStartOf="@+id/imageView_student"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_student" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_teacher"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -68,7 +68,7 @@
         app:srcCompat="@drawable/ic_teacher" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageView_student"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
