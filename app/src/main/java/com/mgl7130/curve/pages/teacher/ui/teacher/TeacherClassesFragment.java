@@ -1,9 +1,10 @@
-package com.mgl7130.curve.pages.teacher.ui.student_list;
+package com.mgl7130.curve.pages.teacher.ui.teacher;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,20 +24,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TeacherStudentsRecyclerFragment extends Fragment {
+public class TeacherClassesFragment extends Fragment {
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.teacher_students_recycler_view_fragment, container, false);
-
+        View view = inflater.inflate(R.layout.teacher_classes_fragment, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new TeacherStudentsRecyclerViewAdapter(getListofCour()));
+       // recyclerView.setAdapter(new TeacherClassesFragment.TeacherClassesFragmentViewAdapter(getListofCour()));
+
 
         return view;
     }
 
+    public Teacher getProfile(){
+        Teacher teacher = new Teacher("Yves", "Courtois", new Date());
+        return teacher;
+    }
     public List<Cours> getListofCour(){
         //@TODO get cours for the connecterd teacher
         Student studentA = new Student("Jean", "Dupuis", new Date());
@@ -56,12 +62,11 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
 
         return cours;
     }
-
-    public static Fragment newInstance() {
+    public static android.support.v4.app.Fragment newInstance() {
         return new TeacherStudentsRecyclerFragment();
     }
 
-    private class TeacherStudentsRecyclerViewHolder extends RecyclerView.ViewHolder {
+    private class TeacherClassesFragmentViewHolder extends RecyclerView.ViewHolder {
 
         private CardView mCardView;
         private TextView subject;
@@ -69,11 +74,11 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
         private TextView date;
         private ImageView picture;
 
-        public TeacherStudentsRecyclerViewHolder(View itemView){
+        public TeacherClassesFragmentViewHolder(View itemView){
             super(itemView);
         }
 
-        public TeacherStudentsRecyclerViewHolder(LayoutInflater inflater, ViewGroup group){
+        public TeacherClassesFragmentViewHolder(LayoutInflater inflater, ViewGroup group){
             super(inflater.inflate(R.layout.teacher_students_card_view, group, false));
 
             mCardView = itemView.findViewById(R.id.card_container);
@@ -86,22 +91,22 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
 
     }
 
-    public class TeacherStudentsRecyclerViewAdapter extends RecyclerView.Adapter<TeacherStudentsRecyclerViewHolder> {
+  /*  public class TeacherClassesFragmentViewAdapter extends RecyclerView.Adapter<TeacherStudentsRecyclerFragment.TeacherClassesFragmentViewHolder> {
 
-        List<Cours> cours;
+       * List<Cours> cours;
 
         public TeacherStudentsRecyclerViewAdapter(List<Cours> list){
             this.cours = list;
         }
 
         @Override
-        public TeacherStudentsRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public TeacherClassesFragmentViewHolder.TeacherClassesFragment onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(getActivity());
-            return new TeacherStudentsRecyclerViewHolder(inflater, parent);
+            return new TeacherStudentsRecyclerFragment.TeacherClassesFragmentViewHolder(inflater, parent);
         }
 
         @Override
-        public void onBindViewHolder(TeacherStudentsRecyclerViewHolder holder, int position) {
+        public void onBindViewHolder(TeacherStudentsRecyclerFragment.TeacherClassesFragmentViewHolder holder, int position) {
             holder.subject.setText(cours.get(position).getSubject().toString());
             holder.name.setText(cours.get(position).getStudentFullName());
             holder.date.setText(new Date().toString());
@@ -111,6 +116,9 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
         public int getItemCount() {
             return cours.size();
         }
-    }
+    }*/
+
+
+
 
 }
