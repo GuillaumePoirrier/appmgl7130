@@ -28,14 +28,23 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/container"
+    <Button
+        android:id="@+id/sign_out"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Sign out"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
-        tools:context=".MainActivity" />
+        tools:layout_editor_absoluteX="0dp" />
+
+    <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:id="@+id/container"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/navigation"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/my_toolbar"-->
+        <!--tools:context=".MainActivity" />-->
 
 
     <android.support.design.widget.BottomNavigationView

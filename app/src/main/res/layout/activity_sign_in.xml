@@ -143,7 +143,7 @@
         tools:text="@string/forgot_password" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/keep_me_logged"
         android:layout_width="129dp"
         android:layout_height="33dp"
         android:layout_marginStart="16dp"

@@ -7,14 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
 
 public class AuthentificationChoiceActivity extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_choice);
+
+        mAuth = FirebaseAuth.getInstance();
 
         final Intent signInActivityIntent = new Intent(this, SignInActivity.class);
         final Intent signUpActivityIntent = new Intent(this, SignUpActivity.class);
@@ -38,7 +43,8 @@ public class AuthentificationChoiceActivity extends AppCompatActivity {
 
     }
 
-//    prevent user to go back to splash screen
+
+    //    prevent user to go back to splash screen
     @Override
     public void onBackPressed() {
         return;
