@@ -23,7 +23,14 @@
     <string name="title_activity_main_teacher">MainTeacherActivity</string>
     <string name="search">Search</string>
     <string name="profile">Profile</string>
+    <string name="enter_email_address">Enter email adress</string>
+    <!--Shared  Preferences-->
+    <string name="auth_preferences_file">com.mgl7130.curve.Auth_Preferences</string>
+    <string name="auth_preferences_remember_me">REMEMBER_ME</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_password">Enter password</string>
+    <string name="password_too_short">Password too short, enter minimum 6 characters!</string>
+    <string name="auth_failed">Authentification failled</string>
 </resources>
