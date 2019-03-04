@@ -1,42 +1,46 @@
 package com.mgl7130.curve.models;
 
+import com.google.firebase.Timestamp;
+
 import java.util.Date;
+import java.util.List;
 
 public class Cours {
 
-    private Date date;
-    private Student student;
-    private Teacher teacher;
+    private String student;
+    private String teacher;
     private Subject subject;
+    private Timestamp startDate;
+    private Timestamp endDate;
 
-    public Cours(Date date, Student student, Teacher teacher, Subject subject) {
-        this.date = date;
-        this.student = student;
-        this.teacher = teacher;
+
+    public Cours(Student student, Teacher teacher, Subject subject) {
+        this.student = student.getId();
+        this.teacher = teacher.getId();
         this.subject = subject;
     }
 
-    public Date getDate() {
-        return date;
-    }
+    public Timestamp getStartDate() { return startDate; }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    public void setStartDate(Timestamp startDate) { this.startDate = startDate; }
 
-    public Student getStudent() {
+    public Timestamp getEndDate() { return endDate; }
+
+    public void setEndDate(Timestamp endDate) { this.endDate = endDate; }
+
+    public String getStudentId() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudentId(String student) {
         this.student = student;
     }
 
-    public Teacher getTeacher() {
+    public String getTeacherId() {
         return teacher;
     }
 
-    public void setTeacher(Teacher teacher) {
+    public void setTeacherId(String teacher) {
         this.teacher = teacher;
     }
 
@@ -46,9 +50,5 @@ public class Cours {
 
     public void setSubject(Subject subject) {
         this.subject = subject;
-    }
-
-    public String getStudentFullName(){
-        return this.student.getFullName();
     }
 }
