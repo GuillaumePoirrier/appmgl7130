@@ -7,18 +7,20 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.pages.ProfileChoiceActivity;
 
@@ -46,7 +48,6 @@ public class SignInActivity extends AppCompatActivity {
         //Get shared preferences to save STAY_Logged or not
         final SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.auth_preferences_file), Context.MODE_PRIVATE);
         rememberMe.setChecked(sharedPreferences.getBoolean(getString(R.string.auth_preferences_remember_me), false));
-
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override

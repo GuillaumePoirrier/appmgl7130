@@ -11,17 +11,25 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.mgl7130.curve.R;
+import com.mgl7130.curve.models.User;
 import com.mgl7130.curve.pages.ProfileChoiceActivity;
+
+import java.util.List;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText inputName, inputEmail, inputPassword;
     private Button btnSignUp;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,10 @@ public class SignUpActivity extends AppCompatActivity {
 
         //Get Firebase auth instance
         mAuth = FirebaseAuth.getInstance();
+
+        //Get Firebase database
+        db = FirebaseFirestore.getInstance();
+
 
         btnSignUp = (Button) findViewById(R.id.button_sign_in);
         inputEmail = (EditText) findViewById(R.id.editText_email);
@@ -67,12 +79,25 @@ public class SignUpActivity extends AppCompatActivity {
                                     Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-                                    startActivity(new Intent(SignUpActivity.this, ProfileChoiceActivity.class));
-                                    finish();
+                                    String[] names = inputName.getText().toString().split(" ");
+                                    db.collection("users")
+                                            .add(new User(names[0], names[1]))
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    startActivity(new Intent(SignUpActivity.this, ProfileChoiceActivity.class));
+                                                    finish();
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    System.out.println(e);
+                                                }
+                                            });
                                 }
                             }
                         });
-
             }
         });
     }
