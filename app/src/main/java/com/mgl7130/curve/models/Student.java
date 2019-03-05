@@ -5,7 +5,7 @@ import java.util.Date;
 public class Student extends User{
 
 
-    public Student(String fisrtName, String lastName, Date dateOfBirth) {
+    public Student(String fisrtName, String lastName) {
         super(fisrtName, lastName);
     }
 
