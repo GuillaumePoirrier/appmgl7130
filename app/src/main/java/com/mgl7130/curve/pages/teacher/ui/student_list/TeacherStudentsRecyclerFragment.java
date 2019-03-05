@@ -41,18 +41,18 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
         //@TODO get cours for the connecterd teacher
         Student studentA = new Student("Jean", "Dupuis", new Date());
         Student studentB = new Student("Anne", "Muller", new Date());
-        Teacher teacher = new Teacher("Yves", "Courtois", new Date());
+        Teacher teacher = new Teacher("Yves", "Courtois");
 
         List<Cours> cours = new ArrayList<>();
-        cours.add(new Cours(new Date(), studentA, teacher, Subject.Mathematics));
-        cours.add(new Cours(new Date(), studentB, teacher, Subject.Physics));
-        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
-        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
-        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
-        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
-        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
-        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
-        cours.add(new Cours(new Date(), studentA, teacher, Subject.Chemistry));
+        cours.add(new Cours(studentA, teacher, Subject.Mathematics));
+        cours.add(new Cours(studentB, teacher, Subject.Physics));
+        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
+        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
+        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
+        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
+        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
+        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
+        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
 
         return cours;
     }
@@ -101,9 +101,9 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(TeacherStudentsRecyclerViewHolder holder, int position) {
-            holder.subject.setText(cours.get(position).getSubject().toString());
-            holder.name.setText(cours.get(position).getStudentFullName());
+        public void onBindViewHolder(TeacherStudentsRecyclerViewHolder holder, int index) {
+            holder.subject.setText(cours.get(index).getSubject().toString());
+            holder.name.setText(cours.get(index).getStudentId());
             holder.date.setText(new Date().toString());
         }
 
