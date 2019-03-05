@@ -25,6 +25,15 @@ public enum Level {
         return list;
     }
 
+    public static Level getSubject(String name){
+        for (Level s: Level.values()) {
+            if(s.name.equals(name)){
+                return s;
+            }
+        }
+        return null;
+    }
+
     public String toString(){
         return name;
     }

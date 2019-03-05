@@ -39,20 +39,9 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
 
     public List<Cours> getListofCour(){
         //@TODO get cours for the connecterd teacher
-        Student studentA = new Student("Jean", "Dupuis");
-        Student studentB = new Student("Anne", "Muller");
-        Teacher teacher = new Teacher("Yves", "Courtois");
+;
 
         List<Cours> cours = new ArrayList<>();
-        cours.add(new Cours(studentA, teacher, Subject.Mathematics));
-        cours.add(new Cours(studentB, teacher, Subject.Physics));
-        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
-        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
-        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
-        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
-        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
-        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
-        cours.add(new Cours(studentA, teacher, Subject.Chemistry));
 
         return cours;
     }

@@ -24,6 +24,15 @@ public enum Subject {
         return list;
     }
 
+    public static Subject getSubject(String name){
+        for (Subject s: Subject.values()) {
+            if(s.name.equals(name)){
+                return s;
+            }
+        }
+        return null;
+    }
+
     public String toString(){
         return name;
     }
