@@ -33,4 +33,16 @@
     <string name="enter_password">Enter password</string>
     <string name="password_too_short">Password too short, enter minimum 6 characters!</string>
     <string name="auth_failed">Authentification failled</string>
+    <string name="class_subject">Subject of the Class</string>
+    <string name="class_level">Level of the Class</string>
+    <string name="create_class">Create a new class</string>
+    <string name="create_class_button">Create the new Class</string>
+    <string name="class_date">Date of the Class</string>
+    <string name="class_start_time">From</string>
+    <string name="class_end_time">To</string>
+    <string name="set_class_date">Select Date For Your class</string>
+    <string name="set_class_start_time">Select the starting time of the class</string>
+    <string name="select_date_error">Please Select a date for your class</string>
+    <string name="select_startHour_error">Please select a start hour for your class</string>
+    <string name="select_endHour_error">Please select an end hour for your class</string>
 </resources>

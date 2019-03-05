@@ -18,6 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.User;
 import com.mgl7130.curve.pages.ProfileChoiceActivity;
@@ -80,11 +81,11 @@ public class SignUpActivity extends AppCompatActivity {
                                             Toast.LENGTH_SHORT).show();
                                 } else {
                                     String[] names = inputName.getText().toString().split(" ");
-                                    db.collection("users")
-                                            .add(new User(names[0], names[1]))
-                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    db.collection("users").document(mAuth.getCurrentUser().getUid())
+                                            .set(new User(names[0], names[1]), SetOptions.merge())
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
-                                                public void onSuccess(DocumentReference documentReference) {
+                                                public void onSuccess(Void aVoid) {
                                                     startActivity(new Intent(SignUpActivity.this, ProfileChoiceActivity.class));
                                                     finish();
                                                 }
