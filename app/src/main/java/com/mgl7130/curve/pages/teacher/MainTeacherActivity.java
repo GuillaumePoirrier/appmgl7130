@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.pages.teacher.ui.class_create.TeacherClassFormFragment;
+import com.mgl7130.curve.pages.teacher.ui.profile_create.TeacherProfileCreate;
 import com.mgl7130.curve.pages.teacher.ui.student_list.TeacherStudentsRecyclerFragment;
 
 
@@ -59,7 +60,8 @@ public class MainTeacherActivity extends AppCompatActivity {
 
     protected Fragment createFragment() {
 //        return new TeacherStudentsRecyclerFragment().newInstance();
-        return new TeacherClassFormFragment().newInstance();
+  //      return new TeacherClassFormFragment().newInstance();
+        return new TeacherProfileCreate().newInstance();
     }
 
 }
