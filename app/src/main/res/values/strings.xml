@@ -33,4 +33,7 @@
     <string name="enter_password">Enter password</string>
     <string name="password_too_short">Password too short, enter minimum 6 characters!</string>
     <string name="auth_failed">Authentification failled</string>
+    <string name="first_name_teacher">Prénom</string>
+    <string name="teacher_family_name">Nom</string>
+    <string name="teacher_birth_date">Date de Naissance</string>
 </resources>
