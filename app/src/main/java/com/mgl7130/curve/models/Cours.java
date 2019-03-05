@@ -2,14 +2,11 @@ package com.mgl7130.curve.models;
 
 import com.google.firebase.Timestamp;
 
-import java.sql.Time;
-import java.util.Date;
-import java.util.List;
 
 public class Cours {
 
-    private String student;
-    private String teacher;
+    private String studentId;
+    private String teacherId;
     private Subject subject;
     private Level level;
     private Timestamp date;
@@ -18,7 +15,7 @@ public class Cours {
 
 
     public Cours(String teacherId, Subject subject, Level level, Timestamp date, Timestamp startDate, Timestamp endDate) {
-        this.teacher = teacherId;
+        this.teacherId = teacherId;
         this.subject = subject;
         this.level = level;
         this.date = date;
@@ -34,27 +31,23 @@ public class Cours {
 
     public void setEndDate(Timestamp endDate) { this.endDate = endDate; }
 
-    public String getStudentId() {
-        return student;
-    }
+    public Subject getSubject() { return subject; }
 
-    public void setStudentId(String student) {
-        this.student = student;
-    }
+    public void setSubject(Subject subject) { this.subject = subject; }
 
-    public String getTeacherId() {
-        return teacher;
-    }
+    public String getStudent_id() { return studentId; }
 
-    public void setTeacherId(String teacher) {
-        this.teacher = teacher;
-    }
+    public void setStudent_id(String student_id) { this.studentId = student_id; }
 
-    public Subject getSubject() {
-        return subject;
-    }
+    public String getTeacher_id() { return teacherId; }
 
-    public void setSubject(Subject subject) {
-        this.subject = subject;
-    }
+    public void setTeacher_id(String teacher_id) { this.teacherId = teacher_id; }
+
+    public Level getLevel() { return level; }
+
+    public void setLevel(Level level) { this.level = level; }
+
+    public Timestamp getDate() { return date; }
+
+    public void setDate(Timestamp date) { this.date = date; }
 }
