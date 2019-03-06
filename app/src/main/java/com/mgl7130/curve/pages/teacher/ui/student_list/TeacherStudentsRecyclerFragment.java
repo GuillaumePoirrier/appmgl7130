@@ -38,12 +38,8 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
     }
 
     public List<Cours> getListofCour(){
-        //@TODO get cours for the connecterd teacher
-;
-
-        List<Cours> cours = new ArrayList<>();
-
-        return cours;
+        //@TODO get all classes from theacher where student is not null
+        return null;
     }
 
     public static Fragment newInstance() {

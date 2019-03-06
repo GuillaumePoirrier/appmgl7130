@@ -3,9 +3,8 @@ package com.mgl7130.curve.models;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 
-public class User {
+public class User extends GenericEntity{
 
-    private transient String id;
     private String firstName;
     private String lastName;
 
@@ -15,12 +14,10 @@ public class User {
     }
 
     public User(QueryDocumentSnapshot document) {
-        this.id = document.getId();
+        super(document.getId());
         this.firstName = (String) document.getData().get("firstName");
         this.lastName = (String) document.getData().get("lastName");
     }
-
-    public String getId() { return id; }
 
     public String getFirstName() { return firstName; }
 
