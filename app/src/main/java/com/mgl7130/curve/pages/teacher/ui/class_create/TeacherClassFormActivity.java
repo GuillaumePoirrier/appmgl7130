@@ -29,6 +29,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -90,12 +91,13 @@ public class TeacherClassFormActivity extends AppCompatActivity {
         DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                String dateString = new SimpleDateFormat("dd/MM/yyyy").format(new GregorianCalendar(year, monthOfYear, dayOfMonth).getTime());
+                String dateString = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).format(new GregorianCalendar(year, monthOfYear, dayOfMonth).getTime());
                 date.setText(dateString);
             }
         };
         datePickerDialog = DatePickerDialog.newInstance(onDateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.setAccentColor(getResources().getColor(R.color.color_blue));
+        datePickerDialog.setMinDate(calendar);
         datePickerDialog.setTitle(getString(R.string.set_class_date));
         datePickerDialog.show(getFragmentManager(), "DatePickerDialog");
     }
@@ -106,8 +108,7 @@ public class TeacherClassFormActivity extends AppCompatActivity {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-                String time = hourOfDay + ":" + minute;
-                startHour.setText(time);
+                startHour.setText(formatHour(hourOfDay, minute));
             }
         };
         timePickerDialog = TimePickerDialog.newInstance(onTimeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
@@ -121,8 +122,7 @@ public class TeacherClassFormActivity extends AppCompatActivity {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-                String time = hourOfDay + ":" + minute;
-                endHour.setText(time);
+                endHour.setText(formatHour(hourOfDay, minute));
             }
         };
         timePickerDialog = TimePickerDialog.newInstance(onTimeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
@@ -179,7 +179,17 @@ public class TeacherClassFormActivity extends AppCompatActivity {
 
         //add Class object to Db
         db.collection("classes").add(cours);
+    }
 
+    private String formatHour(int hour, int minutes) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH);
+        String timeString = "";
+        try {
+            timeString = new SimpleDateFormat("HH:mm", Locale.CANADA).format(simpleDateFormat.parse(hour + ":" + minutes));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return timeString;
     }
 }
 

@@ -29,12 +29,14 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="688dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        tools:layout_editor_absoluteX="0dp">
 
         <Spinner
             android:id="@+id/spinner_level"
@@ -79,7 +81,7 @@
             android:text="@string/class_subject"
             android:textColor="@color/color_purple"
             app:layout_constraintStart_toStartOf="@+id/spinner_subject"
-            tools:layout_editor_absoluteY="178dp" />
+            tools:layout_editor_absoluteY="103dp" />
 
         <EditText
             android:id="@+id/et_class_date"
@@ -89,9 +91,9 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
+            android:focusable="false"
             android:inputType="date"
             android:singleLine="false"
-            android:focusable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,8 +107,8 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:inputType="time"
             android:focusable="false"
+            android:inputType="time"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,8 +121,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:inputType="time"
             android:focusable="false"
+            android:inputType="time"
             app:layout_constraintBottom_toBottomOf="@+id/start_time"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -183,7 +185,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/start_time"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.472" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
