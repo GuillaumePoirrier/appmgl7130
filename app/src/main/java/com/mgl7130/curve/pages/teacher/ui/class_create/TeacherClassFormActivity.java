@@ -4,13 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.Timestamp;
@@ -33,9 +34,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class TeacherClassFormFragment extends Fragment {
+public class TeacherClassFormActivity extends AppCompatActivity {
 
-    public static final String TAG = "TeacherClassFormFragment";
+    public static final String TAG = "TeacherClassFormActivity";
 
     @BindView(R.id.spinner_subject)
     Spinner subject;
@@ -52,6 +53,9 @@ public class TeacherClassFormFragment extends Fragment {
     @BindView(R.id.end_time)
     EditText endHour;
 
+    @BindView(R.id.toolbar_title)
+    TextView toolbarTittle;
+
 
     private DatePickerDialog datePickerDialog ;
     private TimePickerDialog timePickerDialog ;
@@ -59,11 +63,14 @@ public class TeacherClassFormFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.teacher_students_class_form_fragment, container, false);
-        ButterKnife.bind(this, view);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.teacher_students_class_form_fragment);
+        ButterKnife.bind(this);
+
+        //Set toolbar tittle
+        toolbarTittle.setText(getString(R.string.create_class));
 
         //init Calendar
         calendar = Calendar.getInstance();
@@ -73,10 +80,9 @@ public class TeacherClassFormFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
 
         //Fill the spinners to match enum data
-        subject.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, Subject.stringValues()));
-        level.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, Level.stringValues()));
+        subject.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, Subject.stringValues()));
+        level.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, Level.stringValues()));
 
-        return view;
     }
 
     @OnClick(R.id.et_class_date)
@@ -91,7 +97,7 @@ public class TeacherClassFormFragment extends Fragment {
         datePickerDialog = DatePickerDialog.newInstance(onDateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.setAccentColor(getResources().getColor(R.color.color_blue));
         datePickerDialog.setTitle(getString(R.string.set_class_date));
-        datePickerDialog.show(getActivity().getFragmentManager(), "DatePickerDialog");
+        datePickerDialog.show(getFragmentManager(), "DatePickerDialog");
     }
 
 
@@ -107,7 +113,7 @@ public class TeacherClassFormFragment extends Fragment {
         timePickerDialog = TimePickerDialog.newInstance(onTimeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
         timePickerDialog.setAccentColor(getResources().getColor(R.color.color_blue));
         timePickerDialog.setTitle(getString(R.string.set_class_start_time));
-        timePickerDialog.show(getActivity().getFragmentManager(), "DatePickerDialog");
+        timePickerDialog.show(getFragmentManager(), "DatePickerDialog");
     }
 
     @OnClick(R.id.end_time)
@@ -122,7 +128,7 @@ public class TeacherClassFormFragment extends Fragment {
         timePickerDialog = TimePickerDialog.newInstance(onTimeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
         timePickerDialog.setAccentColor(getResources().getColor(R.color.color_blue));
         timePickerDialog.setTitle(getString(R.string.set_class_start_time));
-        timePickerDialog.show(getActivity().getFragmentManager(), "DatePickerDialog");
+        timePickerDialog.show(getFragmentManager(), "DatePickerDialog");
     }
 
     @OnClick(R.id.button_create_class)
@@ -130,6 +136,7 @@ public class TeacherClassFormFragment extends Fragment {
         if (verifyForm(date, startHour, endHour)){
             try {
                 createDbClass(date, startHour, endHour, subject, level);
+                finish();
             } catch (Exception e) {
                 System.out.print(e);
             }
@@ -137,21 +144,17 @@ public class TeacherClassFormFragment extends Fragment {
         }
     }
 
-    public static android.support.v4.app.Fragment newInstance() {
-        return new TeacherClassFormFragment();
-    }
-
     public boolean verifyForm(EditText date, EditText startHour, EditText endHour){
         if (date.getText().equals("")){
-            Toast.makeText(getActivity(), getString(R.string.select_date_error), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.select_date_error), Toast.LENGTH_SHORT).show();
             return false;
         }
         if (startHour.getText().equals("")){
-            Toast.makeText(getActivity(), getString(R.string.select_startHour_error), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.select_startHour_error), Toast.LENGTH_SHORT).show();
             return false;
         }
         if (endHour.getText().equals("")){
-            Toast.makeText(getActivity(), getString(R.string.select_endHour_error), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.select_endHour_error), Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

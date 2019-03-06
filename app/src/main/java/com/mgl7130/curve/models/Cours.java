@@ -13,6 +13,7 @@ public class Cours extends GenericEntity{
     private Timestamp startDate;
     private Timestamp endDate;
 
+    public Cours(){}
 
     public Cours(String teacherId, Subject subject, Level level, Timestamp date, Timestamp startDate, Timestamp endDate) {
         this.teacherId = teacherId;

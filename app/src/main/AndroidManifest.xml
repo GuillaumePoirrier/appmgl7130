@@ -25,6 +25,7 @@
         <activity android:name="com.mgl7130.curve.pages.ProfileChoiceActivity" />
         <activity android:name="com.mgl7130.curve.pages.student.MainStudentActivity"/>
         <activity android:name=".pages.teacher.MainTeacherActivity"/>
+        <activity android:name=".pages.teacher.ui.class_create.TeacherClassFormActivity"/>
 
     </application>
 
