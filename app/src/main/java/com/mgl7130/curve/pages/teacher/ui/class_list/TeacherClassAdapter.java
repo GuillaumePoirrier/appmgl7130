@@ -15,6 +15,7 @@ import com.mgl7130.curve.models.Cours;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -76,10 +77,10 @@ public class TeacherClassAdapter extends FirestoreAdapter<TeacherClassAdapter.Vi
 
             subject.setText(cours.getSubject().toString());
             level.setText(cours.getLevel().toString());
-            startTime.setText((new SimpleDateFormat("HH:mm").format(cours.getStartDate().toDate())));
-            endTime.setText((new SimpleDateFormat("HH:mm").format(cours.getEndDate().toDate())));
-            dateDay.setText((new SimpleDateFormat("dd").format(cours.getDate().toDate())));
-            dateMonth.setText((new SimpleDateFormat("MMM").format(cours.getDate().toDate())));
+            startTime.setText((new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(cours.getStartDate().toDate())));
+            endTime.setText((new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(cours.getEndDate().toDate())));
+            dateDay.setText((new SimpleDateFormat("dd", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
+            dateMonth.setText((new SimpleDateFormat("MMM", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
 
 
             //Click listener

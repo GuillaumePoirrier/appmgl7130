@@ -162,10 +162,8 @@ public class TeacherClassFormActivity extends AppCompatActivity {
 
     private void createDbClass(EditText date, EditText startHour, EditText endHour, Spinner subject, Spinner level) throws ParseException {
         //generate timestamp from time string
-        String[] time = startHour.getText().toString().split(":");
-        Timestamp start = new Timestamp((Long.parseLong(time[0])*3600)+(Long.parseLong(time[1])*60),0);
-        time = endHour.getText().toString().split(":");
-        Timestamp end = new Timestamp((Long.parseLong(time[0])*3600)+(Long.parseLong(time[1])*60),0);
+        Timestamp start = new Timestamp(new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).parse(startHour.getText().toString()));
+        Timestamp end = new Timestamp(new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).parse(endHour.getText().toString()));
 
         //Generate timestanp from date
         Timestamp classDate = new Timestamp(new SimpleDateFormat("dd/MM/yyyy").parse(date.getText().toString()));
