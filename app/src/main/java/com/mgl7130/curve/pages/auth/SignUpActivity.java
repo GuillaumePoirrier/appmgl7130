@@ -16,14 +16,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.User;
-import com.mgl7130.curve.pages.ProfileChoiceActivity;
-
-import java.util.List;
 
 public class SignUpActivity extends AppCompatActivity {
 

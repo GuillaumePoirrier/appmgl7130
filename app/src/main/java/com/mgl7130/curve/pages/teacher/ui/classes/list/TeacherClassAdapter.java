@@ -14,7 +14,6 @@ import com.mgl7130.curve.adapter.FirestoreAdapter;
 import com.mgl7130.curve.models.Cours;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import butterknife.BindView;

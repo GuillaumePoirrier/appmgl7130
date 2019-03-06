@@ -1,4 +1,4 @@
-package com.mgl7130.curve.pages.teacher.ui.student_list;
+package com.mgl7130.curve.pages.teacher.ui.student.student_list;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,11 +15,7 @@ import android.widget.TextView;
 
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.Cours;
-import com.mgl7130.curve.models.Student;
-import com.mgl7130.curve.models.Subject;
-import com.mgl7130.curve.models.Teacher;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
