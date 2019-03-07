@@ -48,4 +48,6 @@
     <string name="from">From :</string>
     <string name="to">To :</string>
     <string name="message_no_results">No result found</string>
+    <string name="level">Level :</string>
+    <string name="no_student">No student yet</string>
 </resources>

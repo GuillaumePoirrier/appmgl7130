@@ -1,4 +1,4 @@
-package com.mgl7130.curve.pages.teacher.ui.class_list;
+package com.mgl7130.curve.pages.teacher.ui.classes.list;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +18,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.mgl7130.curve.R;
-import com.mgl7130.curve.pages.teacher.ui.class_create.TeacherClassFormActivity;
+import com.mgl7130.curve.pages.teacher.ui.classes.create.TeacherClassFormActivity;
+import com.mgl7130.curve.pages.teacher.ui.classes.detail.TeacherClassDetailActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,7 +46,7 @@ public class TeacherClassRecyclerFragment extends Fragment implements
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.teacher_students_recycler_view_fragment, container, false);
+        View view = inflater.inflate(R.layout.teacher_class_recycler_view_fragment, container, false);
         ButterKnife.bind(this, view);
 
         //Firestore
@@ -103,9 +104,12 @@ public class TeacherClassRecyclerFragment extends Fragment implements
     }
 
     @Override
-    public void onClassSelected(DocumentSnapshot restaurant) {
-        //@TODO go to class detail view
-        System.out.print("Class recycler item clicked");
+    public void onClassSelected(DocumentSnapshot cours) {
+        // Go to the details page for the selected restaurant
+        Intent intent = new Intent(getActivity(), TeacherClassDetailActivity.class);
+        intent.putExtra(TeacherClassDetailActivity.KEY_RESTAURANT_ID, cours.getId());
+
+        startActivity(intent);
     }
 
     public static Fragment newInstance(){

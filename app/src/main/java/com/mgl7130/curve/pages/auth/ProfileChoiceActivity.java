@@ -22,14 +22,14 @@ public class ProfileChoiceActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.imageView_student)
+    @OnClick(R.id.imageView_teacher)
     public void onStudentProfileClicked(View view){
         Intent intent = new Intent(ProfileChoiceActivity.this, MainTeacherActivity.class);
         startActivity(intent);
         finish();
     }
 
-    @OnClick(R.id.imageView_teacher)
+    @OnClick(R.id.imageView_student)
     public void onTeacherProfileClicked(View view){
         Intent intent = new Intent(ProfileChoiceActivity.this, MainStudentActivity.class);
         startActivity(intent);

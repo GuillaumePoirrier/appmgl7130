@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.mgl7130.curve.R;
-import com.mgl7130.curve.pages.teacher.ui.class_list.TeacherClassRecyclerFragment;
+import com.mgl7130.curve.pages.teacher.ui.classes.list.TeacherClassRecyclerFragment;
 
 
 public class MainTeacherActivity extends AppCompatActivity {

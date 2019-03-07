@@ -1,4 +1,4 @@
-package com.mgl7130.curve.pages.teacher.ui.class_list;
+package com.mgl7130.curve.pages.teacher.ui.classes.list;
 
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
@@ -86,6 +86,7 @@ public class TeacherClassAdapter extends FirestoreAdapter<TeacherClassAdapter.Vi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    System.out.println("click");
                     if (listener != null) {
                         listener.onClassSelected(snapshot);
                     }

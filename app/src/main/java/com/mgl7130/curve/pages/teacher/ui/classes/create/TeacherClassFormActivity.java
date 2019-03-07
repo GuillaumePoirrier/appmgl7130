@@ -1,13 +1,8 @@
-package com.mgl7130.curve.pages.teacher.ui.class_create;
+package com.mgl7130.curve.pages.teacher.ui.classes.create;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -67,7 +62,7 @@ public class TeacherClassFormActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.teacher_students_class_form_fragment);
+        setContentView(R.layout.activity_teacher_class_form);
         ButterKnife.bind(this);
 
         //Set toolbar tittle

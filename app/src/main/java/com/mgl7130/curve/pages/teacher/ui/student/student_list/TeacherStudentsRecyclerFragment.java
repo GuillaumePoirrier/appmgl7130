@@ -24,7 +24,7 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.teacher_students_recycler_view_fragment, container, false);
+        View view = inflater.inflate(R.layout.teacher_class_recycler_view_fragment, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
