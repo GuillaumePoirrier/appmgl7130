@@ -22,9 +22,11 @@
         <activity android:name="com.mgl7130.curve.pages.auth.AuthentificationChoiceActivity" />
         <activity android:name="com.mgl7130.curve.pages.auth.SignUpActivity" />
         <activity android:name="com.mgl7130.curve.pages.auth.SignInActivity" />
-        <activity android:name="com.mgl7130.curve.pages.ProfileChoiceActivity" />
+        <activity android:name="com.mgl7130.curve.pages.auth.ProfileChoiceActivity" />
         <activity android:name="com.mgl7130.curve.pages.student.MainStudentActivity"/>
         <activity android:name=".pages.teacher.MainTeacherActivity"/>
+        <activity android:name=".pages.teacher.ui.classes.detail.TeacherClassDetailActivity"/>
+        <activity android:name=".pages.teacher.ui.classes.create.TeacherClassFormActivity"/>
 
     </application>
 

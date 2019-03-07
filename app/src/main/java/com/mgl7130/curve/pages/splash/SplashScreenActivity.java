@@ -5,11 +5,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
-import com.mgl7130.curve.pages.ProfileChoiceActivity;
+import com.mgl7130.curve.pages.auth.ProfileChoiceActivity;
 import com.mgl7130.curve.pages.auth.AuthentificationChoiceActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
