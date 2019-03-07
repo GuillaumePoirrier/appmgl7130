@@ -1,4 +1,4 @@
-package com.mgl7130.curve.pages.teacher.ui.student_list;
+package com.mgl7130.curve.pages.teacher.ui.student.student_list;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,11 +15,7 @@ import android.widget.TextView;
 
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.Cours;
-import com.mgl7130.curve.models.Student;
-import com.mgl7130.curve.models.Subject;
-import com.mgl7130.curve.models.Teacher;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +24,7 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.teacher_students_recycler_view_fragment, container, false);
+        View view = inflater.inflate(R.layout.teacher_class_recycler_view_fragment, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -38,12 +34,8 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
     }
 
     public List<Cours> getListofCour(){
-        //@TODO get cours for the connecterd teacher
-;
-
-        List<Cours> cours = new ArrayList<>();
-
-        return cours;
+        //@TODO get all classes from theacher where student is not null
+        return null;
     }
 
     public static Fragment newInstance() {

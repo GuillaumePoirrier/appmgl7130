@@ -7,4 +7,6 @@
     <color name="color_blue">#1E6AFE</color>
     <color name="color_purple">#c024fe</color>
 
+    <color name="greyDisabled">#61000000</color>
+
 </resources>
