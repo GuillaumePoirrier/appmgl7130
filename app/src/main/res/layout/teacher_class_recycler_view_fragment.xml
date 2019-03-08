@@ -16,7 +16,8 @@
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="40dp"
         android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:backgroundTint="@color/color_purple"
+        app:srcCompat="@drawable/ic_add" />
 
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -39,7 +40,7 @@
         android:orientation="vertical">
 
         <ImageView
-            style="@style/AppTheme.PizzaGuy"
+            style="@style/AppTheme.BookNotFound"
             android:src="@drawable/ic_open_book_svgrepo_com" />
 
         <TextView

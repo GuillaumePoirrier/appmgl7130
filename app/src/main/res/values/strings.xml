@@ -45,9 +45,12 @@
     <string name="select_date_error">Please Select a date for your class</string>
     <string name="select_startHour_error">Please select a start hour for your class</string>
     <string name="select_endHour_error">Please select an end hour for your class</string>
-    <string name="from">From :</string>
     <string name="to">To :</string>
+    <string name="from">From:</string>
     <string name="message_no_results">No result found</string>
     <string name="level">Level :</string>
     <string name="no_student">No student yet</string>
+    <string name="edit_class">Edit the class</string>
+    <string name="edit_class_button">Update the class</string>
+
 </resources>
