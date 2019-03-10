@@ -52,5 +52,22 @@
     <string name="no_student">No student yet</string>
     <string name="edit_class">Edit the class</string>
     <string name="edit_class_button">Update the class</string>
+    <string name="name_course">Name_course</string>
+    <string name="Image_of_course">Image of course</string>
+    <string name="Level">Level</string>
+    <string name="From">From</string>
+    <string name="To">To</string>
+    <string name="Days">Days</string>
+    <string name="Niveau">Niveau</string>
+    <string name="Exemple_of_days">Lundi, mardi, mercredi</string>
+    <string name="Name">Name</string>
+    <string name="Surname">Surname</string>
+    <string name="Description_of_teacher">Description of teacher</string>
+    <string name="age_teacher">Age of teacher</string>
+    <string name="age_student">Age of Student</string>
+    <string name="Description_of_student">Description of student</string>
+    <string name="search_course">Search a course</string>
+    <string name="City_course">Ville</string>
+    <string name="city_default">Toulouse</string>
 
 </resources>

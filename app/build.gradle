@@ -20,6 +20,10 @@ android {
 }
 
 dependencies {
+
+    // Circle image
+    implementation 'com.mikhaellopez:circularimageview:3.2.0'
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // ButterKnife (for sample code brevity)
