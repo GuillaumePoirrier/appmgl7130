@@ -54,4 +54,10 @@
     <string name="message_no_results">No result found</string>
     <string name="level">Level :</string>
     <string name="no_student">No student yet</string>
+    <string name="teacher_no_firstname">Please select a firstname</string>
+    <string name="teacher_no_profile_picture">Please take a profile picture</string>
+    <string name="teacher_no_family_name">Please select a family name</string>
+    <string name="teacher_no_date_birth">Please select a date of birth</string>
+
+
 </resources>
