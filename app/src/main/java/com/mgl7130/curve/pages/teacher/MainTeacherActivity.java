@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mgl7130.curve.R;
-import com.mgl7130.curve.pages.teacher.ui.classes.list.TeacherClassRecyclerFragment;
+
+import com.mgl7130.curve.pages.teacher.ui.profile_create.TeacherProfileCreate;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,7 +67,10 @@ public class MainTeacherActivity extends AppCompatActivity {
     protected Fragment createFragment() {
 //        return new TeacherStudentsRecyclerFragment().newInstance();
 //        return new TeacherClassFormActivity().newInstance();
-        return new TeacherClassRecyclerFragment().newInstance();
+     //   return new TeacherClassRecyclerFragment().newInstance();
+  //      return new TeacherClassFormFragment().newInstance();
+
+    return new TeacherProfileCreate().newInstance();
     }
 
 }
