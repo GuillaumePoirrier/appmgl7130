@@ -2,8 +2,11 @@ package com.mgl7130.curve.pages.teacher.ui.classes.create;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -11,7 +14,11 @@ import android.widget.Toast;
 
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.Cours;
 import com.mgl7130.curve.models.Level;
@@ -26,13 +33,18 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import javax.annotation.Nullable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class TeacherClassFormActivity extends AppCompatActivity {
 
-    public static final String TAG = "TeacherClassFormActivity";
+    public static final String TAG = "TeacherClassFormAct";
+
+    public static final String KEY_EDIT = "key_edit";
+    public static final String KEY_CLASS_ID = "key_class_id";
 
     @BindView(R.id.spinner_subject)
     Spinner subject;
@@ -52,6 +64,10 @@ public class TeacherClassFormActivity extends AppCompatActivity {
     @BindView(R.id.toolbar_title)
     TextView toolbarTittle;
 
+    @BindView(R.id.button_create_class)
+    Button button;
+
+    private FirebaseFirestore mFirestore;
 
     private DatePickerDialog datePickerDialog ;
     private TimePickerDialog timePickerDialog ;
@@ -59,14 +75,46 @@ public class TeacherClassFormActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
+    private ArrayAdapter<String> subjectAdapter;
+    private ArrayAdapter<String> levelAdapter;
+
+    private boolean edit = false;
+    private String classId;
+    private DocumentReference mClassRef;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_class_form);
         ButterKnife.bind(this);
 
-        //Set toolbar tittle
-        toolbarTittle.setText(getString(R.string.create_class));
+        //init Firestore
+        mFirestore = FirebaseFirestore.getInstance();
+
+        // Get if is edit
+        if (getIntent().getExtras() != null){
+            edit = getIntent().getExtras().getBoolean(KEY_EDIT);
+        }
+
+        if(edit){
+            button.setText(getString(R.string.edit_class_button));
+            toolbarTittle.setText(getString(R.string.edit_class));
+            classId = getIntent().getExtras().getString(KEY_CLASS_ID);
+            mClassRef = mFirestore.collection("classes").document(classId);
+            mClassRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
+                    if (e != null) {
+                        Log.w(TAG, "class:onEvent", e);
+                        return;
+                    }
+                    onClassLoaded(snapshot.toObject(Cours.class));
+                }
+            });
+        } else {
+            toolbarTittle.setText(getString(R.string.create_class));
+        }
 
         //init Calendar
         calendar = Calendar.getInstance();
@@ -76,8 +124,10 @@ public class TeacherClassFormActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         //Fill the spinners to match enum data
-        subject.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, Subject.stringValues()));
-        level.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, Level.stringValues()));
+        subjectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, Subject.stringValues());
+        subject.setAdapter(subjectAdapter);
+        levelAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, Level.stringValues());
+        level.setAdapter(levelAdapter);
 
     }
 
@@ -171,7 +221,11 @@ public class TeacherClassFormActivity extends AppCompatActivity {
         Cours cours = new Cours(mAuth.getUid(), subject1, level1, classDate, start, end);
 
         //add Class object to Db
-        db.collection("classes").add(cours);
+        if (edit){
+            db.collection("classes").document(classId).set(cours);
+        } else {
+            db.collection("classes").add(cours);
+        }
     }
 
     private String formatHour(int hour, int minutes) {
@@ -184,5 +238,14 @@ public class TeacherClassFormActivity extends AppCompatActivity {
         }
         return timeString;
     }
+
+    private void onClassLoaded(Cours cours) {
+        subject.setSelection(subjectAdapter.getPosition(cours.getSubject().toString()));
+        level.setSelection(levelAdapter.getPosition(cours.getLevel().toString()));
+        date.setText(new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).format(cours.getDate().toDate()));
+        startHour.setText((new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(cours.getStartDate().toDate())));
+        endHour.setText((new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(cours.getEndDate().toDate())));
+    }
+
 }
 

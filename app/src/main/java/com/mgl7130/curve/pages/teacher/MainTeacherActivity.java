@@ -6,12 +6,17 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mgl7130.curve.R;
 
 import com.mgl7130.curve.pages.teacher.ui.profile_create.TeacherProfileCreate;
 
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class MainTeacherActivity extends AppCompatActivity {
@@ -41,6 +46,7 @@ public class MainTeacherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_teacher);
+        ButterKnife.bind(this);
 
         //Insert Fragment
         FragmentManager fm = getSupportFragmentManager();
