@@ -155,11 +155,7 @@ public class TeacherProfileCreate extends Fragment {
                 User user = documentSnapshot.toObject(User.class);
                 teacherFirstName.setText(user.getFirstName());
                 teacherFamilyName.setText(user.getLastName());
-                try {
-                    teacherBirthDate.setText((CharSequence) new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).parse(user.getBirthDate().toString()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                teacherBirthDate.setText("enchantier");
             }
         });
 
