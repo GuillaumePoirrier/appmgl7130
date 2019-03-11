@@ -3,7 +3,7 @@ package com.mgl7130.curve.models;
 import com.google.firebase.Timestamp;
 
 
-public class Cours {
+public class Cours extends GenericEntity{
 
     private String studentId;
     private String teacherId;
@@ -13,6 +13,7 @@ public class Cours {
     private Timestamp startDate;
     private Timestamp endDate;
 
+    public Cours(){}
 
     public Cours(String teacherId, Subject subject, Level level, Timestamp date, Timestamp startDate, Timestamp endDate) {
         this.teacherId = teacherId;

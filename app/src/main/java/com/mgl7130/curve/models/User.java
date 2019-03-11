@@ -1,26 +1,32 @@
 package com.mgl7130.curve.models;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 
-public class User {
+public class User extends GenericEntity{
 
-    private transient String id;
     private String firstName;
     private String lastName;
+    private Timestamp birthDate;
 
+    public User(){}
+
+    public User(String firstName, String lastName, Timestamp birthDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+    }
     public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
     public User(QueryDocumentSnapshot document) {
-        this.id = document.getId();
+        super(document.getId());
         this.firstName = (String) document.getData().get("firstName");
         this.lastName = (String) document.getData().get("lastName");
     }
-
-    public String getId() { return id; }
 
     public String getFirstName() { return firstName; }
 
@@ -30,4 +36,11 @@ public class User {
 
     public void setLastName(String lastName) { this.lastName = lastName; }
 
+    public Timestamp getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Timestamp birthDate) {
+        this.birthDate = birthDate;
+    }
 }

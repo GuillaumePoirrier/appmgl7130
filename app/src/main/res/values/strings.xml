@@ -33,6 +33,9 @@
     <string name="enter_password">Enter password</string>
     <string name="password_too_short">Password too short, enter minimum 6 characters!</string>
     <string name="auth_failed">Authentification failled</string>
+    <string name="first_name_teacher">Prénom</string>
+    <string name="teacher_family_name">Nom</string>
+    <string name="teacher_birth_date">Date de Naissance</string>
     <string name="class_subject">Subject of the Class</string>
     <string name="class_level">Level of the Class</string>
     <string name="create_class">Create a new class</string>
@@ -45,4 +48,20 @@
     <string name="select_date_error">Please Select a date for your class</string>
     <string name="select_startHour_error">Please select a start hour for your class</string>
     <string name="select_endHour_error">Please select an end hour for your class</string>
+    <string name="teacher_profile_save">Ok</string>
+    <string name="from">From :</string>
+    <string name="to">To :</string>
+    <string name="from">From:</string>
+    <string name="message_no_results">No result found</string>
+    <string name="level">Level :</string>
+    <string name="no_student">No student yet</string>
+    <string name="edit_class">Edit the class</string>
+    <string name="edit_class_button">Update the class</string>
+
+    <string name="teacher_no_firstname">Please select a firstname</string>
+    <string name="teacher_no_profile_picture">Please take a profile picture</string>
+    <string name="teacher_no_family_name">Please select a family name</string>
+    <string name="teacher_no_date_birth">Please select a date of birth</string>
+
+
 </resources>

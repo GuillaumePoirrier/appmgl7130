@@ -3,7 +3,16 @@
     package="com.mgl7130.curve">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.IMAGE_CAPTURE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,9 +31,11 @@
         <activity android:name="com.mgl7130.curve.pages.auth.AuthentificationChoiceActivity" />
         <activity android:name="com.mgl7130.curve.pages.auth.SignUpActivity" />
         <activity android:name="com.mgl7130.curve.pages.auth.SignInActivity" />
-        <activity android:name="com.mgl7130.curve.pages.ProfileChoiceActivity" />
+        <activity android:name="com.mgl7130.curve.pages.auth.ProfileChoiceActivity" />
         <activity android:name="com.mgl7130.curve.pages.student.MainStudentActivity"/>
         <activity android:name=".pages.teacher.MainTeacherActivity"/>
+        <activity android:name=".pages.teacher.ui.classes.detail.TeacherClassDetailActivity"/>
+        <activity android:name=".pages.teacher.ui.classes.create.TeacherClassFormActivity"/>
 
     </application>
 
