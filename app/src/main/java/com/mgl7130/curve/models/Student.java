@@ -1,6 +1,6 @@
 package com.mgl7130.curve.models;
 
-import java.util.Date;
+import android.graphics.drawable.Drawable;
 
 public class Student extends User{
 
@@ -12,6 +12,12 @@ public class Student extends User{
 
     public Student getStudentFromId(String studentId){
         //TODO get Student object corresponding to String id
+        return null;
+    }
+
+    // IMPORTANT : À définir !!
+
+    public Drawable getImgStudent (){
         return null;
     }
 

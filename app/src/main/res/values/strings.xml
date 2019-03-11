@@ -71,5 +71,13 @@
     <string name="city_default">Toulouse</string>
     <string name="Kind_course">which subject matter?</string>
     <string name="date_choice_course">What date ?</string>
+    <string name="Avatar_teacher_book">Avatar of teacher book</string>
+    <string name="Subject_course">Subject of the course</string>
+    <string name="Hour_begin">Hour begin</string>
+    <string name="Hour_finish">Hour finish</string>
+    <string name="The">The</string>
+    <string name="Month">Month</string>
+    <string name="Year">Year</string>
+    <string name="City_course_book">City</string>
 
 </resources>
