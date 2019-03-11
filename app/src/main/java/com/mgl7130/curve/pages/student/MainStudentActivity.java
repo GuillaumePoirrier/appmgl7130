@@ -3,20 +3,53 @@ package com.mgl7130.curve.pages.student;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnPageChange;
 
 public class MainStudentActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
-    private Button signOutButton;
+    @BindView(R.id.vpPagerStudent)
+    ViewPager viewPager;
+
+    @BindView(R.id.navigation)
+    BottomNavigationView navigation;
+
+    private FragmentPagerAdapter adapterViewPager;
+    MenuItem prevMenuItem;
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_student);
+        ButterKnife.bind(this);
+
+        //set viewPager and adapter
+        adapterViewPager = new StudentPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapterViewPager);
+
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    @OnPageChange(R.id.vpPagerStudent)
+    public void onPageChanged(int position) {
+        if (prevMenuItem != null)
+            prevMenuItem.setChecked(false);
+        else
+            navigation.getMenu().getItem(0).setChecked(false);
+
+        navigation.getMenu().getItem(position).setChecked(true);
+        prevMenuItem = navigation.getMenu().getItem(position);
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -34,26 +67,5 @@ public class MainStudentActivity extends AppCompatActivity {
             return false;
         }
     };
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_student);
-
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        signOutButton = (Button) findViewById(R.id.sign_out);
-
-        signOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                finish();
-            }
-        });
-
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-    }
 
 }
