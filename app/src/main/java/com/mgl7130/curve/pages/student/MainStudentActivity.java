@@ -60,10 +60,10 @@ public class MainStudentActivity extends AppCompatActivity {
                 case R.id.navigation_student_classes:
                     viewPager.setCurrentItem(0);
                     return true;
-                case R.id.navigation_student_profile:
+                case R.id.navigation_student_search:
                     viewPager.setCurrentItem(1);
                     return true;
-                case R.id.navigation_student_search:
+                case R.id.navigation_student_profile:
                     viewPager.setCurrentItem(2);
                     return true;
             }
