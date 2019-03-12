@@ -21,7 +21,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/*public class StudentClassAdapter extends FirestoreAdapter<StudentClassAdapter.ViewHolder> {
+public class StudentClassAdapter extends FirestoreAdapter<StudentClassAdapter.ViewHolder> {
 
     public interface OnClassSelectedListener {
         void onClassSelected(DocumentSnapshot restaurant);
@@ -88,7 +88,7 @@ import butterknife.ButterKnife;
             startTime.setText((new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(cours.getStartDate().toDate())));
             endTime.setText((new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(cours.getEndDate().toDate())));
             dateDay.setText((new SimpleDateFormat("dd", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
-            dateMonth.setText((new SimpleDateFormat("MMM", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
+            dateMonth.setText((new SimpleDateFormat("MM ", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
             dateYear.setText((new SimpleDateFormat ("AAAA", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
 
 
@@ -104,4 +104,4 @@ import butterknife.ButterKnife;
             });
         }
     }
-}*/
+}

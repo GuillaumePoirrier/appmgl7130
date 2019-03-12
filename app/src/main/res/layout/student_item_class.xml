@@ -10,7 +10,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="@string/Avatar_teacher_book"
+        android:contentDescription="@string/avatar_teacher_book"
         android:src="@drawable/teacher_avatar"
         app:civ_border_width="2dp"
         app:civ_shadow="true"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginTop="8dp"
-        android:text="@string/Surname"
+        android:text="@string/surname"
         app:layout_constraintEnd_toEndOf="@+id/picture_teacher_book"
         app:layout_constraintStart_toStartOf="@+id/picture_teacher_book"
         app:layout_constraintTop_toBottomOf="@+id/picture_teacher_book" />
@@ -36,7 +36,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/Subject_course"
+        android:text="@string/subject_course"
         android:textSize="@dimen/title_subject_course"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/picture_teacher_book"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="@string/From"
+        android:text="@string/from"
         app:layout_constraintStart_toEndOf="@+id/picture_teacher_book"
         app:layout_constraintTop_toBottomOf="@+id/level_book" />
 
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="@string/Hour_begin"
+        android:text="@string/hour_begin"
         app:layout_constraintStart_toEndOf="@+id/from_course"
         app:layout_constraintTop_toBottomOf="@+id/level_book" />
 
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="@string/To"
+        android:text="@string/to"
         app:layout_constraintStart_toEndOf="@+id/hour_begin"
         app:layout_constraintTop_toBottomOf="@+id/level_book" />
 
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="@string/Hour_finish"
+        android:text="@string/hour_finish"
         app:layout_constraintStart_toEndOf="@+id/to_course"
         app:layout_constraintTop_toBottomOf="@+id/level_book" />
 
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/The"
+        android:text="@string/the"
         app:layout_constraintStart_toEndOf="@+id/picture_teacher_book"
         app:layout_constraintTop_toBottomOf="@+id/from_course" />
 
@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/Days"
+        android:text="@string/days"
         app:layout_constraintStart_toEndOf="@+id/the_course"
         app:layout_constraintTop_toBottomOf="@+id/hour_begin" />
 
@@ -108,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/Month"
+        android:text="@string/month"
         app:layout_constraintStart_toEndOf="@+id/day_course"
         app:layout_constraintTop_toBottomOf="@+id/to_course" />
 
@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/Year"
+        android:text="@string/year"
         app:layout_constraintStart_toEndOf="@+id/month_course"
         app:layout_constraintTop_toBottomOf="@+id/hour_finish" />
 
@@ -128,7 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/To"
+        android:text="@string/to"
         app:layout_constraintStart_toEndOf="@+id/picture_teacher_book"
         app:layout_constraintTop_toBottomOf="@+id/the_course" />
 
@@ -138,7 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/City_course_book"
+        android:text="@string/city_course_book"
         app:layout_constraintStart_toEndOf="@+id/to_place"
         app:layout_constraintTop_toBottomOf="@+id/day_course" />
 
@@ -147,7 +147,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/Level"
+        android:text="@string/level"
         app:layout_constraintEnd_toEndOf="@+id/subject_course_book"
         app:layout_constraintStart_toStartOf="@+id/subject_course_book"
         app:layout_constraintTop_toBottomOf="@+id/subject_course_book" />
