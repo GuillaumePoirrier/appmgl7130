@@ -1,4 +1,4 @@
-package com.mgl7130.curve.pages.student.profile;
+package com.mgl7130.curve.pages.student.ui.profile;
 
 import android.app.Activity;
 import android.content.Intent;
