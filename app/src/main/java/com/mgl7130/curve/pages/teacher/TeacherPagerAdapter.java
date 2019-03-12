@@ -19,7 +19,7 @@ public class TeacherPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0: // Fragment # 0 - This will show StudentClassRecyclerFragment
+            case 0: // Fragment # 0 - This will show StudentSearchRecyclerFragment
                 return TeacherStudentRecyclerFragment.newInstance();
             case 1: // Fragment # 0 - This will show TeacherStudentsRecyclerFragment
                 return TeacherClassRecyclerFragment.newInstance();

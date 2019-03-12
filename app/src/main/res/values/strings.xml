@@ -78,7 +78,8 @@
     <string name="student_no_date_birth">Please select a date of birth</string>
     <string name="student_unable_get_profile_picture">Unable to retrieve profile picture</string>
     <string name="student_no_description">Select a description</string>
-
+    <string name="all_classes">All Classes</string>
+    <string name="sorted_by_date">sorted by date</string>
 
 
 </resources>
