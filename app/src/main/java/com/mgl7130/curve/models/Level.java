@@ -5,10 +5,10 @@ import java.util.List;
 
 public enum Level {
 
-    Primary("Primary"),
-    Secondary("Secondary"),
-    College("College"),
-    University("University");
+    Primary("Primaire"),
+    Secondary("Secondaire"),
+    College("Cégep"),
+    University("Université");
 
 
     private String name = "";

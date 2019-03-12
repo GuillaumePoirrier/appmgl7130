@@ -5,9 +5,9 @@ import java.util.List;
 
 public enum Subject {
 
-    Mathematics("Mathematics"),
-    Physics("Physics"),
-    Chemistry("Chemistry");
+    Mathematics("Mathematiques"),
+    Physics("Physique"),
+    Chemistry("Chimie");
 
 
     private String name = "";

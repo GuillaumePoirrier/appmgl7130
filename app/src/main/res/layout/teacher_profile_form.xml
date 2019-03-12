@@ -106,12 +106,13 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
-            app:backgroundTintMode="multiply"
+            app:backgroundTint="@color/color_purple"
+            app:backgroundTintMode="src_in"
             app:layout_constraintBottom_toTopOf="@+id/teacher_first_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/profile_picture_cardView"
             app:layout_constraintTop_toTopOf="parent"
-            app:rippleColor="@color/colorAccent"
+            app:rippleColor="@color/color_blue"
             app:srcCompat="@android:drawable/ic_menu_edit" />
 
         <EditText
