@@ -50,7 +50,6 @@
     <string name="select_endHour_error">Please select an end hour for your class</string>
     <string name="teacher_profile_save">Ok</string>
     <string name="to">To :</string>
-    <string name="from">From:</string>
     <string name="message_no_results">No result found</string>
     <string name="level">Level :</string>
     <string name="no_student">No student yet</string>
