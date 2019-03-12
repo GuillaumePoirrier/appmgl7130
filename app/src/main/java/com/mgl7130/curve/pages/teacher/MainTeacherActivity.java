@@ -6,10 +6,13 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
 
 import com.mgl7130.curve.pages.teacher.ui.profile_create.TeacherProfileCreate;
@@ -39,6 +42,11 @@ public class MainTeacherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_teacher);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         ButterKnife.bind(this);
 
         //set viewPager and adapter
@@ -50,10 +58,26 @@ public class MainTeacherActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_teacher, menu);
-        return true;
+        getMenuInflater().inflate(R.menu.menu_teacher, menu);
+        return super.onCreateOptionsMenu(menu);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.navigation_student_classes:
+                Toast.makeText(getApplicationContext(),"Go to student",Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.sign_out:
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 
     @OnPageChange(R.id.vpPagerTeacher)
     public void onPageChanged(int position) {
