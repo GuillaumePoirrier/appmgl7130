@@ -3,6 +3,7 @@ package com.mgl7130.curve.pages.teacher.ui.student.student_list;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,19 +14,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.Timestamp;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.Cours;
+import com.mgl7130.curve.models.Level;
+import com.mgl7130.curve.models.Subject;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class TeacherStudentsRecyclerFragment extends Fragment {
 
+    private FloatingActionButton add;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.teacher_class_recycler_view_fragment, container, false);
-
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new TeacherStudentsRecyclerViewAdapter(getListofCour()));
@@ -34,8 +41,11 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
     }
 
     public List<Cours> getListofCour(){
-        //@TODO get all classes from theacher where student is not null
-        return null;
+        //@TODO get all classes from teacher where student is not null
+        List<Cours> listCours = new ArrayList<>();
+        listCours.add(new Cours("wwsPjmw06oVdrxd0rw49HNMLuIw1","URef4h6Pn4TWY4K9vedkavsqU4Q2", Subject.Chemistry, Level.College, Timestamp.now(), Timestamp.now(),Timestamp.now()));
+
+        return listCours;
     }
 
     public static Fragment newInstance() {
