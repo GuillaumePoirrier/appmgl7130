@@ -55,6 +55,7 @@ public class MainTeacherActivity extends AppCompatActivity {
 
         navigation.getMenu().getItem(position).setChecked(true);
         prevMenuItem = navigation.getMenu().getItem(position);
+   return new TeacherProfileCreate().newInstance();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

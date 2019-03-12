@@ -82,6 +82,7 @@
     <string name="Month">Month</string>
     <string name="Year">Year</string>
     <string name="City_course_book">City</string>
+    <string name="from">From :</string>
 
     <string name="teacher_no_firstname">Please select a firstname</string>
     <string name="teacher_no_profile_picture">Please take a profile picture</string>
