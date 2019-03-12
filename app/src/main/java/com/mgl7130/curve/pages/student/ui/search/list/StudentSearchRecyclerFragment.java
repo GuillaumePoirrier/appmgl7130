@@ -32,7 +32,7 @@ import butterknife.OnClick;
 public class StudentSearchRecyclerFragment extends Fragment implements
         StudentSearchAdapter.OnClassSelectedListener {
 
-    public static final String TAG = "StudentSearchRecyclerFragment";
+    public static final String TAG = "StudentSearchRecycler";
     public static final int LIMIT = 50;
 
     @BindView(R.id.textCurrentSearch)
@@ -167,7 +167,6 @@ public class StudentSearchRecyclerFragment extends Fragment implements
 
     @Override
     public void onClassSelected(DocumentSnapshot cours) {
-        // Go to the details page for the selected restaurant
         Intent intent = new Intent(getActivity(), StudentSearchDetailActivity.class);
         intent.putExtra(StudentSearchDetailActivity.KEY_CLASS_ID, cours.getId());
 
