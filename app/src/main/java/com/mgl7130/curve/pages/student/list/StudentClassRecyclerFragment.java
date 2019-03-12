@@ -17,17 +17,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.mgl7130.curve.R;
-import com.mgl7130.curve.models.Student;
 import com.mgl7130.curve.pages.student.detail.StudentClassDetailActivity;
-import com.mgl7130.curve.pages.teacher.ui.classes.list.TeacherClassAdapter;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.mgl7130.curve.R.id.recycler_view_student;
 
-public class StudentClassRecyclerFragment extends Fragment implements StudentClassAdapter.OnClassSelectedListener {
+public class StudentClassRecyclerFragment extends android.support.v4.app.Fragment implements StudentClassAdapter.OnClassSelectedListener {
 
         public static final String TAG = "StudentClassRecyclerFragment";
         public static final int LIMIT = 50;
@@ -112,7 +108,7 @@ public class StudentClassRecyclerFragment extends Fragment implements StudentCla
         startActivity(intent);
     }
 
-    public static Fragment newInstance(){
+    public static android.support.v4.app.Fragment newInstance(){
         return new StudentClassRecyclerFragment();
     }
 }

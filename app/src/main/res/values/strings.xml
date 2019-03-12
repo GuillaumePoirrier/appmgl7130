@@ -91,4 +91,15 @@
     <string name="teacher_unable_get_profile_picture">Unable to get profile pic</string>
 
 
+
+    <string name="first_name_student">Prénom</string>
+    <string name="student_family_name">Nom</string>
+    <string name="student_birth_date">Date de naissance</string>
+    <string name="student_profile_save">Ok</string>
+    <string name="student_no_firstname">Please select a firstname</string>
+    <string name="student_no_profile_picture">Please take a profile picture</string>
+    <string name="student_no_family_name">Please select a family name</string>
+    <string name="student_no_date_birth">Please select a date of birth</string>
+
+
 </resources>

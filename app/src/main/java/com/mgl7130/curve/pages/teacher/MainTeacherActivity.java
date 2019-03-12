@@ -10,8 +10,6 @@ import android.view.MenuItem;
 
 import com.mgl7130.curve.R;
 
-import com.mgl7130.curve.pages.teacher.ui.profile_create.TeacherProfileCreate;
-
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,7 +53,7 @@ public class MainTeacherActivity extends AppCompatActivity {
 
         navigation.getMenu().getItem(position).setChecked(true);
         prevMenuItem = navigation.getMenu().getItem(position);
-  // return new TeacherProfileCreate().newInstance();
+  // return new TeacherProfile().newInstance();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

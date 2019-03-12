@@ -1,4 +1,4 @@
-package com.mgl7130.curve.pages.teacher.ui.profile_create;
+package com.mgl7130.curve.pages.teacher.ui.profile;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -42,7 +42,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-public class TeacherProfileCreate extends Fragment {
+public class TeacherProfile extends Fragment {
 
     public static final String TAG = "TeacherProfileActivity";
     static final int REQUEST_IMAGE_CAPTURE = 111;
@@ -61,7 +61,7 @@ public class TeacherProfileCreate extends Fragment {
 
 
     public static Fragment newInstance() {
-        return new TeacherProfileCreate();
+        return new TeacherProfile();
     }
 
     @Nullable
