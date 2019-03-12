@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Curve</string>
     <string name="curve_logo">Curve Logo</string>
     <string name="sign_in">Sign In</string>
@@ -61,6 +61,9 @@
     <string name="teacher_no_profile_picture">Please take a profile picture</string>
     <string name="teacher_no_family_name">Please select a family name</string>
     <string name="teacher_no_date_birth">Please select a date of birth</string>
+    <string name="teacher_unable_get_profile_picture">Unable to retrieve profile picture</string>
+    <string name="teacher_description">Description</string>
+    <string name="teacher_no_description">Select a description</string>
 
 
 </resources>
