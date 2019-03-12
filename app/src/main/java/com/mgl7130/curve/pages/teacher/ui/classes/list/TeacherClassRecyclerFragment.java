@@ -94,6 +94,12 @@ public class TeacherClassRecyclerFragment extends Fragment implements
         return view;
     }
 
+    @OnClick(R.id.fab_add_class)
+    public void onAddClassFABClicked(View view){
+        Intent intent = new Intent(getActivity(), TeacherClassFormActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onStart() {
         super.onStart();

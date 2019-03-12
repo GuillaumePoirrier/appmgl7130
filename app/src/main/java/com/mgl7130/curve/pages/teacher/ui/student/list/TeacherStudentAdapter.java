@@ -35,7 +35,7 @@ public class TeacherStudentAdapter extends FirestoreAdapter<TeacherStudentAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new ViewHolder(inflater.inflate(R.layout.teacher_item_class, parent, false));
+        return new ViewHolder(inflater.inflate(R.layout.teacher_item_student, parent, false));
     }
 
     @Override
