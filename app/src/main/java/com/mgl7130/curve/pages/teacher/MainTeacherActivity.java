@@ -6,6 +6,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.mgl7130.curve.R;
@@ -44,6 +46,13 @@ public class MainTeacherActivity extends AppCompatActivity {
         viewPager.setAdapter(adapterViewPager);
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_teacher, menu);
+        return true;
     }
 
     @OnPageChange(R.id.vpPagerTeacher)
