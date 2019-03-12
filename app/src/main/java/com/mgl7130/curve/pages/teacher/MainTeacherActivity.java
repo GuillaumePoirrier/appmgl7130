@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import com.mgl7130.curve.R;
 
 
+
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnPageChange;
@@ -53,7 +55,7 @@ public class MainTeacherActivity extends AppCompatActivity {
 
         navigation.getMenu().getItem(position).setChecked(true);
         prevMenuItem = navigation.getMenu().getItem(position);
-  // return new TeacherProfile().newInstance();
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

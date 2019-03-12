@@ -21,11 +21,11 @@ public class profile_student extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_profile);
 
-        name = (TextView) findViewById(R.id.name_student);
+       /* name = (TextView) findViewById(R.id.name_student);
         surname = (TextView) findViewById(R.id.surname_student);
         description = (TextView) findViewById(R.id.description_student);
         age = (TextView) findViewById(R.id.age_student);
-        age.setText("19ans");
+        age.setText("19ans");*/
 
 
 

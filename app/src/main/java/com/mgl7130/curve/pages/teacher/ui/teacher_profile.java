@@ -24,12 +24,12 @@ public class teacher_profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teacher_profile);
 
-        avatar = (CircleView) findViewById(R.id.avatar_circle);
+      /*  avatar = (CircleView) findViewById(R.id.avatar_circle);
         listCourse = (ListView) findViewById(R.id.list_course);
         description = (TextView) findViewById(R.id.description_teacher);
         name = (TextView) findViewById(R.id.name_teacher);
         surname = (TextView) findViewById(R.id.surname_teacher);
-        age = (TextView) findViewById(R.id.age_teacher);
+        age = (TextView) findViewById(R.id.age_teacher);*/
 
 
     }

@@ -21,7 +21,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class StudentClassAdapter extends FirestoreAdapter<StudentClassAdapter.ViewHolder> {
+/*public class StudentClassAdapter extends FirestoreAdapter<StudentClassAdapter.ViewHolder> {
 
     public interface OnClassSelectedListener {
         void onClassSelected(DocumentSnapshot restaurant);
@@ -104,4 +104,4 @@ public class StudentClassAdapter extends FirestoreAdapter<StudentClassAdapter.Vi
             });
         }
     }
-}
+}*/

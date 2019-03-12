@@ -17,7 +17,7 @@ public class choice_course extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_choice_course);
 
-        city = (EditText) findViewById(R.id.city_suggestion);
+       // city = (EditText) findViewById(R.id.city_suggestion);
 
     }
 }
