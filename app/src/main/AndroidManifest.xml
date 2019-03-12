@@ -27,7 +27,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" /></intent-filter>
         </activity>
-        <activity android:name="com.mgl7130.curve.MainActivity" />
         <activity android:name="com.mgl7130.curve.pages.auth.AuthentificationChoiceActivity" />
         <activity android:name="com.mgl7130.curve.pages.auth.SignUpActivity" />
         <activity android:name="com.mgl7130.curve.pages.auth.SignInActivity" />
@@ -37,6 +36,7 @@
         <activity android:name=".pages.teacher.ui.classes.detail.TeacherClassDetailActivity"/>
         <activity android:name=".pages.teacher.ui.classes.create.TeacherClassFormActivity"/>
         <activity android:name=".pages.student.ui.classes.detail.StudentClassDetailActivity" />
+        <activity android:name=".pages.teacher.ui.student.detail.TeacherStudentDetailActivity" />
 
     </application>
 
