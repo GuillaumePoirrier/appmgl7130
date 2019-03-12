@@ -10,9 +10,6 @@ import android.view.MenuItem;
 
 import com.mgl7130.curve.R;
 
-import com.mgl7130.curve.pages.teacher.ui.profile_create.TeacherProfileCreate;
-
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnPageChange;

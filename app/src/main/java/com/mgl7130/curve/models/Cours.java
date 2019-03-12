@@ -5,6 +5,10 @@ import com.google.firebase.Timestamp;
 
 public class Cours extends GenericEntity{
 
+    public static final String FIELD_SUBJECT = "subject";
+    public static final String FIELD_DATE = "date";
+    public static final String FIELD_LEVEL = "level";
+
     private String studentId;
     private String teacherId;
     private Subject subject;

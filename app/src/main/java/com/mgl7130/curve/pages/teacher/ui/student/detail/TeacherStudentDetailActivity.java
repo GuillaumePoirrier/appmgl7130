@@ -200,8 +200,10 @@ public class TeacherStudentDetailActivity extends AppCompatActivity{
 
 
     private void onStudentLoaded(Student student) {
-
-        String studentName = student.getFirstName() + " " + student.getLastName();
+        String studentName = getString(R.string.no_student);
+        if (student != null) {
+            studentName = student.getFirstName() + " " + student.getLastName();
+        }
         this.student.setText(studentName);
 
     }
