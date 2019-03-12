@@ -15,6 +15,15 @@ public class Cours extends GenericEntity{
 
     public Cours(){}
 
+    public Cours(String teacherId,String studentId, Subject subject, Level level, Timestamp date, Timestamp startDate, Timestamp endDate) {
+        this.teacherId = teacherId;
+        this.studentId = studentId;
+        this.subject = subject;
+        this.level = level;
+        this.date = date;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
     public Cours(String teacherId, Subject subject, Level level, Timestamp date, Timestamp startDate, Timestamp endDate) {
         this.teacherId = teacherId;
         this.subject = subject;
