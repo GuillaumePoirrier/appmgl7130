@@ -88,6 +88,7 @@
     <string name="teacher_no_profile_picture">Please take a profile picture</string>
     <string name="teacher_no_family_name">Please select a family name</string>
     <string name="teacher_no_date_birth">Please select a date of birth</string>
+    <string name="teacher_unable_get_profile_picture">Unable to get profile pic</string>
 
 
 </resources>

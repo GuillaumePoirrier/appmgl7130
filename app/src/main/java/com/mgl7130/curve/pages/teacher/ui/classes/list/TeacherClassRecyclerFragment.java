@@ -2,8 +2,10 @@ package com.mgl7130.curve.pages.teacher.ui.classes.list;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,9 +39,13 @@ public class TeacherClassRecyclerFragment extends Fragment implements
     @BindView(R.id.viewEmpty)
     ViewGroup mEmptyView;
 
+    @BindView(R.id.fab_add_class)
+    FloatingActionButton addClass;
+
     private FirebaseFirestore mFirestore;
     private FirebaseAuth mAuth;
     private Query mQuery;
+
 
     private TeacherClassAdapter mAdapter;
 
@@ -73,6 +79,15 @@ public class TeacherClassRecyclerFragment extends Fragment implements
                 Log.e(TAG,e.toString());
             }
         };
+
+        addClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goCreateClass = new Intent(getActivity(), TeacherClassFormActivity.class);
+                startActivity(goCreateClass);
+
+            }
+        });
 
         mClassRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         mClassRecycler.setAdapter(mAdapter);

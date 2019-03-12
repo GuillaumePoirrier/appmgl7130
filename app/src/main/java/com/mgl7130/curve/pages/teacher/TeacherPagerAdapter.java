@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.mgl7130.curve.pages.teacher.ui.classes.list.TeacherClassRecyclerFragment;
+import com.mgl7130.curve.pages.teacher.ui.profile_create.TeacherProfileCreate;
 import com.mgl7130.curve.pages.teacher.ui.student.student_list.TeacherStudentsRecyclerFragment;
 
 public class TeacherPagerAdapter extends FragmentPagerAdapter {
@@ -23,7 +24,7 @@ public class TeacherPagerAdapter extends FragmentPagerAdapter {
             case 1: // Fragment # 0 - This will show TeacherStudentsRecyclerFragment
                 return TeacherClassRecyclerFragment.newInstance();
             case 2: // Fragment # 1 - This will show TeacherStudentsRecyclerFragment
-                return TeacherClassRecyclerFragment.newInstance();
+                return TeacherProfileCreate.newInstance();
             default:
                 return null;
         }
