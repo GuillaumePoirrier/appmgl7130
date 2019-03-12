@@ -36,6 +36,7 @@
         <activity android:name=".pages.teacher.MainTeacherActivity"/>
         <activity android:name=".pages.teacher.ui.classes.detail.TeacherClassDetailActivity"/>
         <activity android:name=".pages.teacher.ui.classes.create.TeacherClassFormActivity"/>
+        <activity android:name=".pages.student.ui.classes.detail.StudentClassDetailActivity" />
 
     </application>
 

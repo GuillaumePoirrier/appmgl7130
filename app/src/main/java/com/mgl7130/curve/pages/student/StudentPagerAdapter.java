@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.mgl7130.curve.pages.student.ui.classes.list.StudentClassRecyclerFragment;
 import com.mgl7130.curve.pages.teacher.ui.classes.list.TeacherClassRecyclerFragment;
 import com.mgl7130.curve.pages.teacher.ui.student.student_list.TeacherStudentsRecyclerFragment;
 
@@ -20,12 +21,12 @@ public class StudentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0: // Fragment # 0 - This will show TeacherClassRecyclerFragment
-                return TeacherStudentsRecyclerFragment.newInstance();
+            case 0: // Fragment # 0 - This will show StudentClassRecyclerFragment
+                return StudentClassRecyclerFragment.newInstance();
             case 1: // Fragment # 0 - This will show TeacherStudentsRecyclerFragment
-                return TeacherClassRecyclerFragment.newInstance();
+                return StudentClassRecyclerFragment.newInstance();
             case 2: // Fragment # 1 - This will show TeacherStudentsRecyclerFragment
-                return TeacherClassRecyclerFragment.newInstance();
+                return StudentClassRecyclerFragment.newInstance();
             default:
                 return null;
         }
