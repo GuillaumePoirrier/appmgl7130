@@ -48,7 +48,7 @@
     <string name="select_date_error">Please Select a date for your class</string>
     <string name="select_startHour_error">Please select a start hour for your class</string>
     <string name="select_endHour_error">Please select an end hour for your class</string>
-    <string name="teacher_profile_save">Ok</string>
+    <string name="teacher_profile_save" tools:ignore="ExtraTranslation">Ok</string>
     <string name="to">To :</string>
     <string name="from">From :</string>
     <string name="message_no_results">No result found</string>
@@ -62,8 +62,23 @@
     <string name="teacher_no_family_name">Please select a family name</string>
     <string name="teacher_no_date_birth">Please select a date of birth</string>
     <string name="teacher_unable_get_profile_picture">Unable to retrieve profile picture</string>
-    <string name="teacher_description">Description</string>
     <string name="teacher_no_description">Select a description</string>
+    <string name="teacher_description">Description</string>
+
+    <string name="first_name_student">Prénom</string>
+    <string name="student_family_name">Nom</string>
+    <string name="student_birth_date">Date de Naissance</string>
+    <string name="student_description">Description</string>
+    <string name="student_profile_save">Ok</string>
+
+
+    <string name="student_no_firstname">Please select a firstname</string>
+    <string name="student_no_profile_picture">Please take a profile picture</string>
+    <string name="student_no_family_name">Please select a family name</string>
+    <string name="student_no_date_birth">Please select a date of birth</string>
+    <string name="student_unable_get_profile_picture">Unable to retrieve profile picture</string>
+    <string name="student_no_description">Select a description</string>
+
 
 
 </resources>
