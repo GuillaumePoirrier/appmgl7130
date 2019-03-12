@@ -15,6 +15,9 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <TextView
@@ -77,10 +80,11 @@
             android:id="@+id/tv_subject_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="@string/class_subject"
             android:textColor="@color/color_purple"
-            app:layout_constraintStart_toStartOf="@+id/spinner_subject"
-            tools:layout_editor_absoluteY="103dp" />
+            app:layout_constraintBottom_toTopOf="@+id/spinner_subject"
+            app:layout_constraintStart_toStartOf="@+id/spinner_subject" />
 
         <EditText
             android:id="@+id/et_class_date"

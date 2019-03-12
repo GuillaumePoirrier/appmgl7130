@@ -1,4 +1,4 @@
-package com.mgl7130.curve.pages.teacher.ui.classes.detail;
+package com.mgl7130.curve.pages.student.detail;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +21,7 @@ import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.Cours;
 import com.mgl7130.curve.models.Student;
 import com.mgl7130.curve.pages.teacher.ui.classes.create.TeacherClassFormActivity;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -28,9 +29,8 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TeacherClassDetailActivity extends AppCompatActivity{
-
-    public static final String TAG = "TeacherClassDetailAct";
+public class StudentClassDetailActivity extends AppCompatActivity {
+    public static final String TAG = "StudentClassDetailAct";
     public static String KEY_CLASS_ID;
 
     @BindView(R.id.iv_teacher_class_detail_subject_image)
@@ -205,5 +205,6 @@ public class TeacherClassDetailActivity extends AppCompatActivity{
         this.student.setText(studentName);
 
     }
+
 
 }
