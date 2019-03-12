@@ -3,10 +3,12 @@ package com.mgl7130.curve.pages.teacher.ui.profile_create;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -18,16 +20,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -43,8 +42,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import static com.mgl7130.curve.pages.teacher.ui.classes.list.TeacherClassRecyclerFragment.LIMIT;
-
 public class TeacherProfileCreate extends Fragment {
 
     public static final String TAG = "TeacherProfileActivity";
@@ -52,15 +49,17 @@ public class TeacherProfileCreate extends Fragment {
     EditText teacherBirthDate;
     EditText teacherFirstName;
     EditText teacherFamilyName;
-    Button button;
+    EditText teacherDescription;
+    Button saveButton;
     CardView profilePictureCardView;
     ImageView imageView;
+    FloatingActionButton editProfileButton;
     private Calendar calendar;
     private int Year, Month, Day;
     private DatePickerDialog datePickerDialog;
     private FirebaseAuth mAuth;
+    private String userConnectionId;
     private FirebaseFirestore db;
-    private Query mQuery;
 
     public static Fragment newInstance() {
         return new TeacherProfileCreate();
@@ -70,14 +69,16 @@ public class TeacherProfileCreate extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.teacher_profile_form, container, false);
-
+        mAuth = FirebaseAuth.getInstance();
+        userConnectionId = mAuth.getCurrentUser().getUid();
         imageView = (ImageView) view.findViewById(R.id.teacher_profile_picture);
         teacherFirstName = (EditText) view.findViewById(R.id.teacher_first_name);
         teacherFamilyName = (EditText) view.findViewById(R.id.teacher_family_name);
         teacherBirthDate = (EditText) view.findViewById(R.id.teacher_birth_date);
+        teacherDescription = (EditText) view.findViewById(R.id.teacher_description);
         profilePictureCardView = (CardView) view.findViewById(R.id.profile_picture_cardView);
-        button = (Button) view.findViewById(R.id.button_save_teacher);
-
+        saveButton = (Button) view.findViewById(R.id.button_save_teacher);
+        editProfileButton = (FloatingActionButton) view.findViewById(R.id.edit_profile_teacher_button);
 
 
         profilePictureCardView.setOnClickListener(new View.OnClickListener() {
@@ -94,9 +95,6 @@ public class TeacherProfileCreate extends Fragment {
 
         //init Calendar
         calendar = Calendar.getInstance();
-
-        //Get Firebase auth instance
-        mAuth = FirebaseAuth.getInstance();
 
         //Get Firebase database
         db = FirebaseFirestore.getInstance();
@@ -125,29 +123,49 @@ public class TeacherProfileCreate extends Fragment {
         });
 
 
-        button.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (verifyForm(teacherFirstName, teacherFamilyName, teacherBirthDate)) {
+                if (verifyForm(teacherDescription, teacherFirstName, teacherFamilyName, teacherBirthDate)) {
                     try {
-                        createDbTeacher(teacherFirstName, teacherFamilyName, teacherBirthDate);
+                        createDbTeacher(teacherDescription, teacherFirstName, teacherFamilyName, teacherBirthDate);
+                        setFormNonEditable();
                     } catch (Exception e) {
                         System.out.print(e);
                     }
                 }
             }
         });
+
+        editProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                teacherFirstName.setEnabled(true);
+                teacherFamilyName.setEnabled(true);
+                teacherBirthDate.setEnabled(true);
+                teacherDescription.setEnabled(true);
+                profilePictureCardView.setEnabled(true);
+                saveButton.setVisibility(View.VISIBLE);
+            }
+        });
+        setFormNonEditable();
         fillProfile();
-
         return view;
+    }
 
+    private void setFormNonEditable() {
+        teacherFirstName.setEnabled(false);
+        teacherFamilyName.setEnabled(false);
+        teacherBirthDate.setEnabled(false);
+        teacherDescription.setEnabled(false);
+        profilePictureCardView.setEnabled(false);
+        saveButton.setVisibility(View.GONE);
     }
 
     private void fillProfile() {
-        DocumentReference teacherData  = db
-                        .collection("users")
-                        .document( mAuth.getCurrentUser()
-                                .getUid());
+        DocumentReference teacherData = db
+                .collection("users")
+                .document(userConnectionId);
 
         teacherData.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -155,17 +173,35 @@ public class TeacherProfileCreate extends Fragment {
                 User user = documentSnapshot.toObject(User.class);
                 teacherFirstName.setText(user.getFirstName());
                 teacherFamilyName.setText(user.getLastName());
-                teacherBirthDate.setText("enchantier");
+                teacherDescription.setText(user.getDescription());
+                teacherBirthDate.setText((new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).format(user.getBirthDate().toDate())));
             }
         });
 
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference pathReference = storageRef.child("curve/" + userConnectionId + ".jpg");
+        pathReference.getBytes(100000).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                // Data for "images/island.jpg" is returns, use this as needed
+                Bitmap profilePicture = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                imageView.setImageBitmap(cropPicture(profilePicture));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(getActivity(), getString(R.string.teacher_unable_get_profile_picture), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private void createDbTeacher(EditText teacherFirstName, EditText teacherFamilyName, EditText teacherBirthDate) throws ParseException {
+    private void createDbTeacher(EditText teacherDescription, EditText teacherFirstName, EditText teacherFamilyName, EditText teacherBirthDate) throws ParseException {
         //generate timestamp from time string
         Timestamp birthDate = new Timestamp(new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).parse(teacherBirthDate.getText().toString()));
-        User user = new User(teacherFirstName.getText().toString(), teacherFamilyName.getText().toString(), birthDate);
-        db.collection("users").document(mAuth.getCurrentUser().getUid())
+        User user = new User(teacherFirstName.getText().toString(), teacherFamilyName.getText().toString(), birthDate, teacherDescription.getText().toString());
+        db.collection("users").document(userConnectionId)
                 .set(user, SetOptions.merge())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -217,7 +253,7 @@ public class TeacherProfileCreate extends Fragment {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference imagesRef = storageRef.child("curve/" + mAuth.getCurrentUser().getUid() + ".jpg");
+        StorageReference imagesRef = storageRef.child("curve/" + userConnectionId + ".jpg");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         picture.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
@@ -237,14 +273,17 @@ public class TeacherProfileCreate extends Fragment {
     }
 
 
-
-    public boolean verifyForm(EditText firstname, EditText familyName, EditText dayOfBirth) {
+    public boolean verifyForm(EditText description, EditText firstname, EditText familyName, EditText dayOfBirth) {
         if (firstname.getText().toString().equals("")) {
             Toast.makeText(getActivity(), getString(R.string.teacher_no_firstname), Toast.LENGTH_SHORT).show();
             return false;
         }
         if (familyName.getText().toString().equals("")) {
             Toast.makeText(getActivity(), getString(R.string.teacher_no_family_name), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (description.getText().toString().equals("")) {
+            Toast.makeText(getActivity(), getString(R.string.teacher_no_description), Toast.LENGTH_SHORT).show();
             return false;
         }
         if (dayOfBirth.getText().toString().equals("")) {
