@@ -33,6 +33,8 @@ public class TeacherStudentsRecyclerFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.teacher_class_recycler_view_fragment, container, false);
+        add = (FloatingActionButton) view.findViewById(R.id.fab_add_class);
+        add.setVisibility(View.GONE);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new TeacherStudentsRecyclerViewAdapter(getListofCour()));

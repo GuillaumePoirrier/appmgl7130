@@ -255,10 +255,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.52" />
+
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>
-
 
 
 </android.support.constraint.ConstraintLayout>
