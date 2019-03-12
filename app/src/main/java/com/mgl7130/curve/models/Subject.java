@@ -7,7 +7,22 @@ public enum Subject {
 
     Mathematics("Mathematics"),
     Physics("Physics"),
-    Chemistry("Chemistry");
+    Chemistry("Chemistry"),
+    English("English"),
+    French("French"),
+    Spanish("Spanish"),
+    German("German"),
+    Chinese("Chinese"),
+    History("History"),
+    Geography("Geography"),
+    SVT("S.V.T"),
+    Chant("Chant"),
+    Computer_Science("Computer Science"),
+    Philosophy("Philosophy"),
+    Economy("Economy"),
+    Literature("Literature");
+
+
 
 
     private String name = "";

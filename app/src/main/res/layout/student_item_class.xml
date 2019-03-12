@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/picture_teacher_book"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/Avatar_teacher_book"
+        android:src="@drawable/teacher_avatar"
+        app:civ_border_width="2dp"
+        app:civ_shadow="true"
+        app:civ_shadow_radius="10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/surname_teacher_book"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/Surname"
+        app:layout_constraintEnd_toEndOf="@+id/picture_teacher_book"
+        app:layout_constraintStart_toStartOf="@+id/picture_teacher_book"
+        app:layout_constraintTop_toBottomOf="@+id/picture_teacher_book" />
+
+    <TextView
+        android:id="@+id/subject_course_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/Subject_course"
+        android:textSize="@dimen/title_subject_course"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/picture_teacher_book"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/from_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/From"
+        app:layout_constraintStart_toEndOf="@+id/picture_teacher_book"
+        app:layout_constraintTop_toBottomOf="@+id/level_book" />
+
+    <TextView
+        android:id="@+id/hour_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/Hour_begin"
+        app:layout_constraintStart_toEndOf="@+id/from_course"
+        app:layout_constraintTop_toBottomOf="@+id/level_book" />
+
+    <TextView
+        android:id="@+id/to_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/To"
+        app:layout_constraintStart_toEndOf="@+id/hour_begin"
+        app:layout_constraintTop_toBottomOf="@+id/level_book" />
+
+    <TextView
+        android:id="@+id/hour_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/Hour_finish"
+        app:layout_constraintStart_toEndOf="@+id/to_course"
+        app:layout_constraintTop_toBottomOf="@+id/level_book" />
+
+    <TextView
+        android:id="@+id/the_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/The"
+        app:layout_constraintStart_toEndOf="@+id/picture_teacher_book"
+        app:layout_constraintTop_toBottomOf="@+id/from_course" />
+
+    <TextView
+        android:id="@+id/day_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/Days"
+        app:layout_constraintStart_toEndOf="@+id/the_course"
+        app:layout_constraintTop_toBottomOf="@+id/hour_begin" />
+
+    <TextView
+        android:id="@+id/month_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/Month"
+        app:layout_constraintStart_toEndOf="@+id/day_course"
+        app:layout_constraintTop_toBottomOf="@+id/to_course" />
+
+    <TextView
+        android:id="@+id/year_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/Year"
+        app:layout_constraintStart_toEndOf="@+id/month_course"
+        app:layout_constraintTop_toBottomOf="@+id/hour_finish" />
+
+    <TextView
+        android:id="@+id/to_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/To"
+        app:layout_constraintStart_toEndOf="@+id/picture_teacher_book"
+        app:layout_constraintTop_toBottomOf="@+id/the_course" />
+
+    <TextView
+        android:id="@+id/city_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/City_course_book"
+        app:layout_constraintStart_toEndOf="@+id/to_place"
+        app:layout_constraintTop_toBottomOf="@+id/day_course" />
+
+    <TextView
+        android:id="@+id/level_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/Level"
+        app:layout_constraintEnd_toEndOf="@+id/subject_course_book"
+        app:layout_constraintStart_toStartOf="@+id/subject_course_book"
+        app:layout_constraintTop_toBottomOf="@+id/subject_course_book" />
+
+</android.support.constraint.ConstraintLayout>
