@@ -95,7 +95,10 @@
     <string name="value_any_subject">All subjects</string>
     <string name="value_any_date">All dates</string>
     <string name="value_any_level">All levels</string>
-
+    <string name="participate">Participer au cour</string>
+    <string name="confirm_paticipation">Participer au cour</string>
+    <string name="confirm_paticipation_question">Voulez-vouys vraiment participer au cours ?</string>
+    <string name="confirm_participate">Participer</string>
 
 
 </resources>

@@ -16,6 +16,7 @@ public class Cours extends GenericEntity{
     private Timestamp date;
     private Timestamp startDate;
     private Timestamp endDate;
+    private boolean hasStudent = false;
 
     public Cours(){}
 
@@ -64,4 +65,8 @@ public class Cours extends GenericEntity{
     public Timestamp getDate() { return date; }
 
     public void setDate(Timestamp date) { this.date = date; }
+
+    public boolean isHasStudent() { return hasStudent; }
+
+    public void setHasStudent(boolean hasStudent) { this.hasStudent = hasStudent; }
 }

@@ -1,36 +1,41 @@
 package com.mgl7130.curve.pages.student.ui.search.detail;
 
+import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.SetOptions;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.Cours;
 import com.mgl7130.curve.models.Student;
 
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class StudentSearchDetailActivity extends AppCompatActivity{
 
     public static final String TAG = "StudentClassDetailAct";
     public static final String KEY_CLASS_ID = "key_class_id";
-
-    @BindView(R.id.iv_student_class_detail_subject_image)
-    ImageView subjectImage;
 
     @BindView(R.id.tv_student_class_detail_subject)
     TextView subject;
@@ -53,14 +58,13 @@ public class StudentSearchDetailActivity extends AppCompatActivity{
     @BindView(R.id.tv_student_class_detail_end_time)
     TextView endTime;
 
-    @BindView(R.id.tv_student_class_detail_student)
-    TextView student;
-
     @BindView(R.id.my_toolbar)
     Toolbar toolbar;
 
 
     private FirebaseFirestore mFirestore;
+    private FirebaseAuth mAuth;
+
     private DocumentReference mClassRef;
     private DocumentReference mStudentRef;
     private ListenerRegistration mClassRegistration;
@@ -69,7 +73,7 @@ public class StudentSearchDetailActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_class_detail);
+        setContentView(R.layout.activity_student_search_detail);
         ButterKnife.bind(this);
 
         //Toolbar
@@ -85,12 +89,23 @@ public class StudentSearchDetailActivity extends AppCompatActivity{
         }
 
         //init Firestore
-        mFirestore =FirebaseFirestore.getInstance();
+        mFirestore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         mClassRef = mFirestore.collection("classes").document(classId);
 
 
     }
+
+    @OnClick(R.id.buttonCancel)
+    public void onCancelClicked(){
+        onBackPressed();
+    }
+    @OnClick(R.id.buttonParticipate)
+    public void onParticipateClicked(){
+        showConfirmDialog();
+    }
+
 
     @Override
     public void onStart() {
@@ -130,52 +145,34 @@ public class StudentSearchDetailActivity extends AppCompatActivity{
         String subjectName = cours.getSubject().toString();
         subject.setText(subjectName);
 
-        switch (subjectName){
-            case "Mathematics": {
-                subjectImage.setImageDrawable(getDrawable(R.drawable.logo_math));
-                break;
-            }
-            case "Physics": {
-                subjectImage.setImageDrawable(getDrawable(R.drawable.logo_physic));
-                break;
-            }
-            case "Chemistry": {
-                subjectImage.setImageDrawable(getDrawable(R.drawable.logo_chemistry));
-                break;
-            }
-        }
-
         level.setText(cours.getLevel().toString());
         startTime.setText((new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(cours.getStartDate().toDate())));
         endTime.setText((new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(cours.getEndDate().toDate())));
         dateDay.setText((new SimpleDateFormat("dd", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
         dateMonth.setText((new SimpleDateFormat("MMM", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
         dateYear.setText((new SimpleDateFormat("yyyy", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
-
-        //test if it has student and if so get the student
-        if(cours.getStudent_id() != null){
-            mStudentRef = mFirestore.collection("users").document(cours.getStudent_id());
-            mStudentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                @Override
-                public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
-                    if (e != null) {
-                        Log.w(TAG, "class:onEvent", e);
-                        return;
-                    }
-                    onStudentLoaded(snapshot.toObject(Student.class));
-                }
-            });
-        } else {
-            student.setText(getString(R.string.no_student));
-        }
     }
 
-
-    private void onStudentLoaded(Student student) {
-
-        String studentName = student.getFirstName() + " " + student.getLastName();
-        this.student.setText(studentName);
-
+    private void participateToClass(){
+        Map<String,Object> studentMap = new HashMap<String,Object>() {{
+            put("student_id", mAuth.getCurrentUser().getUid());
+            put("hasStudent", true);
+        }};
+        mFirestore.collection("classes").document(classId).update(studentMap);
+        finish();
     }
 
+    private void showConfirmDialog() throws Resources.NotFoundException {
+        new AlertDialog.Builder(this)
+                .setTitle(getResources().getString(R.string.confirm_paticipation))
+                .setMessage(getResources().getString(R.string.confirm_paticipation_question))
+                .setPositiveButton(getResources().getString(R.string.confirm_participate),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                participateToClass();
+                            }
+                        })
+                .setNegativeButton(getResources().getString(R.string.cancel), null).show();
+    }
 }
