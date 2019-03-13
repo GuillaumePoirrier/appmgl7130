@@ -40,7 +40,7 @@
     <string name="class_level">Niveau du cours</string>
     <string name="create_class">Créer un nouveau cours</string>
     <string name="create_class_button">Créer le nouveau cours</string>
-    <string name="class_date">Date  du cours</string>
+    <string name="class_date">Date  du cours :</string>
     <string name="class_start_time">De</string>
     <string name="class_end_time">à</string>
     <string name="set_class_date">Sélectionnez la date du cours</string>
