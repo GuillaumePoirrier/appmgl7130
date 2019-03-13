@@ -80,6 +80,22 @@
     <string name="student_no_description">Veuillez renseigner une description</string>
     <string name="switch_profile_student">Changer pour étudiant</string>
     <string name="sign_out">Déconnexion</string>
+    <string name="all_classes">All Classes</string>
+    <string name="sorted_by_date">sorted by date</string>
+    <string name="sorted_by_level">sorted by level</string>
+    <string name="sorted_by_subject">sorted by subject</string>
+    <string name="sort_by_date">Sort by Date</string>
+    <string name="sort_by_subject">Sort by Subject</string>
+    <string name="sort_by_level">Sort by Level</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
+    <string name="header_filters">Filter</string>
+    <string name="value_any_category">All subjects</string>
+    <string name="value_any_city">All levels</string>
+    <string name="value_any_subject">All subjects</string>
+    <string name="value_any_date">All dates</string>
+    <string name="value_any_level">All levels</string>
+
 
 
 </resources>

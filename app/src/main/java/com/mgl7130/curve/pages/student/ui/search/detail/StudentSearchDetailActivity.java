@@ -1,13 +1,10 @@
-package com.mgl7130.curve.pages.teacher.ui.student.detail;
+package com.mgl7130.curve.pages.student.ui.search.detail;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +17,6 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.Cours;
 import com.mgl7130.curve.models.Student;
-import com.mgl7130.curve.pages.teacher.ui.classes.create.TeacherClassFormActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -28,36 +24,36 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TeacherStudentDetailActivity extends AppCompatActivity{
+public class StudentSearchDetailActivity extends AppCompatActivity{
 
-    public static final String TAG = "TeacherClassDetailAct";
+    public static final String TAG = "StudentClassDetailAct";
     public static final String KEY_CLASS_ID = "key_class_id";
 
-    @BindView(R.id.iv_teacher_class_detail_subject_image)
+    @BindView(R.id.iv_student_class_detail_subject_image)
     ImageView subjectImage;
 
-    @BindView(R.id.tv_teacher_class_detail_subject)
+    @BindView(R.id.tv_student_class_detail_subject)
     TextView subject;
 
-    @BindView(R.id.tv_teacher_class_detail_level)
+    @BindView(R.id.tv_student_class_detail_level)
     TextView level;
 
-    @BindView(R.id.tv_teacher_class_detail_date_day)
+    @BindView(R.id.tv_student_class_detail_date_day)
     TextView dateDay;
 
-    @BindView(R.id.tv_teacher_class_detail_date_month)
+    @BindView(R.id.tv_student_class_detail_date_month)
     TextView dateMonth;
 
-    @BindView(R.id.tv_teacher_class_detail_date_year)
+    @BindView(R.id.tv_student_class_detail_date_year)
     TextView dateYear;
 
-    @BindView(R.id.tv_teacher_class_detail_start_time)
+    @BindView(R.id.tv_student_class_detail_start_time)
     TextView startTime;
 
-    @BindView(R.id.tv_teacher_class_detail_end_time)
+    @BindView(R.id.tv_student_class_detail_end_time)
     TextView endTime;
 
-    @BindView(R.id.tv_teacher_class_detail_student)
+    @BindView(R.id.tv_student_class_detail_student)
     TextView student;
 
     @BindView(R.id.my_toolbar)
@@ -73,7 +69,7 @@ public class TeacherStudentDetailActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_class_detail);
+        setContentView(R.layout.activity_student_class_detail);
         ButterKnife.bind(this);
 
         //Toolbar
@@ -94,30 +90,6 @@ public class TeacherStudentDetailActivity extends AppCompatActivity{
         mClassRef = mFirestore.collection("classes").document(classId);
 
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_toolbar_edit, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // handle arrow click here
-        if (item.getItemId() == android.R.id.home) {
-            finish(); // close this activity and return to preview activity (if there is any)
-        }
-
-        if (item.getItemId() == R.id.action_edit){
-            Intent intent = new Intent(this, TeacherClassFormActivity.class);
-            intent.putExtra(TeacherClassFormActivity.KEY_EDIT, true);
-            intent.putExtra(TeacherClassFormActivity.KEY_CLASS_ID, classId);
-            startActivity(intent);
-            finish();
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -200,10 +172,8 @@ public class TeacherStudentDetailActivity extends AppCompatActivity{
 
 
     private void onStudentLoaded(Student student) {
-        String studentName = getString(R.string.no_student);
-        if (student != null) {
-            studentName = student.getFirstName() + " " + student.getLastName();
-        }
+
+        String studentName = student.getFirstName() + " " + student.getLastName();
         this.student.setText(studentName);
 
     }

@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 public class TeacherStudentRecyclerFragment extends Fragment implements
         TeacherStudentAdapter.OnClassSelectedListener {
 
-    public static final String TAG = "StudentClassRecyclerFragment";
+    public static final String TAG = "StudentSearchRecyclerFragment";
     public static final int LIMIT = 50;
 
     @BindView(R.id.recycler_view)
