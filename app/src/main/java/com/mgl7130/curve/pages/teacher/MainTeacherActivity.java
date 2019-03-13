@@ -18,35 +18,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnPageChange;
 
-
 public class MainTeacherActivity extends AppCompatActivity {
+
+
 
     @BindView(R.id.vpPagerTeacher)
     ViewPager viewPager;
 
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
-    MenuItem prevMenuItem;
-    private FragmentPagerAdapter adapterViewPager;
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_teacher_students:
-                    viewPager.setCurrentItem(0);
-                    return true;
-                case R.id.navigation_teacher_classes:
-                    viewPager.setCurrentItem(1);
-                    return true;
-                case R.id.navigation_teacher_profile:
-                    viewPager.setCurrentItem(2);
-                    return true;
-            }
-            return false;
-        }
-    };
+    private FragmentPagerAdapter adapterViewPager;
+    MenuItem prevMenuItem;
+
+    Toolbar toolbar;
 
     public MainTeacherActivity() {
         super();
@@ -57,7 +42,7 @@ public class MainTeacherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_teacher);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -86,7 +71,6 @@ public class MainTeacherActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 finish();
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -102,6 +86,28 @@ public class MainTeacherActivity extends AppCompatActivity {
         navigation.getMenu().getItem(position).setChecked(true);
         prevMenuItem = navigation.getMenu().getItem(position);
     }
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_teacher_students:
+
+                    viewPager.setCurrentItem(0);
+                    return true;
+                case R.id.navigation_teacher_classes:
+
+                    viewPager.setCurrentItem(1);
+                    return true;
+                case R.id.navigation_teacher_profile:
+
+                    viewPager.setCurrentItem(2);
+                    return true;
+            }
+            return false;
+        }
+    };
 
 
 }

@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,23 +43,41 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class TeacherProfileCreate extends Fragment {
 
     public static final String TAG = "TeacherProfileActivity";
     static final int REQUEST_IMAGE_CAPTURE = 111;
-    EditText teacherBirthDate;
-    EditText teacherFirstName;
-    EditText teacherFamilyName;
-    EditText teacherDescription;
-    Button saveButton;
-    CardView profilePictureCardView;
-    ImageView imageView;
+
+    @BindView(R.id.edit_profile_teacher_button)
     FloatingActionButton editProfileButton;
-    private Calendar calendar;
+
+    @BindView(R.id.teacher_profile_picture)
+    ImageView imageView;
+
+    @BindView(R.id.teacher_first_name)
+    EditText teacherFirstName;
+
+    @BindView(R.id.teacher_family_name)
+    EditText teacherFamilyName;
+
+    @BindView(R.id.teacher_birth_date)
+    EditText teacherBirthDate;
+
+    @BindView(R.id.teacher_description)
+    EditText teacherDescription;
+
+    @BindView(R.id.profile_picture_cardView)
+    CardView profilePictureCardView;
+
+    @BindView(R.id.button_save_teacher)
+    Button saveButton;
+
     private int Year, Month, Day;
     private DatePickerDialog datePickerDialog;
-    private FirebaseAuth mAuth;
-    private String userConnectionId;
+    private String userConnectionId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private FirebaseFirestore db;
 
     public static Fragment newInstance() {
@@ -69,17 +88,7 @@ public class TeacherProfileCreate extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.teacher_profile_form, container, false);
-        mAuth = FirebaseAuth.getInstance();
-        userConnectionId = mAuth.getCurrentUser().getUid();
-        imageView = (ImageView) view.findViewById(R.id.teacher_profile_picture);
-        teacherFirstName = (EditText) view.findViewById(R.id.teacher_first_name);
-        teacherFamilyName = (EditText) view.findViewById(R.id.teacher_family_name);
-        teacherBirthDate = (EditText) view.findViewById(R.id.teacher_birth_date);
-        teacherDescription = (EditText) view.findViewById(R.id.teacher_description);
-        profilePictureCardView = (CardView) view.findViewById(R.id.profile_picture_cardView);
-        saveButton = (Button) view.findViewById(R.id.button_save_teacher);
-        editProfileButton = (FloatingActionButton) view.findViewById(R.id.edit_profile_teacher_button);
-
+        ButterKnife.bind(this, view);
 
         profilePictureCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,15 +100,9 @@ public class TeacherProfileCreate extends Fragment {
 
             }
         });
-
-
-        //init Calendar
-        calendar = Calendar.getInstance();
-
         //Get Firebase database
         db = FirebaseFirestore.getInstance();
-
-        calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         Year = calendar.get(Calendar.YEAR);
         Month = calendar.get(Calendar.MONTH);
         Day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -129,7 +132,7 @@ public class TeacherProfileCreate extends Fragment {
                 if (verifyForm(teacherDescription, teacherFirstName, teacherFamilyName, teacherBirthDate)) {
                     try {
                         createDbTeacher(teacherDescription, teacherFirstName, teacherFamilyName, teacherBirthDate);
-                        setFormNonEditable();
+                        setFormProfileEditable(false);
                     } catch (Exception e) {
                         System.out.print(e);
                     }
@@ -140,26 +143,28 @@ public class TeacherProfileCreate extends Fragment {
         editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                teacherFirstName.setEnabled(true);
-                teacherFamilyName.setEnabled(true);
-                teacherBirthDate.setEnabled(true);
-                teacherDescription.setEnabled(true);
-                profilePictureCardView.setEnabled(true);
-                saveButton.setVisibility(View.VISIBLE);
+               setFormProfileEditable(true);
             }
         });
-        setFormNonEditable();
+        setFormProfileEditable(false);
         fillProfile();
         return view;
     }
 
-    private void setFormNonEditable() {
-        teacherFirstName.setEnabled(false);
-        teacherFamilyName.setEnabled(false);
-        teacherBirthDate.setEnabled(false);
-        teacherDescription.setEnabled(false);
-        profilePictureCardView.setEnabled(false);
-        saveButton.setVisibility(View.GONE);
+    private void setFormProfileEditable(boolean editable) {
+        teacherFirstName.setEnabled(editable);
+        teacherFamilyName.setEnabled(editable);
+        teacherBirthDate.setEnabled(editable);
+        teacherDescription.setEnabled(editable);
+        profilePictureCardView.setEnabled(editable);
+        if (editable) {
+            saveButton.setVisibility(View.VISIBLE);
+            editProfileButton.setVisibility(View.GONE);
+            teacherFirstName.requestFocus();
+        } else {
+            saveButton.setVisibility(View.GONE);
+            editProfileButton.setVisibility(View.VISIBLE);
+        }
     }
 
     private void fillProfile() {
@@ -177,15 +182,12 @@ public class TeacherProfileCreate extends Fragment {
                 teacherBirthDate.setText((new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).format(user.getBirthDate().toDate())));
             }
         });
-
-
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         StorageReference pathReference = storageRef.child("curve/" + userConnectionId + ".jpg");
         pathReference.getBytes(100000).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
-                // Data for "images/island.jpg" is returns, use this as needed
                 Bitmap profilePicture = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 imageView.setImageBitmap(cropPicture(profilePicture));
             }
@@ -250,14 +252,12 @@ public class TeacherProfileCreate extends Fragment {
     }
 
     private void saveCroppedPictureInFirebase(Bitmap picture) {
-
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         StorageReference imagesRef = storageRef.child("curve/" + userConnectionId + ".jpg");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         picture.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
-
         UploadTask uploadTask = imagesRef.putBytes(data);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override

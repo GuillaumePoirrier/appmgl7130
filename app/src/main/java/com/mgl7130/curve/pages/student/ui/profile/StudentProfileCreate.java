@@ -42,23 +42,41 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class StudentProfileCreate extends Fragment {
 
     public static final String TAG = "StudentProfileActivity";
     static final int REQUEST_IMAGE_CAPTURE = 111;
-    EditText studentBirthDate;
-    EditText studentFirstName;
-    EditText studentFamilyName;
-    EditText studentDescription;
-    Button saveButton;
-    CardView profilePictureCardView;
-    ImageView imageView;
+
+    @BindView(R.id.edit_profile_student_button)
     FloatingActionButton editProfileButton;
-    private Calendar calendar;
+
+    @BindView(R.id.student_profile_picture)
+    ImageView imageView;
+
+    @BindView(R.id.student_first_name)
+    EditText studentFirstName;
+
+    @BindView(R.id.student_family_name)
+    EditText studentFamilyName;
+
+    @BindView(R.id.student_birth_date)
+    EditText studentBirthDate;
+
+    @BindView(R.id.student_description)
+    EditText studentDescription;
+
+    @BindView(R.id.profile_picture_cardView)
+    CardView profilePictureCardView;
+
+    @BindView(R.id.button_save_student)
+    Button saveButton;
+
     private int Year, Month, Day;
     private DatePickerDialog datePickerDialog;
-    private FirebaseAuth mAuth;
-    private String userConnectionId;
+    private String userConnectionId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private FirebaseFirestore db;
 
     public static Fragment newInstance() {
@@ -69,16 +87,7 @@ public class StudentProfileCreate extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.student_profile_form, container, false);
-        mAuth = FirebaseAuth.getInstance();
-        userConnectionId = mAuth.getCurrentUser().getUid();
-        imageView = (ImageView) view.findViewById(R.id.student_profile_picture);
-        studentFirstName = (EditText) view.findViewById(R.id.student_first_name);
-        studentFamilyName = (EditText) view.findViewById(R.id.student_family_name);
-        studentBirthDate = (EditText) view.findViewById(R.id.student_birth_date);
-        studentDescription = (EditText) view.findViewById(R.id.student_description);
-        profilePictureCardView = (CardView) view.findViewById(R.id.profile_picture_cardView);
-        saveButton = (Button) view.findViewById(R.id.button_save_student);
-        editProfileButton = (FloatingActionButton) view.findViewById(R.id.edit_profile_student_button);
+        ButterKnife.bind(this, view);
 
 
         profilePictureCardView.setOnClickListener(new View.OnClickListener() {
@@ -91,15 +100,9 @@ public class StudentProfileCreate extends Fragment {
 
             }
         });
-
-
-        //init Calendar
-        calendar = Calendar.getInstance();
-
         //Get Firebase database
         db = FirebaseFirestore.getInstance();
-
-        calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         Year = calendar.get(Calendar.YEAR);
         Month = calendar.get(Calendar.MONTH);
         Day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -129,7 +132,7 @@ public class StudentProfileCreate extends Fragment {
                 if (verifyForm(studentDescription, studentFirstName, studentFamilyName, studentBirthDate)) {
                     try {
                         createDbStudent(studentDescription, studentFirstName, studentFamilyName, studentBirthDate);
-                        setFormNonEditable();
+                        setFormProfileEditable(false);
                     } catch (Exception e) {
                         System.out.print(e);
                     }
@@ -140,26 +143,28 @@ public class StudentProfileCreate extends Fragment {
         editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                studentFirstName.setEnabled(true);
-                studentFamilyName.setEnabled(true);
-                studentBirthDate.setEnabled(true);
-                studentDescription.setEnabled(true);
-                profilePictureCardView.setEnabled(true);
-                saveButton.setVisibility(View.VISIBLE);
+                setFormProfileEditable(true);
             }
         });
-        setFormNonEditable();
+        setFormProfileEditable(false);
         fillProfile();
         return view;
     }
 
-    private void setFormNonEditable() {
-        studentFirstName.setEnabled(false);
-        studentFamilyName.setEnabled(false);
-        studentBirthDate.setEnabled(false);
-        studentDescription.setEnabled(false);
-        profilePictureCardView.setEnabled(false);
-        saveButton.setVisibility(View.GONE);
+    private void setFormProfileEditable(boolean editable) {
+        studentFirstName.setEnabled(editable);
+        studentFamilyName.setEnabled(editable);
+        studentBirthDate.setEnabled(editable);
+        studentDescription.setEnabled(editable);
+        profilePictureCardView.setEnabled(editable);
+        if (editable) {
+            saveButton.setVisibility(View.VISIBLE);
+            editProfileButton.setVisibility(View.GONE);
+            studentFirstName.requestFocus();
+        } else {
+            saveButton.setVisibility(View.GONE);
+            editProfileButton.setVisibility(View.VISIBLE);
+        }
     }
 
     private void fillProfile() {
@@ -216,7 +221,6 @@ public class StudentProfileCreate extends Fragment {
                     }
                 });
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -225,7 +229,6 @@ public class StudentProfileCreate extends Fragment {
             imageView.setImageBitmap(cropPicture(profilePicture));
         }
     }
-
     public Bitmap cropPicture(Bitmap picture) {
         Bitmap dstBmp;
         if (picture.getWidth() >= picture.getHeight()) {
@@ -271,7 +274,6 @@ public class StudentProfileCreate extends Fragment {
             }
         });
     }
-
 
     public boolean verifyForm(EditText description, EditText firstname, EditText familyName, EditText dayOfBirth) {
         if (firstname.getText().toString().equals("")) {
