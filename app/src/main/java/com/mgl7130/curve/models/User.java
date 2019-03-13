@@ -9,8 +9,16 @@ public class User extends GenericEntity{
     private String firstName;
     private String lastName;
     private Timestamp birthDate;
+    private String description;
 
     public User(){}
+    public User(String firstName, String lastName, Timestamp birthDate, String description) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.description = description;
+    }
+
 
     public User(String firstName, String lastName, Timestamp birthDate) {
         this.firstName = firstName;
@@ -42,5 +50,13 @@ public class User extends GenericEntity{
 
     public void setBirthDate(Timestamp birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

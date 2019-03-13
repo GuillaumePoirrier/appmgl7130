@@ -6,8 +6,12 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
 
 import butterknife.BindView;
@@ -33,11 +37,37 @@ public class MainStudentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_student);
         ButterKnife.bind(this);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         //set viewPager and adapter
         adapterViewPager = new StudentPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapterViewPager);
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_student, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.navigation_teacher_classes:
+                Toast.makeText(getApplicationContext(), "Go to teacher", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.sign_out:
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @OnPageChange(R.id.vpPagerStudent)
@@ -58,10 +88,13 @@ public class MainStudentActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_student_classes:
-                    return true;
-                case R.id.navigation_student_profile:
+                    viewPager.setCurrentItem(0);
                     return true;
                 case R.id.navigation_student_search:
+                    viewPager.setCurrentItem(1);
+                    return true;
+                case R.id.navigation_student_profile:
+                    viewPager.setCurrentItem(2);
                     return true;
             }
             return false;
