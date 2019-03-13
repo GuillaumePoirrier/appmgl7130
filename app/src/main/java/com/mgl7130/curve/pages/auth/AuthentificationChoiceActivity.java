@@ -7,38 +7,42 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class AuthentificationChoiceActivity extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
+    Intent signInActivityIntent;
+    Intent signUpActivityIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_choice);
+        ButterKnife.bind(this);
 
-        final Intent signInActivityIntent = new Intent(this, SignInActivity.class);
-        final Intent signUpActivityIntent = new Intent(this, SignUpActivity.class);
+        mAuth = FirebaseAuth.getInstance();
 
-        Button signInButton = (Button) findViewById(R.id.button_sign_in);
-        TextView signUpButton = (TextView) findViewById(R.id.textView_sign_up);
-
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(signInActivityIntent);
-            }
-        });
-
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(signUpActivityIntent);
-            }
-        });
+        signInActivityIntent = new Intent(this, SignInActivity.class);
+        signUpActivityIntent = new Intent(this, SignUpActivity.class);
 
     }
 
-//    prevent user to go back to splash screen
+    @OnClick(R.id.button_sign_in)
+    public void onSignInClicked(View view) {
+        startActivity(signInActivityIntent);
+    }
+
+    @OnClick(R.id.textView_sign_up)
+    public void onSignUpClicked(View view) {
+        startActivity(signUpActivityIntent);
+    }
+
+    //    prevent user to go back to splash screen
     @Override
     public void onBackPressed() {
         return;

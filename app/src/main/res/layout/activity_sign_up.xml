@@ -8,7 +8,7 @@
     tools:layout_editor_absoluteY="25dp">
 
     <Button
-        android:id="@+id/button_sign_in"
+        android:id="@+id/button_sign_up"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -78,11 +78,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginEnd="@dimen/right_margin"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/right_margin"
         android:backgroundTint="@color/color_purple"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords|textPersonName"
         android:textColor="@color/color_purple"
         app:layout_constraintBottom_toTopOf="@+id/guideline_37_5pct"
         app:layout_constraintEnd_toEndOf="parent"
@@ -121,6 +121,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/label_margin"
         android:layout_marginBottom="8dp"
+        android:text="@string/password"
         android:textColor="@color/color_purple"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/editText_password"
