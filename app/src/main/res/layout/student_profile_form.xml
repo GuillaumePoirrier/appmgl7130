@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="0dp">
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_item"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="8dp">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -21,11 +30,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/mdtp_dark_gray"
             android:ems="10"
             android:hint="@string/first_name_student"
             android:inputType="textPersonName"
-            android:backgroundTint="@color/color_purple"
-            android:textColor="@color/color_purple"
+            android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,8 +49,8 @@
             android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="@string/student_family_name"
-            android:backgroundTint="@color/color_purple"
-            android:textColor="@color/color_purple"
+            android:backgroundTint="@color/mdtp_dark_gray"
+            android:textColor="@android:color/black"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,8 +64,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
-            android:backgroundTint="@color/color_purple"
-            android:textColor="@color/color_purple"
+            android:backgroundTint="@color/mdtp_dark_gray"
+            android:textColor="@android:color/black"
             android:hint="@string/student_birth_date"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="parent"
@@ -99,19 +108,22 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/edit_profile_student_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="64dp"
+            android:layout_height="63dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
-            app:backgroundTintMode="multiply"
-            app:layout_constraintBottom_toTopOf="@+id/student_first_name"
+            app:backgroundTint="@color/color_purple"
+            app:backgroundTintMode="src_in"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/profile_picture_cardView"
+            app:layout_constraintHorizontal_bias="0.94"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:rippleColor="@color/colorAccent"
+            app:layout_constraintVertical_bias="0.981"
+            app:rippleColor="@color/color_blue"
             app:srcCompat="@android:drawable/ic_menu_edit" />
 
         <EditText
@@ -123,8 +135,8 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:ems="10"
-            android:backgroundTint="@color/color_purple"
-            android:textColor="@color/color_purple"
+            android:backgroundTint="@color/mdtp_dark_gray"
+            android:textColor="@android:color/black"
             android:hint="@string/student_description"
             android:inputType="textMultiLine"
             app:layout_constraintBottom_toTopOf="@+id/button_save_student"
@@ -134,5 +146,7 @@
             app:layout_constraintVertical_bias="0.166" />
 
     </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
 
 </ScrollView>

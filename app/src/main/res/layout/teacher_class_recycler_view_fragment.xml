@@ -28,6 +28,7 @@
         tools:visibility="gone"/>
 
 
+
     <!-- Empty list (pizza guy) view -->
     <LinearLayout
         android:id="@+id/viewEmpty"
