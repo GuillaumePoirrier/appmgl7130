@@ -74,7 +74,7 @@ public class StudentSearchRecyclerFragment extends Fragment implements
 
         //Get ${LIMIT} class where teacherId == user id
         mQuery = mFirestore.collection("classes")
-                .whereEqualTo("student_id", null)
+                .whereEqualTo("hasStudent", false)
                 .orderBy("date", Query.Direction.ASCENDING)
                 .limit(LIMIT);
 

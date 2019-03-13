@@ -176,10 +176,10 @@ public class TeacherProfileCreate extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
-                teacherFirstName.setText(user.getFirstName());
-                teacherFamilyName.setText(user.getLastName());
-                teacherDescription.setText(user.getDescription());
-                teacherBirthDate.setText((new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).format(user.getBirthDate().toDate())));
+                if (user.hasFirstName()) teacherFirstName.setText(user.getFirstName());
+                if (user.hasLastName()) teacherFamilyName.setText(user.getLastName());
+                if (user.hasDescription()) teacherDescription.setText(user.getDescription());
+                if (user.hasBirthDate()) teacherBirthDate.setText((new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).format(user.getBirthDate().toDate())));
             }
         });
         FirebaseStorage storage = FirebaseStorage.getInstance();

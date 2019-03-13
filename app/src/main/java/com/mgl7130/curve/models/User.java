@@ -59,4 +59,12 @@ public class User extends GenericEntity{
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public boolean hasFirstName(){return firstName != null;}
+
+    public boolean hasLastName(){return lastName != null;}
+
+    public boolean hasBirthDate(){return birthDate != null;}
+
+    public boolean hasDescription(){return description != null;}
 }
