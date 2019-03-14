@@ -49,8 +49,8 @@
     <string name="select_startHour_error">Veuillez renseigner l\'heure de début du cours</string>
     <string name="select_endHour_error">Veuillez renseigner l\'heure de fin du cours</string>
     <string name="teacher_profile_save" tools:ignore="ExtraTranslation">Ok</string>
-    <string name="to">De :</string>
-    <string name="from">à :</string>
+    <string name="from">De :</string>
+    <string name="to">à :</string>
     <string name="message_no_results">Aucun résultat trouvé</string>
     <string name="level">Niveau :</string>
     <string name="no_student">Pas encore d\'étudiants</string>
