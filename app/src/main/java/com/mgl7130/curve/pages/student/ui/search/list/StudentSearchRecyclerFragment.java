@@ -1,5 +1,6 @@
 package com.mgl7130.curve.pages.student.ui.search.list;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,6 +25,7 @@ import com.mgl7130.curve.models.Cours;
 import com.mgl7130.curve.pages.student.ui.search.detail.StudentSearchDetailActivity;
 import com.mgl7130.curve.pages.student.ui.search.dialog.FilterDialogFragment;
 import com.mgl7130.curve.pages.student.ui.search.model.Filters;
+import com.mgl7130.curve.pages.student.ui.search.viewmodel.StudentSearchFilterViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +34,7 @@ import butterknife.OnClick;
 public class StudentSearchRecyclerFragment extends Fragment implements
         StudentSearchAdapter.OnClassSelectedListener {
 
-    public static final String TAG = "StudentSearchRecyclerFragment";
+    public static final String TAG = "StudentSearchRecycler";
     public static final int LIMIT = 50;
 
     @BindView(R.id.textCurrentSearch)
@@ -55,6 +57,7 @@ public class StudentSearchRecyclerFragment extends Fragment implements
     private Query mQuery;
 
     private StudentSearchAdapter mAdapter;
+    private StudentSearchFilterViewModel mViewModel;
 
     @Nullable
     @Override
@@ -66,9 +69,12 @@ public class StudentSearchRecyclerFragment extends Fragment implements
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
+        // View model
+        mViewModel = ViewModelProviders.of(this).get(StudentSearchFilterViewModel.class);
+
         //Get ${LIMIT} class where teacherId == user id
         mQuery = mFirestore.collection("classes")
-                .whereEqualTo("student_id", null)
+                .whereEqualTo("hasStudent", false)
                 .orderBy("date", Query.Direction.ASCENDING)
                 .limit(LIMIT);
 
@@ -126,7 +132,7 @@ public class StudentSearchRecyclerFragment extends Fragment implements
                 mCurrentSortByView.setText(filters.getOrderDescription(getActivity()));
 
                 // Save filters
-                //        mViewModel.setFilters(filters);
+                mViewModel.setFilters(filters);
             }
         };
 
@@ -142,6 +148,9 @@ public class StudentSearchRecyclerFragment extends Fragment implements
         if (mAdapter != null) {
             mAdapter.startListening();
         }
+
+        // Apply filters
+        mFilterListener.onFilter(mViewModel.getFilters());
     }
 
     @Override
@@ -167,7 +176,6 @@ public class StudentSearchRecyclerFragment extends Fragment implements
 
     @Override
     public void onClassSelected(DocumentSnapshot cours) {
-        // Go to the details page for the selected restaurant
         Intent intent = new Intent(getActivity(), StudentSearchDetailActivity.class);
         intent.putExtra(StudentSearchDetailActivity.KEY_CLASS_ID, cours.getId());
 
