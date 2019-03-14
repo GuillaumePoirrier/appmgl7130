@@ -99,6 +99,8 @@
     <string name="confirm_paticipation">Participer au cour</string>
     <string name="confirm_paticipation_question">Voulez-vouys vraiment participer au cours ?</string>
     <string name="confirm_participate">Participer</string>
+    <string name="title_class_list">Classes</string>
+    <string name="title_class_detail">Class Detail</string>
 
 
 </resources>
