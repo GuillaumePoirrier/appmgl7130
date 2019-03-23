@@ -1,5 +1,6 @@
 package com.mgl7130.curve.pages.teacher;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
+import com.mgl7130.curve.pages.auth.AuthentificationChoiceActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,6 +72,8 @@ public class MainTeacherActivity extends AppCompatActivity {
             case R.id.sign_out:
                 FirebaseAuth.getInstance().signOut();
                 finish();
+                Intent activityAuthDeconnection = new Intent(this, AuthentificationChoiceActivity.class);
+                startActivity(activityAuthDeconnection);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
