@@ -47,56 +47,52 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/left_margin"
         android:layout_marginEnd="@dimen/right_margin"
-        android:backgroundTint="@color/color_purple"
+        android:backgroundTint="@color/blueAuth"
         android:ems="10"
         android:inputType="textPassword"
         android:singleLine="false"
-        android:textColor="@color/color_purple"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_62_5pct"
+        android:textColor="@color/blueAuth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_62_5pct"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
         android:id="@+id/editText_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="@dimen/left_margin"
         android:layout_marginEnd="@dimen/right_margin"
-        android:backgroundTint="@color/color_purple"
+        android:backgroundTint="@color/blueAuth"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:textColor="@color/color_purple"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_40pct"
+        android:textColor="@color/blueAuth"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_40pct" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/editText_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/left_margin"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/right_margin"
-        android:backgroundTint="@color/color_purple"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/blueAuth"
         android:ems="10"
         android:inputType="textCapWords|textPersonName"
-        android:textColor="@color/color_purple"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_37_5pct"
+        android:singleLine="true"
+        android:textColor="@color/color_blue"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_37_5pct" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/label_margin"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="21dp"
         android:text="@string/name"
         android:textColor="@color/color_purple"
         android:textSize="18sp"
@@ -108,26 +104,26 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/label_margin"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
         android:text="@string/email"
         android:textColor="@color/color_purple"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText_email"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstname_new_user"
         tools:text="@string/email" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/label_margin"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
         android:text="@string/password"
         android:textColor="@color/color_purple"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText_password"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_email"
         tools:text="@string/password" />
 
     <android.support.constraint.Guideline
@@ -143,8 +139,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent=".5" />
+        app:layout_constraintGuide_end="365dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline_37_5pct"
@@ -169,6 +164,33 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="0dp"
         app:layout_constraintGuide_percent=".75" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:text="Prénom"
+        android:textColor="@color/color_purple"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_37_5pct" />
+
+    <EditText
+        android:id="@+id/firstname_new_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/blueAuth"
+        android:ems="10"
+        android:inputType="textPersonName|textCapWords"
+        android:singleLine="true"
+        android:textColor="@color/blueAuth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 
 </android.support.constraint.ConstraintLayout>

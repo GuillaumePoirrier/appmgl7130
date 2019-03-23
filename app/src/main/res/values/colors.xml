@@ -11,4 +11,6 @@
     <color name="greySecondary">#8B000000</color>
     <color name="greyDisabled">#61000000</color>
 
+    <color name="blueAuth">#2767fe</color>
+
 </resources>
