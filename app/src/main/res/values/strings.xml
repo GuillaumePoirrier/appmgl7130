@@ -79,6 +79,7 @@
     <string name="student_unable_get_profile_picture">Unable to retrieve profile picture</string>
     <string name="student_no_description">Veuillez renseigner une description</string>
     <string name="switch_profile_student">Changer pour étudiant</string>
+    <string name="switch_profile_teacher">Changer pour professeur</string>
     <string name="sign_out">Déconnexion</string>
     <string name="all_classes">All Classes</string>
     <string name="sorted_by_date">sorted by date</string>
