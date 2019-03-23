@@ -102,6 +102,7 @@
     <string name="confirm_participate">Participer</string>
     <string name="title_class_list">Classes</string>
     <string name="title_class_detail">Class Detail</string>
+    <string name="firstname">Prénom</string>
 
 
 </resources>

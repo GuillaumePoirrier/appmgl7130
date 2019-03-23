@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
+import com.mgl7130.curve.pages.auth.AuthentificationChoiceActivity;
 import com.mgl7130.curve.pages.student.MainStudentActivity;
 
 import butterknife.BindView;
@@ -73,6 +74,8 @@ public class MainTeacherActivity extends AppCompatActivity {
             case R.id.sign_out:
                 FirebaseAuth.getInstance().signOut();
                 finish();
+                Intent goToHomePage= new Intent(this, AuthentificationChoiceActivity.class);
+                startActivity(goToHomePage);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
