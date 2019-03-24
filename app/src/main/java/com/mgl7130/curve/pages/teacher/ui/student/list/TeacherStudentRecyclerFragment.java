@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.pages.teacher.ui.student.detail.TeacherStudentDetailActivity;
+import com.mgl7130.curve.pages.teacher.ui.student.detail.TeacherStudentDetailFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +42,7 @@ public class TeacherStudentRecyclerFragment extends Fragment implements
     private Query mQuery;
 
     private TeacherStudentAdapter mAdapter;
+    private boolean hasDetailLayout = false;
 
     @Nullable
     @Override
@@ -76,6 +79,10 @@ public class TeacherStudentRecyclerFragment extends Fragment implements
         mClassRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         mClassRecycler.setAdapter(mAdapter);
 
+        if (view.findViewById(R.id.studentdetailLayout) != null) {
+            hasDetailLayout = true;
+        }
+
         return view;
     }
 
@@ -98,11 +105,28 @@ public class TeacherStudentRecyclerFragment extends Fragment implements
 
     @Override
     public void onClassSelected(DocumentSnapshot cours) {
-        // Go to the details page for the selected restaurant
-        Intent intent = new Intent(getActivity(), TeacherStudentDetailActivity.class);
-        intent.putExtra(TeacherStudentDetailActivity.KEY_CLASS_ID, cours.getId());
 
-        startActivity(intent);
+        if(hasDetailLayout){
+            getActivity().findViewById(R.id.studentdetailLayout).setVisibility(View.VISIBLE);
+
+            Bundle args = new Bundle();
+            args.putString(TeacherStudentDetailFragment.KEY_STUDENT_ID, cours.getId());
+
+            Fragment fragment = TeacherStudentDetailFragment.newInstance();
+            fragment.setArguments(args);
+
+            FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+            ft.replace(R.id.studentdetailLayout, fragment);
+            ft.commit();
+
+        } else {
+            // Go to the details page for the selected restaurant
+            Intent intent = new Intent(getActivity(), TeacherStudentDetailActivity.class);
+            intent.putExtra(TeacherStudentDetailFragment.KEY_STUDENT_ID, cours.getId());
+
+            startActivity(intent);
+        }
+
     }
 
     public static Fragment newInstance(){

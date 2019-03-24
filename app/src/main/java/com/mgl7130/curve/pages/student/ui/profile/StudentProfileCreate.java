@@ -176,10 +176,10 @@ public class StudentProfileCreate extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
-                studentFirstName.setText(user.getFirstName());
-                studentFamilyName.setText(user.getLastName());
-                studentDescription.setText(user.getDescription());
-                studentBirthDate.setText((new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).format(user.getBirthDate().toDate())));
+                if (user.hasFirstName()) studentFirstName.setText(user.getFirstName());
+                if (user.hasLastName()) studentFamilyName.setText(user.getLastName());
+                if (user.hasDescription()) studentDescription.setText(user.getDescription());
+                if (user.hasBirthDate()) studentBirthDate.setText((new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).format(user.getBirthDate().toDate())));
             }
         });
 

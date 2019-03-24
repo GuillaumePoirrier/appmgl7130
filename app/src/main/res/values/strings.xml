@@ -49,8 +49,8 @@
     <string name="select_startHour_error">Veuillez renseigner l\'heure de début du cours</string>
     <string name="select_endHour_error">Veuillez renseigner l\'heure de fin du cours</string>
     <string name="teacher_profile_save" tools:ignore="ExtraTranslation">Ok</string>
-    <string name="to">De :</string>
-    <string name="from">à :</string>
+    <string name="from">De :</string>
+    <string name="to">à :</string>
     <string name="message_no_results">Aucun résultat trouvé</string>
     <string name="level">Niveau :</string>
     <string name="no_student">Pas encore d\'étudiants</string>
@@ -79,6 +79,7 @@
     <string name="student_unable_get_profile_picture">Unable to retrieve profile picture</string>
     <string name="student_no_description">Veuillez renseigner une description</string>
     <string name="switch_profile_student">Changer pour étudiant</string>
+    <string name="switch_profile_teacher">Changer pour professeur</string>
     <string name="sign_out">Déconnexion</string>
     <string name="all_classes">All Classes</string>
     <string name="sorted_by_date">sorted by date</string>
@@ -99,6 +100,11 @@
     <string name="confirm_paticipation">Participer au cour</string>
     <string name="confirm_paticipation_question">Voulez-vouys vraiment participer au cours ?</string>
     <string name="confirm_participate">Participer</string>
+    <string name="title_class_list">Classes</string>
+    <string name="title_class_detail">Class Detail</string>
+    <string name="firstname">Prénom</string>
+    <string name="age" >Age</string>
+    <string name="teacher_unable_get_student_picture">Impossible de recuperer la photo de l\'etudiant</string>
 
 
 </resources>
