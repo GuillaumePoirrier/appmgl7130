@@ -104,6 +104,7 @@
     <string name="title_class_detail">Class Detail</string>
     <string name="firstname">Prénom</string>
     <string name="age" >Age</string>
+    <string name="teacher_unable_get_student_picture">Impossible de recuperer la photo de l\'etudiant</string>
 
 
 </resources>

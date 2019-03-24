@@ -1,6 +1,8 @@
 package com.mgl7130.curve.pages.teacher.ui.student.detail;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.icu.util.TimeUnit;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,17 +17,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.Cours;
 import com.mgl7130.curve.models.Student;
+import com.mgl7130.curve.pages.teacher.ui.profile_create.TeacherProfileCreate;
 import com.mgl7130.curve.pages.teacher.ui.student.list.TeacherStudentRecyclerFragment;
 
 import java.text.SimpleDateFormat;
@@ -106,7 +114,7 @@ public class TeacherStudentDetailFragment extends Fragment {
         }
     }
 
-    private void onClassLoaded(Cours cours){
+    private void onClassLoaded(final Cours cours){
         if (cours.getStudent_id() != null){
             mStudentRef = mFirestore.collection("users").document(cours.getStudent_id());
             mStudentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -116,13 +124,13 @@ public class TeacherStudentDetailFragment extends Fragment {
                         Log.w(TAG, "class:onEvent", e);
                         return;
                     }
-                    onStudentLoaded(snapshot.toObject(Student.class));
+                    onStudentLoaded(snapshot.toObject(Student.class), cours.getStudent_id());
                 }
             });
         }
     }
 
-    private void onStudentLoaded(Student student) {
+    private void onStudentLoaded(Student student, String studentId) {
         if (student != null) {
             String fullname = student.getFirstName() + " " + student.getLastName();
             name.setText(fullname);
@@ -130,8 +138,15 @@ public class TeacherStudentDetailFragment extends Fragment {
                 age.setText(new SimpleDateFormat("dd MMMM yyyy", Locale.CANADA_FRENCH).format(student.getBirthDate().toDate()));
             }
             if (student.hasDescription()) description.setText(student.getDescription());
+            FirebaseStorage.getInstance().getReference().child("curve/" + studentId + ".jpg")
+                    .getBytes(100000).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    Bitmap profilePicture = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    subjectImage.setImageBitmap(profilePicture);
+                }
+            });
         }
-
     }
 
     public static Fragment newInstance(){

@@ -97,7 +97,7 @@ public class TeacherStudentAdapter extends FirestoreAdapter<TeacherStudentAdapte
         public void bind(final DocumentSnapshot snapshot,
                          final OnClassSelectedListener listener) {
 
-            Cours cours = snapshot.toObject(Cours.class);
+            final Cours cours = snapshot.toObject(Cours.class);
             Resources resources = itemView.getResources();
 
             subject.setText(cours.getSubject().toString());
@@ -116,7 +116,7 @@ public class TeacherStudentAdapter extends FirestoreAdapter<TeacherStudentAdapte
                             Log.w(TAG, "class:onEvent", e);
                             return;
                         }
-                        onStudentLoaded(snapshot.toObject(Student.class));
+                        onStudentLoaded(snapshot.toObject(Student.class), cours.getStudent_id());
                     }
                 });
             } else {
@@ -135,14 +135,14 @@ public class TeacherStudentAdapter extends FirestoreAdapter<TeacherStudentAdapte
             });
         }
 
-        private void onStudentLoaded(Student student) {
+        private void onStudentLoaded(Student student, String studentId) {
             String studentName = "Error no Student Found";
             if (student != null) {
                 studentName = student.getFirstName() + " " + student.getLastName();
             }
             this.studentName.setText(studentName);
 
-            mStorage.getReference().child("curve/" + mAuth.getCurrentUser().getUid() + ".jpg")
+            mStorage.getReference().child("curve/" + studentId + ".jpg")
                     .getBytes(100000).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                 @Override
                 public void onSuccess(byte[] bytes) {

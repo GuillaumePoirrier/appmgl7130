@@ -81,12 +81,6 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     app:layout_constraintStart_toEndOf="@+id/relativeLayout"
     app:layout_constraintTop_toTopOf="parent">
 
-    <!--<FrameLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
-    <!---->
-    <!--</FrameLayout>-->
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
