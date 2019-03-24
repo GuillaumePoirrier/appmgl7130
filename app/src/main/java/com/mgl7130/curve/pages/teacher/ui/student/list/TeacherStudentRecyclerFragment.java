@@ -79,7 +79,7 @@ public class TeacherStudentRecyclerFragment extends Fragment implements
         mClassRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         mClassRecycler.setAdapter(mAdapter);
 
-        if (view.findViewById(R.id.detailLayout) != null) {
+        if (view.findViewById(R.id.studentdetailLayout) != null) {
             hasDetailLayout = true;
         }
 
@@ -107,22 +107,22 @@ public class TeacherStudentRecyclerFragment extends Fragment implements
     public void onClassSelected(DocumentSnapshot cours) {
 
         if(hasDetailLayout){
-            getActivity().findViewById(R.id.detailLayout).setVisibility(View.VISIBLE);
+            getActivity().findViewById(R.id.studentdetailLayout).setVisibility(View.VISIBLE);
 
             Bundle args = new Bundle();
-            args.putString(TeacherStudentDetailFragment.KEY_CLASS_ID, cours.getId());
+            args.putString(TeacherStudentDetailFragment.KEY_STUDENT_ID, cours.getId());
 
             Fragment fragment = TeacherStudentDetailFragment.newInstance();
             fragment.setArguments(args);
 
             FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-            ft.replace(R.id.detailLayout, fragment);
+            ft.replace(R.id.studentdetailLayout, fragment);
             ft.commit();
 
         } else {
             // Go to the details page for the selected restaurant
             Intent intent = new Intent(getActivity(), TeacherStudentDetailActivity.class);
-            intent.putExtra(TeacherStudentDetailFragment.KEY_CLASS_ID, cours.getId());
+            intent.putExtra(TeacherStudentDetailFragment.KEY_STUDENT_ID, cours.getId());
 
             startActivity(intent);
         }

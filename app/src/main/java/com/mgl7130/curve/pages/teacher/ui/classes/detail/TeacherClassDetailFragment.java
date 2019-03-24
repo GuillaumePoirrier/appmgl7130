@@ -1,16 +1,12 @@
 package com.mgl7130.curve.pages.teacher.ui.classes.detail;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,13 +21,9 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.Cours;
 import com.mgl7130.curve.models.Student;
-import com.mgl7130.curve.pages.teacher.ui.classes.create.TeacherClassFormActivity;
-import com.mgl7130.curve.pages.teacher.ui.classes.list.TeacherClassRecyclerFragment;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.mgl7130.curve.pages.teacher.ui.student.detail.TeacherStudentDetailFragment;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -40,6 +32,7 @@ import butterknife.ButterKnife;
 import static android.support.v4.content.res.ResourcesCompat.getDrawable;
 
 public class TeacherClassDetailFragment extends Fragment {
+
     public static final String TAG = "TeacherClassDetailFrag";
     public static final String KEY_CLASS_ID = "key_class_id";
 
@@ -70,27 +63,29 @@ public class TeacherClassDetailFragment extends Fragment {
     @BindView(R.id.tv_teacher_class_detail_student)
     TextView student;
 
-    @BindView(R.id.my_toolbar)
-    Toolbar toolbar;
 
     private FirebaseFirestore mFirestore;
     private DocumentReference mClassRef;
     private DocumentReference mStudentRef;
     private ListenerRegistration mClassRegistration;
     private String classId;
-    @Nullable
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_teacher_class_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_teacher_class_detail, container, false);
         ButterKnife.bind(this, view);
+
+        classId = getArguments().getString(KEY_CLASS_ID);
+        if (classId == null) {
+            throw new IllegalArgumentException("Must pass extra " + KEY_CLASS_ID);
+        }
 
         //init Firestore
         mFirestore =FirebaseFirestore.getInstance();
+
         mClassRef = mFirestore.collection("classes").document(classId);
+
         return view;
-    }
-    public static Fragment newInstance(){
-        return new TeacherClassDetailFragment();
     }
 
     @Override
@@ -120,22 +115,23 @@ public class TeacherClassDetailFragment extends Fragment {
         }
     }
 
+
     private void onClassLoaded(Cours cours) {
 
         String subjectName = cours.getSubject().toString();
         subject.setText(subjectName);
 
         switch (subjectName){
-            case "Mathematics": {
-                subjectImage.setImageDrawable(getDrawable(getResources(),R.drawable.logo_math,null));
+            case "Mathematiques": {
+                subjectImage.setImageDrawable(getActivity().getDrawable(R.drawable.logo_math));
                 break;
             }
-            case "Physics": {
-                subjectImage.setImageDrawable(getDrawable(getResources(),R.drawable.logo_physic,null));
+            case "Physique": {
+                subjectImage.setImageDrawable(getActivity().getDrawable(R.drawable.logo_physic));
                 break;
             }
-            case "Chemistry": {
-                subjectImage.setImageDrawable(getDrawable(getResources(),R.drawable.logo_chemistry,null));
+            case "Chimie": {
+                subjectImage.setImageDrawable(getActivity().getDrawable(R.drawable.logo_chemistry));
                 break;
             }
         }
@@ -167,10 +163,15 @@ public class TeacherClassDetailFragment extends Fragment {
 
 
     private void onStudentLoaded(Student student) {
-
-        String studentName = student.getFirstName() + " " + student.getLastName();
+        String studentName = getString(R.string.no_student);
+        if (student != null) {
+            studentName = student.getFirstName() + " " + student.getLastName();
+        }
         this.student.setText(studentName);
 
+    }
+    public static Fragment newInstance(){
+        return new TeacherClassDetailFragment();
     }
 
 }

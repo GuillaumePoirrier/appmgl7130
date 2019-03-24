@@ -1,6 +1,7 @@
 package com.mgl7130.curve.pages.teacher.ui.student.detail;
 
 import android.content.Intent;
+import android.icu.util.TimeUnit;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -27,6 +29,8 @@ import com.mgl7130.curve.models.Student;
 import com.mgl7130.curve.pages.teacher.ui.student.list.TeacherStudentRecyclerFragment;
 
 import java.text.SimpleDateFormat;
+import java.time.Period;
+import java.util.Date;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -35,55 +39,42 @@ import butterknife.ButterKnife;
 public class TeacherStudentDetailFragment extends Fragment {
 
     public static final String TAG = "TeacherClassDetailAct";
-    public static final String KEY_CLASS_ID = "key_class_id";
+    public static final String KEY_STUDENT_ID = "key_student_id";
 
-    @BindView(R.id.iv_teacher_class_detail_subject_image)
+    @BindView(R.id.iv_teacher_student_detail_student_image)
     ImageView subjectImage;
 
-    @BindView(R.id.tv_teacher_class_detail_subject)
-    TextView subject;
+    @BindView(R.id.tv_teacher_student_detail_name)
+    TextView name;
 
-    @BindView(R.id.tv_teacher_class_detail_level)
-    TextView level;
+    @BindView(R.id.tv_teacher_student_detail_age)
+    TextView age;
 
-    @BindView(R.id.tv_teacher_class_detail_date_day)
-    TextView dateDay;
-
-    @BindView(R.id.tv_teacher_class_detail_date_month)
-    TextView dateMonth;
-
-    @BindView(R.id.tv_teacher_class_detail_date_year)
-    TextView dateYear;
-
-    @BindView(R.id.tv_teacher_class_detail_start_time)
-    TextView startTime;
-
-    @BindView(R.id.tv_teacher_class_detail_end_time)
-    TextView endTime;
-
-    @BindView(R.id.tv_teacher_class_detail_student)
-    TextView student;
+    @BindView(R.id.tv_teacher_student_detail_description_label)
+    TextView description;
 
 
     private FirebaseFirestore mFirestore;
-    private DocumentReference mClassRef;
     private DocumentReference mStudentRef;
+    private DocumentReference mClassRef;
     private ListenerRegistration mClassRegistration;
     private String classId;
+    private String studentId;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_teacher_class_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_teacher_student_detail, container, false);
         ButterKnife.bind(this, view);
 
-        classId = getArguments().getString(KEY_CLASS_ID);
+        classId = getArguments().getString(KEY_STUDENT_ID);
         if (classId == null) {
-            throw new IllegalArgumentException("Must pass extra " + KEY_CLASS_ID);
+            throw new IllegalArgumentException("Must pass extra " + KEY_STUDENT_ID);
         }
 
         //init Firestore
         mFirestore =FirebaseFirestore.getInstance();
 
+//
         mClassRef = mFirestore.collection("classes").document(classId);
 
         return view;
@@ -93,14 +84,13 @@ public class TeacherStudentDetailFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        mClassRegistration = mClassRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+        mClassRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(DocumentSnapshot snapshot, FirebaseFirestoreException e) {
                 if (e != null) {
                     Log.w(TAG, "class:onEvent", e);
                     return;
                 }
-
                 onClassLoaded(snapshot.toObject(Cours.class));
             }
         });
@@ -116,36 +106,8 @@ public class TeacherStudentDetailFragment extends Fragment {
         }
     }
 
-
-    private void onClassLoaded(Cours cours) {
-
-        String subjectName = cours.getSubject().toString();
-        subject.setText(subjectName);
-
-        switch (subjectName){
-            case "Mathematiques": {
-                subjectImage.setImageDrawable(getActivity().getDrawable(R.drawable.logo_math));
-                break;
-            }
-            case "Physique": {
-                subjectImage.setImageDrawable(getActivity().getDrawable(R.drawable.logo_physic));
-                break;
-            }
-            case "Chimie": {
-                subjectImage.setImageDrawable(getActivity().getDrawable(R.drawable.logo_chemistry));
-                break;
-            }
-        }
-
-        level.setText(cours.getLevel().toString());
-        startTime.setText((new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(cours.getStartDate().toDate())));
-        endTime.setText((new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(cours.getEndDate().toDate())));
-        dateDay.setText((new SimpleDateFormat("dd", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
-        dateMonth.setText((new SimpleDateFormat("MMM", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
-        dateYear.setText((new SimpleDateFormat("yyyy", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
-
-        //test if it has student and if so get the student
-        if(cours.getStudent_id() != null){
+    private void onClassLoaded(Cours cours){
+        if (cours.getStudent_id() != null){
             mStudentRef = mFirestore.collection("users").document(cours.getStudent_id());
             mStudentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
@@ -157,20 +119,21 @@ public class TeacherStudentDetailFragment extends Fragment {
                     onStudentLoaded(snapshot.toObject(Student.class));
                 }
             });
-        } else {
-            student.setText(getString(R.string.no_student));
         }
     }
-
 
     private void onStudentLoaded(Student student) {
-        String studentName = getString(R.string.no_student);
         if (student != null) {
-            studentName = student.getFirstName() + " " + student.getLastName();
+            String fullname = student.getFirstName() + " " + student.getLastName();
+            name.setText(fullname);
+            if (student.hasBirthDate()){
+                age.setText(new SimpleDateFormat("dd MMMM yyyy", Locale.CANADA_FRENCH).format(student.getBirthDate().toDate()));
+            }
+            if (student.hasDescription()) description.setText(student.getDescription());
         }
-        this.student.setText(studentName);
 
     }
+
     public static Fragment newInstance(){
         return new TeacherStudentDetailFragment();
     }
