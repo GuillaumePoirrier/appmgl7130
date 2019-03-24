@@ -1,8 +1,5 @@
-# Salut les amis !
+# Curve app
 
-#email de l'appli: curve.app.mgl7130@gmail.com
-#mdp MGL7130*****
-
-c'est un plaisir de travailler avec vous !:)
+Application de mise en relation professeur/étudiant pour es cours particuliers
 
 
