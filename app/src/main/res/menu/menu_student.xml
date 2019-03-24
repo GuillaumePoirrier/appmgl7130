@@ -10,7 +10,7 @@
             <item
                 android:id="@+id/navigation_teacher_classes"
                 android:icon="@drawable/switch_user"
-                android:title="@string/switch_profile_student"
+                android:title="@string/switch_profile_teacher"
                 app:showAsAction="ifRoom" />
 
             <item

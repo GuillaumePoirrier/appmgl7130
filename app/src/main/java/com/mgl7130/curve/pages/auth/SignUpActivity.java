@@ -27,7 +27,7 @@ import butterknife.OnClick;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    @BindView(R.id.editText_name)
+    @BindView(R.id.name_new_user)
     EditText inputName;
 
     @BindView(R.id.editText_email)
@@ -35,6 +35,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     @BindView(R.id.editText_password)
     EditText inputPassword;
+
+    @BindView(R.id.firstname_new_user)
+    EditText inputfirstname;
 
     private Button btnSignUp;
 
@@ -91,9 +94,10 @@ public class SignUpActivity extends AppCompatActivity {
                             Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            String[] names = inputName.getText().toString().split(" ");
+                            String firstName = inputfirstname.getText().toString();
+                            String name = inputName.getText().toString();
                             db.collection("users").document(mAuth.getCurrentUser().getUid())
-                                    .set(new User(names[0], names[1]), SetOptions.merge())
+                                    .set(new User(firstName, name), SetOptions.merge())
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {

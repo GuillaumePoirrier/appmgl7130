@@ -1,5 +1,6 @@
 package com.mgl7130.curve.pages.student;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
+import com.mgl7130.curve.pages.auth.AuthentificationChoiceActivity;
+import com.mgl7130.curve.pages.teacher.MainTeacherActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,11 +61,14 @@ public class MainStudentActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_teacher_classes:
-                Toast.makeText(getApplicationContext(), "Go to teacher", Toast.LENGTH_SHORT).show();
+                Intent goToTeacher = new Intent(this, MainTeacherActivity.class);
+                startActivity(goToTeacher);
                 return true;
             case R.id.sign_out:
                 FirebaseAuth.getInstance().signOut();
                 finish();
+                Intent goToHomePage= new Intent(this, AuthentificationChoiceActivity.class);
+                startActivity(goToHomePage);
                 return true;
 
             default:
