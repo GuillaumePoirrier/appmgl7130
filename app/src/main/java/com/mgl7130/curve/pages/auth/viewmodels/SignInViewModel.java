@@ -1,9 +1,6 @@
 package com.mgl7130.curve.pages.auth.viewmodels;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.databinding.BaseObservable;
+import android.arch.lifecycle.ViewModel;
 import android.databinding.Bindable;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,61 +14,48 @@ import com.mgl7130.curve.pages.auth.ProfileChoiceActivity;
 import com.mgl7130.curve.pages.auth.models.SignInData;
 
 
-public class SignInViewModel extends BaseObservable {
+public class SignInViewModel extends ViewModel {
 
     public static final String TAG = "SignInVM";
 
-    private SignInData data = new SignInData();
-    public MutableLiveData<Class<ProfileChoiceActivity>> startActivity = new MutableLiveData<>();
+    public SignInData data = new SignInData();
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private SharedPreferences mSharedPreferences;
-    private Context mContext;
 
-    public SignInViewModel(SharedPreferences preferences, Context context) {
-        this.mSharedPreferences = preferences;
-        this.mContext = context;
-        this.data.rememberMe = preferences.getBoolean(mContext.getResources().getString(R.string.auth_preferences_remember_me), false);
+    public SignInViewModel(Boolean rememberMe) {
+        this.data.rememberMe.setValue(rememberMe);
+        this.data.email.setValue("");
+        this.data.password.setValue("");
     }
 
-    @Bindable
     public String getEmail() {
-        return data.email;
+        return data.email.getValue();
     }
 
-    @Bindable
     public String getPassword() {
-        return data.password;
+        return data.password.getValue();
     }
 
-    @Bindable
     public Boolean getRememberMe() {
-        return data.rememberMe;
+        return data.rememberMe.getValue();
     }
 
     public void setEmail(String value) {
-        if(!data.email.equals(value)) {
-            data.email = value;
+        if(!data.email.getValue().equals(value)) {
+            data.email.setValue(value);
         }
     }
 
     public void setPassword(String value) {
-        if(!data.password.equals(value)) {
-            data.password = value;
+        if(!data.password.getValue().equals(value)) {
+            data.password.setValue(value);
         }
     }
 
     public void setRememberMe(Boolean value) {
-        if(data.rememberMe != value) {
-            data.rememberMe = value;
-            saveRememberMe();
+        if(data.rememberMe.getValue() != value) {
+            data.rememberMe.setValue(value);
         }
-    }
-
-    private void saveRememberMe() {
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putBoolean(mContext.getResources().getString(R.string.auth_preferences_remember_me), data.rememberMe);
-        editor.apply();
     }
 
     public void login(View view) {
@@ -79,12 +63,12 @@ public class SignInViewModel extends BaseObservable {
     }
 
     private boolean testFields(View view){
-        if (TextUtils.isEmpty(data.email)) {
+        if (TextUtils.isEmpty(data.email.getValue())) {
             Toast.makeText(view.getContext(), R.string.enter_email_address, Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if (TextUtils.isEmpty(data.password)) {
+        if (TextUtils.isEmpty(data.password.getValue())) {
             Toast.makeText(view.getContext(), R.string.enter_password, Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -92,10 +76,10 @@ public class SignInViewModel extends BaseObservable {
     }
 
     private void signUserIn() {
-        mAuth.signInWithEmailAndPassword(data.email, data.password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(data.email.getValue(), data.password.getValue()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                startActivity.setValue(ProfileChoiceActivity.class);
+                data.startActivity.setValue(ProfileChoiceActivity.class);
             }
         });
     }

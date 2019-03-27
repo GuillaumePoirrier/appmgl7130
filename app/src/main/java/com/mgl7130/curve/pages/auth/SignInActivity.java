@@ -27,6 +27,7 @@ import com.mgl7130.curve.R;
 import com.mgl7130.curve.databinding.ActivitySignInBinding;
 import com.mgl7130.curve.pages.auth.models.SignInData;
 import com.mgl7130.curve.pages.auth.viewmodels.SignInViewModel;
+import com.mgl7130.curve.pages.auth.viewmodels.SignInViewModelFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,20 +36,23 @@ import butterknife.OnClick;
 public class SignInActivity extends AppCompatActivity {
 
     private Context mContext;
+    private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
 
-        //Get shared preferences to save STAY_Logged or not
-        SharedPreferences mSharedPreferences = this.getSharedPreferences(getString(R.string.auth_preferences_file), Context.MODE_PRIVATE);
+        //Get shared preferences to get STAY_Logged or not
+        mSharedPreferences = this.getSharedPreferences(getString(R.string.auth_preferences_file), Context.MODE_PRIVATE);
+        Boolean rememberMe = mSharedPreferences.getBoolean(getString(R.string.auth_preferences_remember_me), false);
 
-        SignInViewModel viewModel = new SignInViewModel(mSharedPreferences, mContext);
+        SignInViewModel viewModel = ViewModelProviders.of(this, new SignInViewModelFactory(rememberMe)).get(SignInViewModel.class);
         ActivitySignInBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_in);
+        binding.setLifecycleOwner(this);
         binding.setViewmodel(viewModel);
 
-        viewModel.startActivity.observe(this, new Observer<Class<ProfileChoiceActivity>>() {
+        viewModel.data.startActivity.observe(this, new Observer<Class<ProfileChoiceActivity>>() {
             @Override
             public void onChanged(@Nullable Class<ProfileChoiceActivity> profileChoiceActivityClass) {
                 Intent intent = new Intent(mContext, profileChoiceActivityClass);
@@ -57,5 +61,13 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
+        viewModel.data.rememberMe.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean rememberMe) {
+                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                editor.putBoolean(mContext.getResources().getString(R.string.auth_preferences_remember_me),rememberMe);
+                editor.apply();
+            }
+        });
     }
 }
