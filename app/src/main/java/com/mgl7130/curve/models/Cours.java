@@ -1,22 +1,24 @@
 package com.mgl7130.curve.models;
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.IgnoreExtraProperties;
 
-
-public class Cours extends GenericEntity{
+@IgnoreExtraProperties
+public class Cours extends Model{
 
     public static final String FIELD_SUBJECT = "subject";
     public static final String FIELD_DATE = "date";
     public static final String FIELD_LEVEL = "level";
+    public static final String FIELD_TEACHER_ID = "teacher_id";
 
-    private String studentId;
-    private String teacherId;
-    private Subject subject;
-    private Level level;
-    private Timestamp date;
-    private Timestamp startDate;
-    private Timestamp endDate;
-    private boolean hasStudent = false;
+    public String studentId;
+    public String teacherId;
+    public Subject subject;
+    public Level level;
+    public Timestamp date;
+    public Timestamp startDate;
+    public Timestamp endDate;
+    public boolean hasStudent = false;
 
     public Cours(){}
 

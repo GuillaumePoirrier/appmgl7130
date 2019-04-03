@@ -52,22 +52,16 @@ public class SignInActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
         binding.setViewmodel(viewModel);
 
-        viewModel.data.startActivity.observe(this, new Observer<Class<ProfileChoiceActivity>>() {
-            @Override
-            public void onChanged(@Nullable Class<ProfileChoiceActivity> profileChoiceActivityClass) {
-                Intent intent = new Intent(mContext, profileChoiceActivityClass);
-                startActivity(intent);
-                finish();
-            }
+        viewModel.data.startActivity.observe(this, profileChoiceActivityClass -> {
+            Intent intent = new Intent(mContext, profileChoiceActivityClass);
+            startActivity(intent);
+            finish();
         });
 
-        viewModel.data.rememberMe.observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable Boolean rememberMe) {
-                SharedPreferences.Editor editor = mSharedPreferences.edit();
-                editor.putBoolean(mContext.getResources().getString(R.string.auth_preferences_remember_me),rememberMe);
-                editor.apply();
-            }
+        viewModel.data.rememberMe.observe(this, value -> {
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.putBoolean(mContext.getResources().getString(R.string.auth_preferences_remember_me), value);
+            editor.apply();
         });
     }
 }
