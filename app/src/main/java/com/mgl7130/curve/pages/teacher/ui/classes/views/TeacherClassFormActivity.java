@@ -1,4 +1,4 @@
-package com.mgl7130.curve.pages.teacher.ui.classes.create;
+package com.mgl7130.curve.pages.teacher.ui.classes.views;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
