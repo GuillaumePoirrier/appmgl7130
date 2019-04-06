@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mgl7130.curve.models.Cours;
 import com.mgl7130.curve.pages.teacher.ui.classes.views.TeacherClassFormActivity;
@@ -38,6 +39,7 @@ public class TeacherClassRecyclerViewModel extends ViewModel {
 
     private void loadClasses() {
         mCollection.whereEqualTo("teacher_id", mAuth.getCurrentUser().getUid())
+                .orderBy("date", Query.Direction.ASCENDING)
                 .limit(20)
                 .addSnapshotListener((queryDocumentSnapshots, e) -> classes.setValue(toClasses(queryDocumentSnapshots)));
     }

@@ -105,6 +105,14 @@
     <string name="firstname">Prénom</string>
     <string name="age" >Age</string>
     <string name="teacher_unable_get_student_picture">Impossible de recuperer la photo de l\'etudiant</string>
+    <string name="subject_missing">Vous devez choisir un sujet</string>
+    <string name="level_missing">Vous devez choisir un niveau</string>
+    <string name="date_missing">Vous devez choisir la date du cours</string>
+    <string name="start_time_missing">Vous devez choisir une heure de debut</string>
+    <string name="end_time_missing">Vous devez choisir l\'heure de fin</string>
+    <string name="error_date_format">Erreur dans le format de la date</string>
+    <string name="error_start_time_format">Erreur dans le format de l\'heure</string>
+    <string name="error_end_time_format">Erreur dans le format de l\'heure de fin</string>
 
 
 </resources>
