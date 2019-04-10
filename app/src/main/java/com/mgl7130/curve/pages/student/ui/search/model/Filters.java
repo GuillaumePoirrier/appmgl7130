@@ -28,7 +28,7 @@ public class Filters {
     public static Filters getDefault() {
         Filters filters = new Filters();
         filters.setSortBy(Cours.FIELD_DATE);
-        filters.setSortDirection(Query.Direction.DESCENDING);
+        filters.setSortDirection(Query.Direction.ASCENDING);
 
         return filters;
     }
