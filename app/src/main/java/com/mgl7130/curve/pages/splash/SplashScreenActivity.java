@@ -8,8 +8,8 @@ import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
-import com.mgl7130.curve.pages.auth.ProfileChoiceActivity;
-import com.mgl7130.curve.pages.auth.AuthentificationChoiceActivity;
+import com.mgl7130.curve.pages.auth.views.ProfileChoiceActivity;
+import com.mgl7130.curve.pages.auth.views.AuthentificationChoiceActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

@@ -2,7 +2,7 @@ package com.mgl7130.curve.pages.auth.models;
 
 import android.arch.lifecycle.MutableLiveData;
 
-import com.mgl7130.curve.pages.auth.ProfileChoiceActivity;
+import com.mgl7130.curve.pages.auth.views.ProfileChoiceActivity;
 
 public class SignInData {
 

@@ -5,6 +5,7 @@ import android.databinding.BindingAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.mgl7130.curve.R;
@@ -42,6 +43,23 @@ public final class BindingAdapters {
                     break;
                 }
             }
+        }
+    }
+
+    @BindingAdapter("error")
+    public static void setError(EditText editText, Object strOrResId) {
+        if (strOrResId instanceof Integer) {
+            editText.setError(
+                    editText.getContext().getString((Integer) strOrResId));
+        } else {
+            editText.setError((String) strOrResId);
+        }
+    }
+
+    @BindingAdapter("onFocus")
+    public static void bindFocusChange(EditText editText, View.OnFocusChangeListener onFocusChangeListener) {
+        if (editText.getOnFocusChangeListener() == null) {
+            editText.setOnFocusChangeListener(onFocusChangeListener);
         }
     }
 

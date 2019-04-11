@@ -1,10 +1,9 @@
-package com.mgl7130.curve.pages.auth;
+package com.mgl7130.curve.pages.auth.views;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.pages.student.MainStudentActivity;

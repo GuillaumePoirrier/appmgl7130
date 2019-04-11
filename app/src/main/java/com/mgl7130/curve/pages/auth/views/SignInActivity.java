@@ -1,4 +1,4 @@
-package com.mgl7130.curve.pages.auth;
+package com.mgl7130.curve.pages.auth.views;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;

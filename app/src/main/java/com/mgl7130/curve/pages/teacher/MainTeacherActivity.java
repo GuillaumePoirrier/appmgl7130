@@ -10,11 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
-import com.mgl7130.curve.pages.auth.AuthentificationChoiceActivity;
+import com.mgl7130.curve.pages.auth.views.AuthentificationChoiceActivity;
 import com.mgl7130.curve.pages.student.MainStudentActivity;
 
 import butterknife.BindView;

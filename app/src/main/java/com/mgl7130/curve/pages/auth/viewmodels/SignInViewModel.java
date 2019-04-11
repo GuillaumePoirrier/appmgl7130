@@ -1,7 +1,6 @@
 package com.mgl7130.curve.pages.auth.viewmodels;
 
 import android.arch.lifecycle.ViewModel;
-import android.databinding.Bindable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
@@ -10,7 +9,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
-import com.mgl7130.curve.pages.auth.ProfileChoiceActivity;
+import com.mgl7130.curve.pages.auth.views.ProfileChoiceActivity;
 import com.mgl7130.curve.pages.auth.models.SignInData;
 
 
