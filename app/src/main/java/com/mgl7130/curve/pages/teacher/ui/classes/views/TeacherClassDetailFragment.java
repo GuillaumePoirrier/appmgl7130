@@ -36,7 +36,6 @@ public class TeacherClassDetailFragment extends Fragment {
     public static final String TAG = "TeacherClassDetailFrag";
     public static final String KEY_CLASS_ID = "key_class_id";
 
-    private String classId;
     private TeacherClassDetailViewModel mViewmodel;
     private FragmentTeacherClassDetailBinding mBinding;
 
@@ -45,9 +44,6 @@ public class TeacherClassDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_teacher_class_detail, container, false);
         View view = mBinding.getRoot();
-
-        classId = getArguments().getString(KEY_CLASS_ID);
-        if (classId == null) throw new IllegalArgumentException("Must pass extra " + KEY_CLASS_ID);
 
         return view;
     }
