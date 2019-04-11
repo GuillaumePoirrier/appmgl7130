@@ -1,101 +1,35 @@
 package com.mgl7130.curve.pages.student.ui.search.list;
 
-import android.content.res.Resources;
-import android.support.v7.widget.RecyclerView;
+import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.Query;
 import com.mgl7130.curve.R;
-import com.mgl7130.curve.adapter.FirestoreAdapter;
+import com.mgl7130.curve.common.DataListAdapter;
+import com.mgl7130.curve.common.OnItemClickedListener;
+import com.mgl7130.curve.databinding.StudentItemClassBinding;
 import com.mgl7130.curve.models.Cours;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-public class StudentSearchAdapter extends FirestoreAdapter<StudentSearchAdapter.ViewHolder> {
-
-    public interface OnClassSelectedListener {
-        void onClassSelected(DocumentSnapshot restaurant);
-    }
-
-    private OnClassSelectedListener mListener;
-
-    public StudentSearchAdapter(Query query, OnClassSelectedListener listener){
-        super(query);
-        this.mListener = listener;
+public class StudentSearchAdapter extends DataListAdapter<Cours, StudentItemClassBinding> {
+    public StudentSearchAdapter(OnItemClickedListener<Cours> listener) {
+        super(listener);
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new ViewHolder(inflater.inflate(R.layout.student_item_class, parent, false));
+    protected StudentItemClassBinding createBinding(LayoutInflater inflater, ViewGroup parent) {
+        final StudentItemClassBinding binding = DataBindingUtil.inflate(inflater, R.layout.student_item_class, parent, false);
+        binding.getRoot().setOnClickListener(v -> {
+            final Cours chosen = binding.getCours();
+            if (chosen != null) {
+                listener.onClicked(chosen);
+            }
+        });
+        return binding;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.bind(getSnapshot(position), mListener);
+    protected void bind(StudentItemClassBinding binding, Cours item) {
+        binding.setCours(item);
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.item_tv_subject)
-        TextView subject;
-
-        @BindView(R.id.item_tv_level)
-        TextView level;
-
-        @BindView(R.id.item_tv_from)
-        TextView startTime;
-
-        @BindView(R.id.item_tv_to)
-        TextView endTime;
-
-        @BindView(R.id.item_tv_date_day)
-        TextView dateDay;
-
-        @BindView(R.id.item_tv_date_month)
-        TextView dateMonth;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-
-        public void bind(final DocumentSnapshot snapshot,
-                         final OnClassSelectedListener listener) {
-
-            Cours cours = snapshot.toObject(Cours.class);
-            Resources resources = itemView.getResources();
-
-            subject.setText(cours.getSubject().toString());
-            level.setText(cours.getLevel().toString());
-            startTime.setText((new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(cours.getStartDate().toDate())));
-            endTime.setText((new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(cours.getEndDate().toDate())));
-            dateDay.setText((new SimpleDateFormat("dd", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
-            dateMonth.setText((new SimpleDateFormat("MMM", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
-
-
-            //Click listener
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    System.out.println("click");
-                    if (listener != null) {
-                        listener.onClassSelected(snapshot);
-                    }
-                }
-            });
-        }
-
-    }
-
-
-    
 }
