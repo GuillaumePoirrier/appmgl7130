@@ -20,12 +20,12 @@ import java.util.List;
  */
 public class StudentSearchFilterViewModel extends ViewModel {
 
-    private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
     private final MutableLiveData<Filters> mFilters = new MutableLiveData<>();
     private final LiveData<Resource<List<Cours>>> mClasses;
+    private FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
 
 
-    public StudentSearchFilterViewModel(){
+    public StudentSearchFilterViewModel() {
         mFilters.setValue(Filters.getDefault());
         mClasses = Transformations.switchMap(mFilters, this::classes);
     }

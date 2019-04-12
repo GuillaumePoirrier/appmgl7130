@@ -3,13 +3,13 @@ package com.mgl7130.curve.pages.splash;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
-import com.mgl7130.curve.pages.auth.views.ProfileChoiceActivity;
 import com.mgl7130.curve.pages.auth.views.AuthentificationChoiceActivity;
+import com.mgl7130.curve.pages.auth.views.ProfileChoiceActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -25,7 +25,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         //Get shared preferences to save STAY_Logged or not
         final SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.auth_preferences_file), Context.MODE_PRIVATE);
-        if(!sharedPreferences.getBoolean(getString(R.string.auth_preferences_remember_me), false)){
+        if (!sharedPreferences.getBoolean(getString(R.string.auth_preferences_remember_me), false)) {
             mAuth.signOut();
         }
 
@@ -48,7 +48,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void isUserLogedIn() {
-        if (mAuth.getCurrentUser() != null){
+        if (mAuth.getCurrentUser() != null) {
             activityIntent = new Intent(this, ProfileChoiceActivity.class);
         } else {
             activityIntent = new Intent(this, AuthentificationChoiceActivity.class);

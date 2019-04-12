@@ -23,17 +23,36 @@ import butterknife.OnPageChange;
 public class MainTeacherActivity extends AppCompatActivity {
 
 
-
     @BindView(R.id.vpPagerTeacher)
     ViewPager viewPager;
 
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
-
-    private FragmentPagerAdapter adapterViewPager;
     MenuItem prevMenuItem;
-
     Toolbar toolbar;
+    private FragmentPagerAdapter adapterViewPager;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_teacher_students:
+
+                    viewPager.setCurrentItem(0);
+                    return true;
+                case R.id.navigation_teacher_classes:
+
+                    viewPager.setCurrentItem(1);
+                    return true;
+                case R.id.navigation_teacher_profile:
+
+                    viewPager.setCurrentItem(2);
+                    return true;
+            }
+            return false;
+        }
+    };
 
     public MainTeacherActivity() {
         super();
@@ -73,7 +92,7 @@ public class MainTeacherActivity extends AppCompatActivity {
             case R.id.sign_out:
                 FirebaseAuth.getInstance().signOut();
                 finish();
-                Intent goToHomePage= new Intent(this, AuthentificationChoiceActivity.class);
+                Intent goToHomePage = new Intent(this, AuthentificationChoiceActivity.class);
                 startActivity(goToHomePage);
                 return true;
             default:
@@ -91,28 +110,6 @@ public class MainTeacherActivity extends AppCompatActivity {
         navigation.getMenu().getItem(position).setChecked(true);
         prevMenuItem = navigation.getMenu().getItem(position);
     }
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_teacher_students:
-
-                    viewPager.setCurrentItem(0);
-                    return true;
-                case R.id.navigation_teacher_classes:
-
-                    viewPager.setCurrentItem(1);
-                    return true;
-                case R.id.navigation_teacher_profile:
-
-                    viewPager.setCurrentItem(2);
-                    return true;
-            }
-            return false;
-        }
-    };
 
 
 }

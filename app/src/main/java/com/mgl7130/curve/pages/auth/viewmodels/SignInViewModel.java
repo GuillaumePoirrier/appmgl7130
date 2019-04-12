@@ -9,8 +9,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
-import com.mgl7130.curve.pages.auth.views.ProfileChoiceActivity;
 import com.mgl7130.curve.pages.auth.models.SignInData;
+import com.mgl7130.curve.pages.auth.views.ProfileChoiceActivity;
 
 
 public class SignInViewModel extends ViewModel {
@@ -31,28 +31,28 @@ public class SignInViewModel extends ViewModel {
         return data.email.getValue();
     }
 
+    public void setEmail(String value) {
+        if (!data.email.getValue().equals(value)) {
+            data.email.setValue(value);
+        }
+    }
+
     public String getPassword() {
         return data.password.getValue();
+    }
+
+    public void setPassword(String value) {
+        if (!data.password.getValue().equals(value)) {
+            data.password.setValue(value);
+        }
     }
 
     public Boolean getRememberMe() {
         return data.rememberMe.getValue();
     }
 
-    public void setEmail(String value) {
-        if(!data.email.getValue().equals(value)) {
-            data.email.setValue(value);
-        }
-    }
-
-    public void setPassword(String value) {
-        if(!data.password.getValue().equals(value)) {
-            data.password.setValue(value);
-        }
-    }
-
     public void setRememberMe(Boolean value) {
-        if(data.rememberMe.getValue() != value) {
+        if (data.rememberMe.getValue() != value) {
             data.rememberMe.setValue(value);
         }
     }
@@ -61,7 +61,7 @@ public class SignInViewModel extends ViewModel {
         if (testFields(view)) signUserIn();
     }
 
-    private boolean testFields(View view){
+    private boolean testFields(View view) {
         if (TextUtils.isEmpty(data.email.getValue())) {
             Toast.makeText(view.getContext(), R.string.enter_email_address, Toast.LENGTH_SHORT).show();
             return false;

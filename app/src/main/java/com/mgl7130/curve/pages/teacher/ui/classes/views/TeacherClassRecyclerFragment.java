@@ -19,7 +19,7 @@ import com.mgl7130.curve.models.Cours;
 import com.mgl7130.curve.pages.teacher.ui.classes.adapter.TeacherClassAdapter;
 import com.mgl7130.curve.pages.teacher.ui.classes.viewmodels.TeacherClassRecyclerViewModel;
 
-public class TeacherClassRecyclerFragment extends Fragment{
+public class TeacherClassRecyclerFragment extends Fragment {
 
     public static final String TAG = "StudentSearchRecyclerF";
 
@@ -27,6 +27,10 @@ public class TeacherClassRecyclerFragment extends Fragment{
     private TeacherClassRecyclerViewFragmentBinding mBinding;
     private TeacherClassRecyclerViewModel mViewmodel;
     private boolean hasDetailLayout = false;
+
+    public static Fragment newInstance() {
+        return new TeacherClassRecyclerFragment();
+    }
 
     @Nullable
     @Override
@@ -66,7 +70,7 @@ public class TeacherClassRecyclerFragment extends Fragment{
 
     public void onClassSelected(Cours cours) {
         // Go to the details page for the selected restaurant
-        if(hasDetailLayout){
+        if (hasDetailLayout) {
             getActivity().findViewById(R.id.classdetailLayout).setVisibility(View.VISIBLE);
 
             Bundle args = new Bundle();
@@ -86,10 +90,6 @@ public class TeacherClassRecyclerFragment extends Fragment{
 
             startActivity(intent);
         }
-    }
-
-    public static Fragment newInstance(){
-        return new TeacherClassRecyclerFragment();
     }
 
 }

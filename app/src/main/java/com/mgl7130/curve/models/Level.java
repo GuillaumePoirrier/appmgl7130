@@ -13,28 +13,28 @@ public enum Level {
 
     private String name = "";
 
-    Level(String name){
+    Level(String name) {
         this.name = name;
     }
 
-    public static List<String> stringValues(){
+    public static List<String> stringValues() {
         List<String> list = new ArrayList<>();
-        for (Level l: Level.values()) {
+        for (Level l : Level.values()) {
             list.add(l.name);
         }
         return list;
     }
 
-    public static Level getSubject(String name){
-        for (Level s: Level.values()) {
-            if(s.name.equals(name)){
+    public static Level getSubject(String name) {
+        for (Level s : Level.values()) {
+            if (s.name.equals(name)) {
                 return s;
             }
         }
         return null;
     }
 
-    public String toString(){
+    public String toString() {
         return name;
     }
 }

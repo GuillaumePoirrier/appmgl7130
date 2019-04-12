@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,8 +31,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
-
-import javax.annotation.Nullable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,9 +66,9 @@ public class TeacherClassFormActivity extends AppCompatActivity {
 
     private FirebaseFirestore mFirestore;
 
-    private DatePickerDialog datePickerDialog ;
-    private TimePickerDialog timePickerDialog ;
-    private Calendar calendar ;
+    private DatePickerDialog datePickerDialog;
+    private TimePickerDialog timePickerDialog;
+    private Calendar calendar;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
@@ -93,11 +90,11 @@ public class TeacherClassFormActivity extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
 
         // Get if is edit
-        if (getIntent().getExtras() != null){
+        if (getIntent().getExtras() != null) {
             edit = getIntent().getExtras().getBoolean(KEY_EDIT);
         }
 
-        if(edit){
+        if (edit) {
             button.setText(getString(R.string.edit_class_button));
             toolbarTittle.setText(getString(R.string.edit_class));
             classId = getIntent().getExtras().getString(KEY_CLASS_ID);
@@ -132,7 +129,7 @@ public class TeacherClassFormActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.et_class_date)
-    public void onDateClicked(View view){
+    public void onDateClicked(View view) {
         DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
@@ -149,7 +146,7 @@ public class TeacherClassFormActivity extends AppCompatActivity {
 
 
     @OnClick(R.id.start_time)
-    public void onStartTimeClicked(View view){
+    public void onStartTimeClicked(View view) {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
@@ -163,7 +160,7 @@ public class TeacherClassFormActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.end_time)
-    public void onEndTimeClicked(View view){
+    public void onEndTimeClicked(View view) {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
@@ -177,8 +174,8 @@ public class TeacherClassFormActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.button_create_class)
-    public void onCreateClassClicked(View view){
-        if (verifyForm(date, startHour, endHour)){
+    public void onCreateClassClicked(View view) {
+        if (verifyForm(date, startHour, endHour)) {
             try {
                 createDbClass(date, startHour, endHour, subject, level);
                 finish();
@@ -189,16 +186,16 @@ public class TeacherClassFormActivity extends AppCompatActivity {
         }
     }
 
-    public boolean verifyForm(EditText date, EditText startHour, EditText endHour){
-        if (date.getText().equals("")){
+    public boolean verifyForm(EditText date, EditText startHour, EditText endHour) {
+        if (date.getText().equals("")) {
             Toast.makeText(this, getString(R.string.select_date_error), Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (startHour.getText().equals("")){
+        if (startHour.getText().equals("")) {
             Toast.makeText(this, getString(R.string.select_startHour_error), Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (endHour.getText().equals("")){
+        if (endHour.getText().equals("")) {
             Toast.makeText(this, getString(R.string.select_endHour_error), Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -221,7 +218,7 @@ public class TeacherClassFormActivity extends AppCompatActivity {
         Cours cours = new Cours(mAuth.getUid(), subject1, level1, classDate, start, end);
 
         //add Class object to Db
-        if (edit){
+        if (edit) {
             db.collection("classes").document(classId).set(cours);
         } else {
             db.collection("classes").add(cours);

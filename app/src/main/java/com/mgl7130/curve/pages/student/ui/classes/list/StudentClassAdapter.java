@@ -21,13 +21,9 @@ import butterknife.ButterKnife;
 
 public class StudentClassAdapter extends FirestoreAdapter<StudentClassAdapter.ViewHolder> {
 
-    public interface OnClassSelectedListener {
-        void onClassSelected(DocumentSnapshot restaurant);
-    }
-
     private OnClassSelectedListener mListener;
 
-    public StudentClassAdapter(Query query, OnClassSelectedListener listener){
+    public StudentClassAdapter(Query query, OnClassSelectedListener listener) {
         super(query);
         this.mListener = listener;
     }
@@ -41,6 +37,10 @@ public class StudentClassAdapter extends FirestoreAdapter<StudentClassAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.bind(getSnapshot(position), mListener);
+    }
+
+    public interface OnClassSelectedListener {
+        void onClassSelected(DocumentSnapshot restaurant);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -97,5 +97,4 @@ public class StudentClassAdapter extends FirestoreAdapter<StudentClassAdapter.Vi
     }
 
 
-    
 }

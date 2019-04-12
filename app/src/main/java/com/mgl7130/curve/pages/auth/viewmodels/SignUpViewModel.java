@@ -14,13 +14,12 @@ import com.mgl7130.curve.pages.auth.models.SignUpForm;
 
 public class SignUpViewModel extends ViewModel {
 
+    public MutableLiveData<Exception> userCreated = new MutableLiveData<>();
     private SignUpForm signUp;
     private View.OnFocusChangeListener onFocusFirstName;
     private View.OnFocusChangeListener onFocusLastName;
     private View.OnFocusChangeListener onFocusEmail;
     private View.OnFocusChangeListener onFocusPassword;
-    public MutableLiveData<Exception> userCreated = new MutableLiveData<>();
-
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore mDb = FirebaseFirestore.getInstance();
 

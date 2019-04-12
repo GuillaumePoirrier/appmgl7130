@@ -20,14 +20,11 @@ import java.util.List;
 public class TeacherClassRecyclerViewModel extends ViewModel {
 
     public static final String TAG = "TeacherClassListVM";
-
+    public MutableLiveData<Class<TeacherClassFormActivity>> addClassActivity = new MutableLiveData<>();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore mDb = FirebaseFirestore.getInstance();
-
     private CollectionReference mCollection = mDb.collection("classes");
     private MutableLiveData<List<Cours>> classes;
-
-    public MutableLiveData<Class<TeacherClassFormActivity>> addClassActivity = new MutableLiveData<>();
 
     public LiveData<List<Cours>> getClasses() {
         if (classes == null) {
@@ -54,7 +51,7 @@ public class TeacherClassRecyclerViewModel extends ViewModel {
     }
 
 
-    public void onAddClassFABClicked(){
+    public void onAddClassFABClicked() {
         Log.d(TAG, "fab PRESSED");
         addClassActivity.setValue(TeacherClassFormActivity.class);
     }

@@ -66,7 +66,7 @@ public class SignUpForm extends BaseObservable {
 
     public boolean isFirstNameValid(boolean setMessage) {
         String firstName = fields.getFirstName();
-        if(firstName != null) {
+        if (firstName != null) {
             errors.setFirstName(null);
             notifyPropertyChanged(BR.valid);
             return true;
@@ -81,7 +81,7 @@ public class SignUpForm extends BaseObservable {
 
     public boolean isLastNameValid(boolean setMessage) {
         String lastName = fields.getLastName();
-        if(lastName != null) {
+        if (lastName != null) {
             errors.setLastName(null);
             notifyPropertyChanged(BR.valid);
             return true;

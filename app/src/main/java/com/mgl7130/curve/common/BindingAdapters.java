@@ -1,9 +1,7 @@
 package com.mgl7130.curve.common;
 
-import android.content.res.Resources;
 import android.databinding.BindingAdapter;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.ResourcesCompat;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,14 +20,14 @@ public final class BindingAdapters {
 
     @BindingAdapter("hideView")
     public static void hideView(View view, boolean hide) {
-        showView(view, ! hide);
+        showView(view, !hide);
     }
 
     @BindingAdapter("subjectImage")
     public static void subjectImage(ImageView view, Subject subject) {
 
-        if(subject != null) {
-            switch (subject.toString()){
+        if (subject != null) {
+            switch (subject.toString()) {
                 case "Mathematiques": {
                     view.setImageDrawable(ContextCompat.getDrawable(view.getContext(), R.drawable.logo_math));
                     break;

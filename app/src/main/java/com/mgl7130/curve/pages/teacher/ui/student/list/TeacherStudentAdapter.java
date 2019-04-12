@@ -33,13 +33,9 @@ import butterknife.ButterKnife;
 
 public class TeacherStudentAdapter extends FirestoreAdapter<TeacherStudentAdapter.ViewHolder> {
 
-    public interface OnClassSelectedListener {
-        void onClassSelected(DocumentSnapshot restaurant);
-    }
-
     private OnClassSelectedListener mListener;
 
-    public TeacherStudentAdapter(Query query, OnClassSelectedListener listener){
+    public TeacherStudentAdapter(Query query, OnClassSelectedListener listener) {
         super(query);
         this.mListener = listener;
     }
@@ -55,36 +51,32 @@ public class TeacherStudentAdapter extends FirestoreAdapter<TeacherStudentAdapte
         holder.bind(getSnapshot(position), mListener);
     }
 
+    public interface OnClassSelectedListener {
+        void onClassSelected(DocumentSnapshot restaurant);
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.item_iv_student_image)
+        ImageView studentPicture;
+        @BindView(R.id.item_tv_student_name)
+        TextView studentName;
+        @BindView(R.id.item_tv_subject)
+        TextView subject;
+        @BindView(R.id.item_tv_level)
+        TextView level;
+        @BindView(R.id.item_tv_from)
+        TextView startTime;
+        @BindView(R.id.item_tv_to)
+        TextView endTime;
+        @BindView(R.id.item_tv_date_day)
+        TextView dateDay;
+        @BindView(R.id.item_tv_date_month)
+        TextView dateMonth;
         private FirebaseFirestore mFirestore;
         private FirebaseStorage mStorage;
         private FirebaseAuth mAuth;
         private DocumentReference mStudentRef;
-
-        @BindView(R.id.item_iv_student_image)
-        ImageView studentPicture;
-
-        @BindView(R.id.item_tv_student_name)
-        TextView studentName;
-
-        @BindView(R.id.item_tv_subject)
-        TextView subject;
-
-        @BindView(R.id.item_tv_level)
-        TextView level;
-
-        @BindView(R.id.item_tv_from)
-        TextView startTime;
-
-        @BindView(R.id.item_tv_to)
-        TextView endTime;
-
-        @BindView(R.id.item_tv_date_day)
-        TextView dateDay;
-
-        @BindView(R.id.item_tv_date_month)
-        TextView dateMonth;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -107,7 +99,7 @@ public class TeacherStudentAdapter extends FirestoreAdapter<TeacherStudentAdapte
             dateDay.setText((new SimpleDateFormat("dd", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
             dateMonth.setText((new SimpleDateFormat("MMM", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
 
-            if(cours.getStudent_id() != null){
+            if (cours.getStudent_id() != null) {
                 mStudentRef = mFirestore.collection("users").document(cours.getStudent_id());
                 mStudentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
@@ -155,5 +147,4 @@ public class TeacherStudentAdapter extends FirestoreAdapter<TeacherStudentAdapte
     }
 
 
-    
 }

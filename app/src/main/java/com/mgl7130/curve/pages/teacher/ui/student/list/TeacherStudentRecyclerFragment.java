@@ -44,6 +44,10 @@ public class TeacherStudentRecyclerFragment extends Fragment implements
     private TeacherStudentAdapter mAdapter;
     private boolean hasDetailLayout = false;
 
+    public static Fragment newInstance() {
+        return new TeacherStudentRecyclerFragment();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,7 +76,7 @@ public class TeacherStudentRecyclerFragment extends Fragment implements
             @Override
             protected void onError(FirebaseFirestoreException e) {
                 // Show a snackbar on errors
-                Log.e(TAG,e.toString());
+                Log.e(TAG, e.toString());
             }
         };
 
@@ -106,7 +110,7 @@ public class TeacherStudentRecyclerFragment extends Fragment implements
     @Override
     public void onClassSelected(DocumentSnapshot cours) {
 
-        if(hasDetailLayout){
+        if (hasDetailLayout) {
             getActivity().findViewById(R.id.studentdetailLayout).setVisibility(View.VISIBLE);
 
             Bundle args = new Bundle();
@@ -127,10 +131,6 @@ public class TeacherStudentRecyclerFragment extends Fragment implements
             startActivity(intent);
         }
 
-    }
-
-    public static Fragment newInstance(){
-        return new TeacherStudentRecyclerFragment();
     }
 
 }

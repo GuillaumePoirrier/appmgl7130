@@ -12,7 +12,7 @@ public class TeacherPagerAdapter extends FragmentPagerAdapter {
 
     private static int NUM_ITEMS = 3;
 
-    TeacherPagerAdapter(FragmentManager fragmentManager){
+    TeacherPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }
 
