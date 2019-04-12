@@ -8,19 +8,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.databinding.StudentSearchRecyclerViewFragmentBinding;
 import com.mgl7130.curve.models.Cours;
@@ -29,11 +22,7 @@ import com.mgl7130.curve.pages.student.ui.search.dialog.FilterDialogFragment;
 import com.mgl7130.curve.pages.student.ui.search.model.Filters;
 import com.mgl7130.curve.pages.student.ui.search.viewmodel.StudentSearchFilterViewModel;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-public class StudentSearchRecyclerFragment extends Fragment{
+public class StudentSearchRecyclerFragment extends Fragment {
 
     public static final String TAG = "StudentSearchRecycler";
 
@@ -41,6 +30,10 @@ public class StudentSearchRecyclerFragment extends Fragment{
     private StudentSearchRecyclerViewFragmentBinding mBinding;
     private FilterDialogFragment mFilterDialog;
     private StudentSearchFilterViewModel mViewModel;
+
+    public static Fragment newInstance() {
+        return new StudentSearchRecyclerFragment();
+    }
 
     @Nullable
     @Override
@@ -66,7 +59,7 @@ public class StudentSearchRecyclerFragment extends Fragment{
         });
 
         mViewModel.getClasses().observe(this, listResource -> {
-            if (listResource.isSuccessful()){
+            if (listResource.isSuccessful()) {
                 mAdapter.replace(listResource.data());
             }
         });
@@ -96,9 +89,5 @@ public class StudentSearchRecyclerFragment extends Fragment{
 
         // Save filters
         mViewModel.setFilters(filters);
-    }
-
-    public static Fragment newInstance(){
-        return new StudentSearchRecyclerFragment();
     }
 }

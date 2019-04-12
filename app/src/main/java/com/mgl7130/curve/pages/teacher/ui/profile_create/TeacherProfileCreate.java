@@ -11,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -143,7 +142,7 @@ public class TeacherProfileCreate extends Fragment {
         editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               setFormProfileEditable(true);
+                setFormProfileEditable(true);
             }
         });
         setFormProfileEditable(false);
@@ -179,7 +178,8 @@ public class TeacherProfileCreate extends Fragment {
                 if (user.hasFirstName()) teacherFirstName.setText(user.getFirstName());
                 if (user.hasLastName()) teacherFamilyName.setText(user.getLastName());
                 if (user.hasDescription()) teacherDescription.setText(user.getDescription());
-                if (user.hasBirthDate()) teacherBirthDate.setText((new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).format(user.getBirthDate().toDate())));
+                if (user.hasBirthDate())
+                    teacherBirthDate.setText((new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).format(user.getBirthDate().toDate())));
             }
         });
         FirebaseStorage storage = FirebaseStorage.getInstance();

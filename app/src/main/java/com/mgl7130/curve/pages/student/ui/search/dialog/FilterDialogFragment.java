@@ -33,29 +33,23 @@ import java.util.Locale;
 public class FilterDialogFragment extends DialogFragment {
 
     public static final String TAG = "FilterDialog";
-
-    public interface FilterListener {
-        void onFilter(Filters filters);
-    }
-
-    public interface FiltersDialogHandler {
-        void addFilters(boolean doCancel);
-    }
-
+    private static FilterListener mFilterListener;
     private View mRootView;
     private DialogFiltersBinding mBinding;
-
-    private static FilterListener  mFilterListener;
     private DatePickerDialog datePickerDialog;
 
+    public static FilterDialogFragment newInstance(FilterListener listener) {
+        mFilterListener = listener;
+        return new FilterDialogFragment();
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_filters, container, false);
         mBinding.setHandler(doCancel -> {
-            if(!doCancel){
-                if(mFilterListener != null) {
+            if (!doCancel) {
+                if (mFilterListener != null) {
                     mFilterListener.onFilter(getFilters());
                 }
             }
@@ -70,9 +64,15 @@ public class FilterDialogFragment extends DialogFragment {
     }
 
     public void initSpinners() {
-        List<String> subjectList = new ArrayList<String>() {{add(getString(R.string.value_any_subject));addAll(Subject.stringValues());}};
+        List<String> subjectList = new ArrayList<String>() {{
+            add(getString(R.string.value_any_subject));
+            addAll(Subject.stringValues());
+        }};
         mBinding.spinnerSubject.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, subjectList));
-        List<String> levelList = new ArrayList<String>() {{add(getString(R.string.value_any_level));addAll(Level.stringValues());}};
+        List<String> levelList = new ArrayList<String>() {{
+            add(getString(R.string.value_any_level));
+            addAll(Level.stringValues());
+        }};
         mBinding.spinnerLevel.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, levelList));
     }
 
@@ -100,7 +100,7 @@ public class FilterDialogFragment extends DialogFragment {
                 ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
-    public void onDateClicked(View view){
+    public void onDateClicked(View view) {
 
     }
 
@@ -138,9 +138,11 @@ public class FilterDialogFragment extends DialogFragment {
         String selected = (String) mBinding.spinnerSort.getSelectedItem();
         if (getString(R.string.sort_by_date).equals(selected)) {
             return Cours.FIELD_DATE;
-        } if (getString(R.string.sort_by_level).equals(selected)) {
+        }
+        if (getString(R.string.sort_by_level).equals(selected)) {
             return Cours.FIELD_LEVEL;
-        } if (getString(R.string.sort_by_subject).equals(selected)) {
+        }
+        if (getString(R.string.sort_by_subject).equals(selected)) {
             return Cours.FIELD_SUBJECT;
         }
 
@@ -152,9 +154,11 @@ public class FilterDialogFragment extends DialogFragment {
         String selected = (String) mBinding.spinnerSort.getSelectedItem();
         if (getString(R.string.sort_by_date).equals(selected)) {
             return Query.Direction.ASCENDING;
-        } if (getString(R.string.sort_by_level).equals(selected)) {
+        }
+        if (getString(R.string.sort_by_level).equals(selected)) {
             return Query.Direction.ASCENDING;
-        } if (getString(R.string.sort_by_subject).equals(selected)) {
+        }
+        if (getString(R.string.sort_by_subject).equals(selected)) {
             return Query.Direction.DESCENDING;
         }
 
@@ -178,7 +182,8 @@ public class FilterDialogFragment extends DialogFragment {
             filters.setLevel(getSelectedLevel());
             try {
                 filters.setDate(new Timestamp((new SimpleDateFormat("dd MMM yyyy", Locale.CANADA_FRENCH).parse(getSelectedDate()))));
-            } catch (Exception e) { }
+            } catch (Exception e) {
+            }
             filters.setSortBy(getSelectedSortBy());
             filters.setSortDirection(getSortDirection());
         }
@@ -186,9 +191,12 @@ public class FilterDialogFragment extends DialogFragment {
         return filters;
     }
 
-    public static FilterDialogFragment newInstance(FilterListener listener) {
-        mFilterListener = listener;
-        return new FilterDialogFragment();
+    public interface FilterListener {
+        void onFilter(Filters filters);
+    }
+
+    public interface FiltersDialogHandler {
+        void addFilters(boolean doCancel);
     }
 
 }

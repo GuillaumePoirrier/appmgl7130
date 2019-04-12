@@ -1,10 +1,9 @@
-package com.mgl7130.curve.pages.auth;
+package com.mgl7130.curve.pages.auth.views;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.pages.student.MainStudentActivity;
@@ -23,13 +22,13 @@ public class ProfileChoiceActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.imageView_teacher)
-    public void onStudentProfileClicked(View view){
+    public void onStudentProfileClicked(View view) {
         Intent intent = new Intent(ProfileChoiceActivity.this, MainTeacherActivity.class);
         startActivity(intent);
     }
 
     @OnClick(R.id.imageView_student)
-    public void onTeacherProfileClicked(View view){
+    public void onTeacherProfileClicked(View view) {
         Intent intent = new Intent(ProfileChoiceActivity.this, MainStudentActivity.class);
         startActivity(intent);
     }

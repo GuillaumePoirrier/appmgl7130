@@ -8,7 +8,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,10 +17,8 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
-import com.google.firebase.firestore.SetOptions;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.Cours;
-import com.mgl7130.curve.models.Student;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -32,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class StudentSearchDetailActivity extends AppCompatActivity{
+public class StudentSearchDetailActivity extends AppCompatActivity {
 
     public static final String TAG = "StudentClassDetailAct";
     public static final String KEY_CLASS_ID = "key_class_id";
@@ -98,11 +95,12 @@ public class StudentSearchDetailActivity extends AppCompatActivity{
     }
 
     @OnClick(R.id.buttonCancel)
-    public void onCancelClicked(){
+    public void onCancelClicked() {
         onBackPressed();
     }
+
     @OnClick(R.id.buttonParticipate)
-    public void onParticipateClicked(){
+    public void onParticipateClicked() {
         showConfirmDialog();
     }
 
@@ -153,8 +151,8 @@ public class StudentSearchDetailActivity extends AppCompatActivity{
         dateYear.setText((new SimpleDateFormat("yyyy", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
     }
 
-    private void participateToClass(){
-        Map<String,Object> studentMap = new HashMap<String,Object>() {{
+    private void participateToClass() {
+        Map<String, Object> studentMap = new HashMap<String, Object>() {{
             put("student_id", mAuth.getCurrentUser().getUid());
             put("hasStudent", true);
         }};

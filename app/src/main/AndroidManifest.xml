@@ -33,16 +33,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".pages.auth.AuthentificationChoiceActivity" />
-        <activity android:name=".pages.auth.SignUpActivity" />
-        <activity android:name=".pages.auth.SignInActivity" />
-        <activity android:name=".pages.auth.ProfileChoiceActivity" />
+        <activity android:name=".pages.auth.views.AuthentificationChoiceActivity" />
+        <activity android:name=".pages.auth.views.SignUpActivity" />
+        <activity android:name=".pages.auth.views.SignInActivity" />
+        <activity android:name=".pages.auth.views.ProfileChoiceActivity" />
         <activity android:name=".pages.student.MainStudentActivity" />
         <activity android:name=".pages.teacher.MainTeacherActivity" />
         <activity android:name=".pages.teacher.ui.classes.views.TeacherClassDetailActivity" />
         <activity android:name=".pages.teacher.ui.classes.views.TeacherClassFormActivity" />
         <activity android:name=".pages.student.ui.classes.detail.StudentClassDetailActivity" />
-        <activity android:name=".pages.teacher.ui.student.detail.TeacherStudentDetailActivity" />
+        <activity android:name=".pages.teacher.ui.student.views.TeacherStudentDetailActivity" />
         <activity android:name=".pages.student.ui.search.detail.StudentSearchDetailActivity" />
     </application>
 

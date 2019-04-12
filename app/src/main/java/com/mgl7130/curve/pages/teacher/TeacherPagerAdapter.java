@@ -6,13 +6,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.mgl7130.curve.pages.teacher.ui.classes.views.TeacherClassRecyclerFragment;
 import com.mgl7130.curve.pages.teacher.ui.profile_create.TeacherProfileCreate;
-import com.mgl7130.curve.pages.teacher.ui.student.list.TeacherStudentRecyclerFragment;
+import com.mgl7130.curve.pages.teacher.ui.student.views.TeacherStudentRecyclerFragment;
 
 public class TeacherPagerAdapter extends FragmentPagerAdapter {
 
     private static int NUM_ITEMS = 3;
 
-    TeacherPagerAdapter(FragmentManager fragmentManager){
+    TeacherPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }
 

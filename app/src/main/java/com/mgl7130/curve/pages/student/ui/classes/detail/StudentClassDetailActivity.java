@@ -24,7 +24,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class StudentClassDetailActivity extends AppCompatActivity{
+public class StudentClassDetailActivity extends AppCompatActivity {
 
     public static final String TAG = "StudentClassDetailAct";
     public static final String KEY_CLASS_ID = "key_class_id";
@@ -85,7 +85,7 @@ public class StudentClassDetailActivity extends AppCompatActivity{
         }
 
         //init Firestore
-        mFirestore =FirebaseFirestore.getInstance();
+        mFirestore = FirebaseFirestore.getInstance();
 
         mClassRef = mFirestore.collection("classes").document(classId);
 
@@ -130,7 +130,7 @@ public class StudentClassDetailActivity extends AppCompatActivity{
         String subjectName = cours.getSubject().toString();
         subject.setText(subjectName);
 
-        switch (subjectName){
+        switch (subjectName) {
             case "Mathematics": {
                 subjectImage.setImageDrawable(getDrawable(R.drawable.logo_math));
                 break;
@@ -153,7 +153,7 @@ public class StudentClassDetailActivity extends AppCompatActivity{
         dateYear.setText((new SimpleDateFormat("yyyy", Locale.CANADA_FRENCH).format(cours.getDate().toDate())));
 
         //test if it has student and if so get the student
-        if(cours.getStudent_id() != null){
+        if (cours.getStudent_id() != null) {
             mStudentRef = mFirestore.collection("users").document(cours.getStudent_id());
             mStudentRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override

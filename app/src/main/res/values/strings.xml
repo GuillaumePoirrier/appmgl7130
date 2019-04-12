@@ -113,6 +113,12 @@
     <string name="error_date_format">Erreur dans le format de la date</string>
     <string name="error_start_time_format">Erreur dans le format de l\'heure</string>
     <string name="error_end_time_format">Erreur dans le format de l\'heure de fin</string>
+    <string name="error_format_invalid">Format invalide</string>
+    <string name="error_too_short">Trop court</string>
+    <string name="error_must_fill">Ce champ ne peut etre vide</string>
+    <string name="creating_user">Creation du compte ...</string>
+    <string name="user_created">Compte cree !</string>
+    <string name="error_creating_user" />
 
 
 </resources>

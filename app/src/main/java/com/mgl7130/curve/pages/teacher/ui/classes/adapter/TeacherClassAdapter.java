@@ -32,5 +32,5 @@ public class TeacherClassAdapter extends DataListAdapter<Cours, TeacherItemClass
     protected void bind(TeacherItemClassBinding binding, Cours item) {
         binding.setCours(item);
     }
-    
+
 }

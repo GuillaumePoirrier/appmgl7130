@@ -172,14 +172,15 @@ public class StudentProfileCreate extends Fragment {
                 .collection("users")
                 .document(userConnectionId);
 
-       studentData.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        studentData.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
                 if (user.hasFirstName()) studentFirstName.setText(user.getFirstName());
                 if (user.hasLastName()) studentFamilyName.setText(user.getLastName());
                 if (user.hasDescription()) studentDescription.setText(user.getDescription());
-                if (user.hasBirthDate()) studentBirthDate.setText((new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).format(user.getBirthDate().toDate())));
+                if (user.hasBirthDate())
+                    studentBirthDate.setText((new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH).format(user.getBirthDate().toDate())));
             }
         });
 
@@ -221,6 +222,7 @@ public class StudentProfileCreate extends Fragment {
                     }
                 });
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -229,6 +231,7 @@ public class StudentProfileCreate extends Fragment {
             imageView.setImageBitmap(cropPicture(profilePicture));
         }
     }
+
     public Bitmap cropPicture(Bitmap picture) {
         Bitmap dstBmp;
         if (picture.getWidth() >= picture.getHeight()) {

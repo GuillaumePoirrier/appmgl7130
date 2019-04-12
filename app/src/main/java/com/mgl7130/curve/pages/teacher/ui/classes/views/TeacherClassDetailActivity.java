@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.mgl7130.curve.R;
 
-public class TeacherClassDetailActivity extends AppCompatActivity{
+public class TeacherClassDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -10,32 +10,32 @@ import java.util.Locale;
 public class CoursUtil {
 
     public static String getTime(Timestamp timestamp) {
-        if ( timestamp == null ) return null;
+        if (timestamp == null) return null;
         return new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(timestamp.toDate());
     }
 
     public static String getDay(Timestamp timestamp) {
-        if ( timestamp == null ) return null;
+        if (timestamp == null) return null;
         return new SimpleDateFormat("dd", Locale.CANADA_FRENCH).format(timestamp.toDate());
     }
 
     public static String getMonth(Timestamp timestamp) {
-        if ( timestamp == null ) return null;
+        if (timestamp == null) return null;
         return new SimpleDateFormat("MMM", Locale.CANADA_FRENCH).format(timestamp.toDate());
     }
 
     public static String getYear(Timestamp timestamp) {
-        if ( timestamp == null ) return null;
+        if (timestamp == null) return null;
         return new SimpleDateFormat("yyyy", Locale.CANADA_FRENCH).format(timestamp.toDate());
     }
 
     public static String getSubject(Subject subject) {
-        if ( subject == null ) return null;
+        if (subject == null) return null;
         return subject.toString();
     }
 
     public static String getLevel(Level level) {
-        if ( level == null ) return null;
+        if (level == null) return null;
         return level.toString();
     }
 
