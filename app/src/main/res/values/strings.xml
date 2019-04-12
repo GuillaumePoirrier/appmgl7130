@@ -119,6 +119,9 @@
     <string name="creating_user">Creation du compte ...</string>
     <string name="user_created">Compte cree !</string>
     <string name="error_creating_user" />
+    <string name="channel_name">Nouvel etudiant</string>
+    <string name="channel_description">Ce channel contient les notifications de nouveaux etudiant</string>
+    <string name="new_student">Vous avez un nouvel etudiant</string>
 
 
 </resources>

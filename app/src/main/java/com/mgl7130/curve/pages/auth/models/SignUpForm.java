@@ -51,7 +51,7 @@ public class SignUpForm extends BaseObservable {
 
     public boolean isPasswordValid(boolean setMessage) {
         String password = fields.getPassword();
-        if (password != null && password.length() > 5) {
+        if (password != null && password.length() > 6) {
             errors.setPassword(null);
             notifyPropertyChanged(BR.valid);
             return true;
@@ -72,7 +72,7 @@ public class SignUpForm extends BaseObservable {
             return true;
         } else {
             if (setMessage) {
-                errors.setPassword(R.string.error_must_fill);
+                errors.setFirstName(R.string.error_must_fill);
                 notifyPropertyChanged(BR.valid);
             }
             return false;
@@ -87,7 +87,7 @@ public class SignUpForm extends BaseObservable {
             return true;
         } else {
             if (setMessage) {
-                errors.setPassword(R.string.error_must_fill);
+                errors.setLastName(R.string.error_must_fill);
                 notifyPropertyChanged(BR.valid);
             }
             return false;
