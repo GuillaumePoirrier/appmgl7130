@@ -1,13 +1,18 @@
 package com.mgl7130.curve.pages.teacher.ui.student.views;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +27,7 @@ import com.mgl7130.curve.pages.teacher.ui.student.viewmodels.TeacherStudentRecyc
 public class TeacherStudentRecyclerFragment extends Fragment {
 
     public static final String TAG = "StudentSearchRecyclerFragment";
+    public static final String CHANNEL_ID = "new_student";
 
     private TeacherStudentAdapter mAdapter;
     private TeacherStudentRecyclerViewFragmentBinding mBinding;
@@ -58,13 +64,20 @@ public class TeacherStudentRecyclerFragment extends Fragment {
             if (classes.size() > 0) mBinding.setNoData(false);
             mAdapter.replace(classes);
         });
+
+        mViewModel.getNotificationEvent().observe(this, cours -> {
+
+        });
+
     }
+
 
     private void initRecycler() {
         mAdapter = new TeacherStudentAdapter(this::onClassSelected);
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mBinding.recyclerView.setAdapter(mAdapter);
     }
+
 
     public void onClassSelected(Cours cours) {
 

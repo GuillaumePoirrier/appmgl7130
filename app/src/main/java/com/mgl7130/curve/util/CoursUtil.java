@@ -39,4 +39,9 @@ public class CoursUtil {
         return level.toString();
     }
 
+    public static String getDateString(Timestamp timestamp) {
+        if (timestamp == null) return null;
+        return new SimpleDateFormat("dd MMMM", Locale.CANADA_FRENCH).format(timestamp.toDate());
+    }
+
 }
