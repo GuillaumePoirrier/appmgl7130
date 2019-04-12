@@ -4,7 +4,7 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 
-public class User extends GenericEntity {
+public class User extends Model {
 
     private String firstName;
     private String lastName;
@@ -34,7 +34,7 @@ public class User extends GenericEntity {
     }
 
     public User(QueryDocumentSnapshot document) {
-        super(document.getId());
+        this.id = document.getId();
         this.firstName = (String) document.getData().get("firstName");
         this.lastName = (String) document.getData().get("lastName");
     }

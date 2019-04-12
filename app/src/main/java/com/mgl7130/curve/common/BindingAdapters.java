@@ -1,11 +1,15 @@
 package com.mgl7130.curve.common;
 
 import android.databinding.BindingAdapter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.Subject;
 
@@ -42,6 +46,15 @@ public final class BindingAdapters {
                 }
             }
         }
+    }
+
+    @BindingAdapter("loadProfilePic")
+    public static void loadProfilePicture(ImageView view, String id) {
+        FirebaseStorage.getInstance().getReference().child("curve/" + id + ".jpg")
+                .getBytes(100000).addOnSuccessListener(bytes -> {
+                    Bitmap profilePicture = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    view.setImageBitmap(profilePicture);
+                });
     }
 
     @BindingAdapter("error")
