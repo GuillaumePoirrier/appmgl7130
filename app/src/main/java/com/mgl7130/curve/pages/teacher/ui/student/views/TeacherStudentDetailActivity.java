@@ -1,4 +1,4 @@
-package com.mgl7130.curve.pages.teacher.ui.student.detail;
+package com.mgl7130.curve.pages.teacher.ui.student.views;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

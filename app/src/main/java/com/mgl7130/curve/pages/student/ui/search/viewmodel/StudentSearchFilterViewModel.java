@@ -58,7 +58,6 @@ public class StudentSearchFilterViewModel extends ViewModel {
             query = query.orderBy(filters.getSortBy(), filters.getSortDirection());
         }
 
-        /* query could be limited like: query.limit(5) */
         return query;
     }
 

@@ -1,9 +1,8 @@
-package com.mgl7130.curve.pages.teacher.ui.classes.viewmodels;
+package com.mgl7130.curve.pages.teacher.ui.student.viewmodels;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -12,34 +11,32 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mgl7130.curve.models.Cours;
-import com.mgl7130.curve.pages.teacher.ui.classes.views.TeacherClassFormActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeacherClassRecyclerViewModel extends ViewModel {
+public class TeacherStudentRecyclerViewModel extends ViewModel {
 
-    public static final String TAG = "TeacherClassListVM";
+    public static final String TAG = "TeacherStudentVM";
 
-    public MutableLiveData<Class<TeacherClassFormActivity>> addClassActivity = new MutableLiveData<>();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore mDb = FirebaseFirestore.getInstance();
     private CollectionReference mCollection = mDb.collection("classes");
-    private MutableLiveData<List<Cours>> classes;
+    private MutableLiveData<List<Cours>> mClasses;
 
     public LiveData<List<Cours>> getClasses() {
-        if (classes == null) {
-            classes = new MutableLiveData<>();
+        if (mClasses == null) {
+            mClasses = new MutableLiveData<>();
             loadClasses();
         }
-        return classes;
+        return mClasses;
     }
 
     private void loadClasses() {
         mCollection.whereEqualTo("teacher_id", mAuth.getCurrentUser().getUid())
-                .orderBy("date", Query.Direction.ASCENDING)
-                .limit(20)
-                .addSnapshotListener((queryDocumentSnapshots, e) -> classes.setValue(toClasses(queryDocumentSnapshots)));
+                .whereEqualTo("hasStudent", true)
+                .orderBy("date", Query.Direction.ASCENDING).limit(50)
+                .addSnapshotListener((queryDocumentSnapshots, e) -> mClasses.setValue(toClasses(queryDocumentSnapshots)));
     }
 
     private List<Cours> toClasses(QuerySnapshot snapshots) {
@@ -49,12 +46,6 @@ public class TeacherClassRecyclerViewModel extends ViewModel {
             cours.add(document.toObject(Cours.class).withId(document.getId()));
         }
         return cours;
-    }
-
-
-    public void onAddClassFABClicked() {
-        Log.d(TAG, "fab PRESSED");
-        addClassActivity.setValue(TeacherClassFormActivity.class);
     }
 
 }

@@ -42,7 +42,7 @@
         <activity android:name=".pages.teacher.ui.classes.views.TeacherClassDetailActivity" />
         <activity android:name=".pages.teacher.ui.classes.views.TeacherClassFormActivity" />
         <activity android:name=".pages.student.ui.classes.detail.StudentClassDetailActivity" />
-        <activity android:name=".pages.teacher.ui.student.detail.TeacherStudentDetailActivity" />
+        <activity android:name=".pages.teacher.ui.student.views.TeacherStudentDetailActivity" />
         <activity android:name=".pages.student.ui.search.detail.StudentSearchDetailActivity" />
     </application>
 
