@@ -4,22 +4,21 @@ import android.arch.lifecycle.MutableLiveData;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
+import com.android.databinding.library.baseAdapters.BR;
+
 public class ProfileForm extends BaseObservable {
     private ProfileFields fields = new ProfileFields();
     private ProfileErrorFields errors = new ProfileErrorFields();
     private MutableLiveData<ProfileFields> saveButton = new MutableLiveData();
 
-    public ProfileForm() {
-    }
-
     @Bindable
     public boolean isValid() {
         boolean valid = this.isFirstNameValid(false);
         valid = this.isFamilyNameValid(false) && this.isBirthDateValid(false) && this.isDescriptionValid(false) && valid;
-        this.notifyPropertyChanged(13);
-        this.notifyPropertyChanged(2);
-        this.notifyPropertyChanged(9);
-        this.notifyPropertyChanged(10);
+        this.notifyPropertyChanged(BR.teacherFirstNameError);
+        this.notifyPropertyChanged(BR.teacherDescriptionError);
+        this.notifyPropertyChanged(BR.teacherFamilyNameError);
+        this.notifyPropertyChanged(BR.teacherBirthDateError);
         return valid;
     }
 
@@ -50,7 +49,6 @@ public class ProfileForm extends BaseObservable {
                 this.errors.setTeacherBirthDate(2131624020);
                 this.notifyPropertyChanged(11);
             }
-
             return false;
         }
     }
@@ -66,7 +64,6 @@ public class ProfileForm extends BaseObservable {
                 this.errors.setTeacherFamilyName(2131624024);
                 this.notifyPropertyChanged(11);
             }
-
             return false;
         }
     }
@@ -82,7 +79,6 @@ public class ProfileForm extends BaseObservable {
                 this.errors.setTeacherFirstName(2131624024);
                 this.notifyPropertyChanged(11);
             }
-
             return false;
         }
     }

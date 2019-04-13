@@ -1,12 +1,11 @@
 package com.mgl7130.curve.pages.teacher.ui.profile_create.viewmodels;
 
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.mgl7130.curve.pages.teacher.ui.profile_create.models.ProfileFields;
 import com.mgl7130.curve.pages.teacher.ui.profile_create.models.ProfileForm;
 
 public class ProfileViewModel extends ViewModel {
@@ -76,8 +75,9 @@ public class ProfileViewModel extends ViewModel {
     public void onButtonSaveClicked() {
         this.profile.onClick();
     }
-
-    public MutableLiveData<ProfileFields> getSignUpFields() {
-        return this.profile.getSignUpFields();
+/*
+    public MutableLiveData<ProfileFields> getProfileFields() {
+        return this.profile.getProfileFields();
     }
+*/
 }
