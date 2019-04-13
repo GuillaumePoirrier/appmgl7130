@@ -7,26 +7,26 @@ import com.mgl7130.curve.models.Subject;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class CoursUtil {
+public class DateTimeUtil {
 
     public static String getTime(Timestamp timestamp) {
         if (timestamp == null) return null;
-        return DateTimeUtil.getTime(timestamp);
+        return new SimpleDateFormat("HH:mm", Locale.CANADA_FRENCH).format(timestamp.toDate());
     }
 
     public static String getDay(Timestamp timestamp) {
         if (timestamp == null) return null;
-        return DateTimeUtil.getDay(timestamp);
+        return new SimpleDateFormat("dd", Locale.CANADA_FRENCH).format(timestamp.toDate());
     }
 
     public static String getMonth(Timestamp timestamp) {
         if (timestamp == null) return null;
-        return DateTimeUtil.getMonth(timestamp);
+        return new SimpleDateFormat("MMM", Locale.CANADA_FRENCH).format(timestamp.toDate());
     }
 
     public static String getYear(Timestamp timestamp) {
         if (timestamp == null) return null;
-        return DateTimeUtil.getYear(timestamp);
+        return new SimpleDateFormat("yyyy", Locale.CANADA_FRENCH).format(timestamp.toDate());
     }
 
     public static String getSubject(Subject subject) {
@@ -38,10 +38,10 @@ public class CoursUtil {
         if (level == null) return null;
         return level.toString();
     }
-
     public static String getDateString(Timestamp timestamp) {
         if (timestamp == null) return null;
-        return DateTimeUtil.getDateString(timestamp);
+        return new SimpleDateFormat("dd MMMM", Locale.CANADA_FRENCH).format(timestamp.toDate());
     }
+
 
 }

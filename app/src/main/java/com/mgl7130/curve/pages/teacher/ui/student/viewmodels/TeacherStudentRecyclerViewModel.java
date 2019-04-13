@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModel;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -23,6 +24,7 @@ public class TeacherStudentRecyclerViewModel extends ViewModel {
     private FirebaseFirestore mDb = FirebaseFirestore.getInstance();
     private CollectionReference mCollection = mDb.collection("classes");
     private MutableLiveData<List<Cours>> mClasses;
+    private MutableLiveData<Cours> mNotificationEvent = new MutableLiveData<>();
 
     public LiveData<List<Cours>> getClasses() {
         if (mClasses == null) {
@@ -30,6 +32,10 @@ public class TeacherStudentRecyclerViewModel extends ViewModel {
             loadClasses();
         }
         return mClasses;
+    }
+
+    public LiveData<Cours> getNotificationEvent() {
+        return mNotificationEvent;
     }
 
     private void loadClasses() {
@@ -41,6 +47,9 @@ public class TeacherStudentRecyclerViewModel extends ViewModel {
 
     private List<Cours> toClasses(QuerySnapshot snapshots) {
         List<Cours> cours = new ArrayList<>();
+        if (snapshots.getDocumentChanges().size() == 1 && snapshots.getDocumentChanges().get(0).getType().equals(DocumentChange.Type.ADDED)) {
+            mNotificationEvent.setValue(snapshots.getDocumentChanges().get(0).getDocument().toObject(Cours.class));
+        }
         if (snapshots.isEmpty()) return cours;
         for (DocumentSnapshot document : snapshots.getDocuments()) {
             cours.add(document.toObject(Cours.class).withId(document.getId()));
