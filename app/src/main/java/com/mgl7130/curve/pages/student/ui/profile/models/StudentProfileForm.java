@@ -1,4 +1,4 @@
-package com.mgl7130.curve.pages.teacher.ui.profile_create.models;
+package com.mgl7130.curve.pages.student.ui.profile.models;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.databinding.BaseObservable;
@@ -7,10 +7,13 @@ import android.databinding.Bindable;
 import com.android.databinding.library.baseAdapters.BR;
 import com.mgl7130.curve.R;
 
-public class ProfileForm extends BaseObservable {
-    private ProfileFields fields = new ProfileFields();
-    private ProfileErrorFields errors = new ProfileErrorFields();
-    private MutableLiveData<ProfileFields> saveButton = new MutableLiveData();
+
+public class StudentProfileForm extends BaseObservable {
+
+    private StudentProfileFields fields = new StudentProfileFields();
+    private StudentProfileErrorFields errors = new StudentProfileErrorFields();
+    private MutableLiveData<StudentProfileFields> saveButtonStudent = new MutableLiveData();
+
 
     @Bindable
     public boolean isValid() {
@@ -23,60 +26,60 @@ public class ProfileForm extends BaseObservable {
         return valid;
     }
 
-    public boolean isDescriptionValid(boolean setMessage) {
-        String description = this.fields.getTeacherDescription();
+    private boolean isDescriptionValid(boolean setMessage) {
+        String description = this.fields.getStudentDescription();
         if (description.length() < 30) {
-            this.errors.setTeacherBirthDate(null);
+            this.errors.setStudentBirthDate(null);
             this.notifyPropertyChanged(BR.valid);
             return true;
         } else {
             if (setMessage) {
-                this.errors.setTeacherDescription(R.string.error_too_short);
+                this.errors.setStudentDescription(R.string.error_too_short);
                 this.notifyPropertyChanged(BR.valid);
             }
             return false;
         }
     }
 
-    public boolean isBirthDateValid(boolean setMessage) {
-        String birthDate = this.fields.getTeacherBirthDate();
+    private boolean isBirthDateValid(boolean setMessage) {
+        String birthDate = this.fields.getStudentBirthDate();
         if (birthDate.indexOf("/") == 2 && birthDate.indexOf("/") == 5 && birthDate.length() == 10) {
-            this.errors.setTeacherBirthDate(null);
+            this.errors.setStudentBirthDate(null);
             this.notifyPropertyChanged(BR.valid);
             return true;
         } else {
             if (setMessage) {
-                this.errors.setTeacherBirthDate(R.string.error_date_format);
+                this.errors.setStudentBirthDate(R.string.error_date_format);
                 this.notifyPropertyChanged(BR.valid);
             }
             return false;
         }
     }
 
-    public boolean isFamilyNameValid(boolean setMessage) {
-        String familyName = this.fields.getTeacherFamilyName();
+    private boolean isFamilyNameValid(boolean setMessage) {
+        String familyName = this.fields.getStudentFamilyName();
         if (familyName != null) {
-            this.errors.setTeacherFamilyName(null);
+            this.errors.setStudentFamilyName(null);
             this.notifyPropertyChanged(BR.valid);
             return true;
         } else {
             if (setMessage) {
-                this.errors.setTeacherFamilyName(R.string.error_must_fill);
+                this.errors.setStudentFamilyName(R.string.error_must_fill);
                 this.notifyPropertyChanged(BR.valid);
             }
             return false;
         }
     }
 
-    public boolean isFirstNameValid(boolean setMessage) {
-        String firstName = this.fields.getTeacherFirstName();
+    private boolean isFirstNameValid(boolean setMessage) {
+        String firstName = this.fields.getStudentFirstName();
         if (firstName != null) {
-            this.errors.setTeacherFirstName(null);
+            this.errors.setStudentFirstName(null);
             this.notifyPropertyChanged(BR.valid);
             return true;
         } else {
             if (setMessage) {
-                this.errors.setTeacherFirstName(R.string.error_must_fill);
+                this.errors.setStudentFirstName(R.string.error_must_fill);
                 this.notifyPropertyChanged(BR.valid);
             }
             return false;
@@ -85,35 +88,34 @@ public class ProfileForm extends BaseObservable {
 
     public void onClick() {
         if (this.isValid()) {
-            this.saveButton.setValue(this.fields);
+            this.saveButtonStudent.setValue(this.fields);
         }
     }
 
-    public MutableLiveData<ProfileFields> getSignUpFields() {
-        return this.saveButton;
-    }
+    public MutableLiveData<StudentProfileFields> getSignUpFields() { return this.saveButtonStudent; }
 
-    public ProfileFields getFields() {
+    public StudentProfileFields getFields() {
         return this.fields;
     }
 
     @Bindable
     public Integer getTeacherFirstNameError() {
-        return this.errors.getTeacherFirstName();
+        return this.errors.getStudentFirstName();
     }
 
     @Bindable
     public Integer getTeacherFamilyNameError() {
-        return this.errors.getTeacherFamilyName();
+        return this.errors.getStudentFamilyName();
     }
 
     @Bindable
     public Integer getTeacherBirthDateError() {
-        return this.errors.getTeacherBirthDate();
+        return this.errors.getStudentBirthDate();
     }
 
     @Bindable
     public Integer getTeacherDescriptionError() {
-        return this.errors.getTeacherDescription();
+        return this.errors.getStudentDescription();
     }
+
 }
