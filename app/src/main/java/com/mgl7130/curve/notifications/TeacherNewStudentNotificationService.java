@@ -65,15 +65,16 @@ public class TeacherNewStudentNotificationService extends Service {
     }
 
     private void initNewStudentListener() {
-        mDb.collection("classes").whereEqualTo("teacher_id", mAuth.getCurrentUser().getUid())
-                .whereEqualTo("hasStudent", true)
-                .orderBy("date", Query.Direction.ASCENDING).limit(50)
-                .addSnapshotListener((queryDocumentSnapshots, e) -> {
-                    if (queryDocumentSnapshots.getDocumentChanges().size() == 1 && queryDocumentSnapshots.getDocumentChanges().get(0).getType().equals(DocumentChange.Type.ADDED)) {
-                        getStudent(queryDocumentSnapshots.getDocumentChanges().get(0).getDocument().toObject(Cours.class).withId(queryDocumentSnapshots.getDocumentChanges().get(0).getDocument().getId()));
-                    }
-                });
-
+        if (mAuth.getCurrentUser() != null) {
+            mDb.collection("classes").whereEqualTo("teacher_id", mAuth.getCurrentUser().getUid())
+                    .whereEqualTo("hasStudent", true)
+                    .orderBy("date", Query.Direction.ASCENDING).limit(50)
+                    .addSnapshotListener((queryDocumentSnapshots, e) -> {
+                        if (queryDocumentSnapshots.getDocumentChanges().size() == 1 && queryDocumentSnapshots.getDocumentChanges().get(0).getType().equals(DocumentChange.Type.ADDED)) {
+                            getStudent(queryDocumentSnapshots.getDocumentChanges().get(0).getDocument().toObject(Cours.class).withId(queryDocumentSnapshots.getDocumentChanges().get(0).getDocument().getId()));
+                        }
+                    });
+        }
     }
 
     private void getStudent(Cours cours) {
