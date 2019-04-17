@@ -41,6 +41,10 @@ public class StudentClassRecyclerFragment extends Fragment implements
 
     private StudentClassAdapter mAdapter;
 
+    public static Fragment newInstance() {
+        return new StudentClassRecyclerFragment();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,7 +72,7 @@ public class StudentClassRecyclerFragment extends Fragment implements
             @Override
             protected void onError(FirebaseFirestoreException e) {
                 // Show a snackbar on errors
-                Log.e(TAG,e.toString());
+                Log.e(TAG, e.toString());
             }
         };
 
@@ -102,10 +106,6 @@ public class StudentClassRecyclerFragment extends Fragment implements
         intent.putExtra(StudentClassDetailActivity.KEY_CLASS_ID, cours.getId());
 
         startActivity(intent);
-    }
-
-    public static Fragment newInstance(){
-        return new StudentClassRecyclerFragment();
     }
 
 }

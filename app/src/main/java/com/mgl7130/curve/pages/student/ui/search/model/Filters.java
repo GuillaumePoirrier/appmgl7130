@@ -8,7 +8,6 @@ import com.google.firebase.firestore.Query;
 import com.mgl7130.curve.R;
 import com.mgl7130.curve.models.Cours;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -23,12 +22,13 @@ public class Filters {
     private String sortBy = null;
     private Query.Direction sortDirection = null;
 
-    public Filters() {}
+    public Filters() {
+    }
 
     public static Filters getDefault() {
         Filters filters = new Filters();
         filters.setSortBy(Cours.FIELD_DATE);
-        filters.setSortDirection(Query.Direction.DESCENDING);
+        filters.setSortDirection(Query.Direction.ASCENDING);
 
         return filters;
     }

@@ -1,6 +1,6 @@
 package com.mgl7130.curve.pages.student.ui.search.dialog;
 
-import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -8,13 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Filter;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.Query;
 import com.mgl7130.curve.R;
+import com.mgl7130.curve.databinding.DialogFiltersBinding;
 import com.mgl7130.curve.models.Cours;
 import com.mgl7130.curve.models.Level;
 import com.mgl7130.curve.models.Subject;
@@ -28,72 +27,69 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 /**
  * Dialog Fragment containing filter form.
  */
 public class FilterDialogFragment extends DialogFragment {
 
     public static final String TAG = "FilterDialog";
-
-    public interface FilterListener {
-
-        void onFilter(Filters filters);
-
-    }
-
+    private static FilterListener mFilterListener;
     private View mRootView;
-
-    @BindView(R.id.spinnerSubject)
-    Spinner mSubjectSpinner;
-
-    @BindView(R.id.spinnerLevel)
-    Spinner mLevelSpinner;
-
-    @BindView(R.id.spinnerSort)
-    Spinner mSortSpinner;
-
-    @BindView(R.id.textviewDate)
-    TextView mDateTextView;
-
-    private static FilterListener  mFilterListener;
+    private DialogFiltersBinding mBinding;
     private DatePickerDialog datePickerDialog;
-    private Calendar calendar;
-    private ArrayAdapter<String> subjectAdapter;
-    private ArrayAdapter<String> levelAdapter;
 
+    public static FilterDialogFragment newInstance(FilterListener listener) {
+        mFilterListener = listener;
+        return new FilterDialogFragment();
+    }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.dialog_filters, container, false);
-        ButterKnife.bind(this, mRootView);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_filters, container, false);
+        mBinding.setHandler(doCancel -> {
+            if (!doCancel) {
+                if (mFilterListener != null) {
+                    mFilterListener.onFilter(getFilters());
+                }
+            }
+            dismiss();
+        });
 
-        //init spinners
-        List<String> subjectList = new ArrayList<String>() {{add(getString(R.string.value_any_subject));addAll(Subject.stringValues());}};
-        subjectAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, subjectList);
-        mSubjectSpinner.setAdapter(subjectAdapter);
-        List<String> levelList = new ArrayList<String>() {{add(getString(R.string.value_any_level));addAll(Level.stringValues());}};
-        levelAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, levelList);
-        mLevelSpinner.setAdapter(levelAdapter);
-
-        calendar = Calendar.getInstance();
+        mRootView = mBinding.getRoot();
+        initSpinners();
+        initOnDateClicked();
 
         return mRootView;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void initSpinners() {
+        List<String> subjectList = new ArrayList<String>() {{
+            add(getString(R.string.value_any_subject));
+            addAll(Subject.stringValues());
+        }};
+        mBinding.spinnerSubject.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, subjectList));
+        List<String> levelList = new ArrayList<String>() {{
+            add(getString(R.string.value_any_level));
+            addAll(Level.stringValues());
+        }};
+        mBinding.spinnerLevel.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, levelList));
+    }
 
-        if (context instanceof FilterListener) {
-            mFilterListener = (FilterListener) context;
-        }
+    public void initOnDateClicked() {
+        Calendar calendar = Calendar.getInstance();
+        mBinding.textviewDate.setOnClickListener(view -> {
+            TextView tv = (TextView) view;
+            DatePickerDialog.OnDateSetListener onDateSetListener = (view1, year, monthOfYear, dayOfMonth) -> {
+                String dateString = new SimpleDateFormat("dd MMMM yyyy", Locale.CANADA_FRENCH).format(new GregorianCalendar(year, monthOfYear, dayOfMonth).getTime());
+                tv.setText(dateString);
+            };
+            datePickerDialog = DatePickerDialog.newInstance(onDateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+            datePickerDialog.setAccentColor(getResources().getColor(R.color.color_blue));
+            datePickerDialog.setMinDate(calendar);
+            datePickerDialog.setTitle(getString(R.string.set_class_date));
+            datePickerDialog.show(getActivity().getFragmentManager(), "DatePickerDialog");
+        });
     }
 
     @Override
@@ -104,39 +100,13 @@ public class FilterDialogFragment extends DialogFragment {
                 ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
-    @OnClick(R.id.buttonSearch)
-    public void onSearchClicked() {
-        if (mFilterListener != null) {
-            mFilterListener.onFilter(getFilters());
-        }
+    public void onDateClicked(View view) {
 
-        dismiss();
-    }
-
-    @OnClick(R.id.buttonCancel)
-    public void onCancelClicked() {
-        dismiss();
-    }
-
-    @OnClick(R.id.textviewDate)
-    public void onDateClicked(View view){
-        DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                String dateString = new SimpleDateFormat("dd MMMM yyyy", Locale.CANADA_FRENCH).format(new GregorianCalendar(year, monthOfYear, dayOfMonth).getTime());
-                mDateTextView.setText(dateString);
-            }
-        };
-        datePickerDialog = DatePickerDialog.newInstance(onDateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-        datePickerDialog.setAccentColor(getResources().getColor(R.color.color_blue));
-        datePickerDialog.setMinDate(calendar);
-        datePickerDialog.setTitle(getString(R.string.set_class_date));
-        datePickerDialog.show(getActivity().getFragmentManager(), "DatePickerDialog");
     }
 
     @Nullable
     private String getSelectedSubject() {
-        String selected = (String) mSubjectSpinner.getSelectedItem();
+        String selected = (String) mBinding.spinnerSubject.getSelectedItem();
         if (getString(R.string.value_any_subject).equals(selected)) {
             return null;
         } else {
@@ -146,7 +116,7 @@ public class FilterDialogFragment extends DialogFragment {
 
     @Nullable
     private String getSelectedLevel() {
-        String selected = (String) mLevelSpinner.getSelectedItem();
+        String selected = (String) mBinding.spinnerLevel.getSelectedItem();
         if (getString(R.string.value_any_level).equals(selected)) {
             return null;
         } else {
@@ -155,7 +125,7 @@ public class FilterDialogFragment extends DialogFragment {
     }
 
     private String getSelectedDate() {
-        String selected = (String) mDateTextView.getText();
+        String selected = (String) mBinding.textviewDate.getText();
         if (getString(R.string.value_any_date).equals(selected)) {
             return null;
         } else {
@@ -165,12 +135,14 @@ public class FilterDialogFragment extends DialogFragment {
 
     @Nullable
     private String getSelectedSortBy() {
-        String selected = (String) mSortSpinner.getSelectedItem();
+        String selected = (String) mBinding.spinnerSort.getSelectedItem();
         if (getString(R.string.sort_by_date).equals(selected)) {
             return Cours.FIELD_DATE;
-        } if (getString(R.string.sort_by_level).equals(selected)) {
+        }
+        if (getString(R.string.sort_by_level).equals(selected)) {
             return Cours.FIELD_LEVEL;
-        } if (getString(R.string.sort_by_subject).equals(selected)) {
+        }
+        if (getString(R.string.sort_by_subject).equals(selected)) {
             return Cours.FIELD_SUBJECT;
         }
 
@@ -179,12 +151,14 @@ public class FilterDialogFragment extends DialogFragment {
 
     @Nullable
     private Query.Direction getSortDirection() {
-        String selected = (String) mSortSpinner.getSelectedItem();
+        String selected = (String) mBinding.spinnerSort.getSelectedItem();
         if (getString(R.string.sort_by_date).equals(selected)) {
             return Query.Direction.ASCENDING;
-        } if (getString(R.string.sort_by_level).equals(selected)) {
+        }
+        if (getString(R.string.sort_by_level).equals(selected)) {
             return Query.Direction.ASCENDING;
-        } if (getString(R.string.sort_by_subject).equals(selected)) {
+        }
+        if (getString(R.string.sort_by_subject).equals(selected)) {
             return Query.Direction.DESCENDING;
         }
 
@@ -193,10 +167,10 @@ public class FilterDialogFragment extends DialogFragment {
 
     public void resetFilters() {
         if (mRootView != null) {
-            mSubjectSpinner.setSelection(0);
-            mLevelSpinner.setSelection(0);
-            mSortSpinner.setSelection(0);
-            mDateTextView.setText("All dates");
+            mBinding.spinnerSubject.setSelection(0);
+            mBinding.spinnerLevel.setSelection(0);
+            mBinding.spinnerSort.setSelection(0);
+            mBinding.textviewDate.setText("All dates");
         }
     }
 
@@ -208,7 +182,8 @@ public class FilterDialogFragment extends DialogFragment {
             filters.setLevel(getSelectedLevel());
             try {
                 filters.setDate(new Timestamp((new SimpleDateFormat("dd MMM yyyy", Locale.CANADA_FRENCH).parse(getSelectedDate()))));
-            } catch (Exception e) { }
+            } catch (Exception e) {
+            }
             filters.setSortBy(getSelectedSortBy());
             filters.setSortDirection(getSortDirection());
         }
@@ -216,9 +191,12 @@ public class FilterDialogFragment extends DialogFragment {
         return filters;
     }
 
-    public static FilterDialogFragment newInstance(FilterListener listener) {
-        mFilterListener = listener;
-        return new FilterDialogFragment();
+    public interface FilterListener {
+        void onFilter(Filters filters);
+    }
+
+    public interface FiltersDialogHandler {
+        void addFilters(boolean doCancel);
     }
 
 }

@@ -10,11 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mgl7130.curve.R;
-import com.mgl7130.curve.pages.auth.AuthentificationChoiceActivity;
+import com.mgl7130.curve.pages.auth.views.AuthentificationChoiceActivity;
 import com.mgl7130.curve.pages.teacher.MainTeacherActivity;
 
 import butterknife.BindView;
@@ -28,11 +27,27 @@ public class MainStudentActivity extends AppCompatActivity {
 
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
-
-    private FragmentPagerAdapter adapterViewPager;
     MenuItem prevMenuItem;
+    private FragmentPagerAdapter adapterViewPager;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_student_classes:
+                    viewPager.setCurrentItem(0);
+                    return true;
+                case R.id.navigation_student_search:
+                    viewPager.setCurrentItem(1);
+                    return true;
+                case R.id.navigation_student_profile:
+                    viewPager.setCurrentItem(2);
+                    return true;
+            }
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +82,7 @@ public class MainStudentActivity extends AppCompatActivity {
             case R.id.sign_out:
                 FirebaseAuth.getInstance().signOut();
                 finish();
-                Intent goToHomePage= new Intent(this, AuthentificationChoiceActivity.class);
+                Intent goToHomePage = new Intent(this, AuthentificationChoiceActivity.class);
                 startActivity(goToHomePage);
                 return true;
 
@@ -86,25 +101,5 @@ public class MainStudentActivity extends AppCompatActivity {
         navigation.getMenu().getItem(position).setChecked(true);
         prevMenuItem = navigation.getMenu().getItem(position);
     }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_student_classes:
-                    viewPager.setCurrentItem(0);
-                    return true;
-                case R.id.navigation_student_search:
-                    viewPager.setCurrentItem(1);
-                    return true;
-                case R.id.navigation_student_profile:
-                    viewPager.setCurrentItem(2);
-                    return true;
-            }
-            return false;
-        }
-    };
 
 }

@@ -4,15 +4,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.mgl7130.curve.pages.student.ui.profile.StudentProfileCreate;
 import com.mgl7130.curve.pages.student.ui.classes.list.StudentClassRecyclerFragment;
+import com.mgl7130.curve.pages.student.ui.profile.StudentProfileCreate;
 import com.mgl7130.curve.pages.student.ui.search.list.StudentSearchRecyclerFragment;
 
 public class StudentPagerAdapter extends FragmentPagerAdapter {
 
     private static int NUM_ITEMS = 3;
 
-    StudentPagerAdapter(FragmentManager fragmentManager){
+    StudentPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }
 
