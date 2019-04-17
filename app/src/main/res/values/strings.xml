@@ -122,6 +122,8 @@
     <string name="channel_name">Nouvel etudiant</string>
     <string name="channel_description">Ce channel contient les notifications de nouveaux etudiant</string>
     <string name="new_student">Vous avez un nouvel etudiant</string>
+    <string name="modification_profile_user">Mise à jour du profil...</string>
+    <string name="permission_text">Autocomplétion des emails</string>
 
 
 </resources>

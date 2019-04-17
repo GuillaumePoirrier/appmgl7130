@@ -2,10 +2,14 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout">
 
     <data>
-        <variable name="viewmodel" type="com.mgl7130.curve.pages.auth.viewmodels.SignInViewModel"/>
+
+        <variable
+            name="viewmodel"
+            type="com.mgl7130.curve.pages.auth.viewmodels.SignInViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -23,10 +27,10 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/sign_in_button"
+            android:onClick="@{(v) -> viewmodel.login(v)}"
             android:text="@string/sign_in"
             android:textColor="@android:color/white"
             android:textSize="21sp"
-            android:onClick="@{(v) -> viewmodel.login(v)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,41 +61,55 @@
             android:layout_marginEnd="@dimen/right_margin"
             android:backgroundTint="@color/color_purple"
             android:ems="10"
-            android:text="@={viewmodel.password}"
             android:inputType="textPassword"
             android:singleLine="false"
+            android:text="@={viewmodel.password}"
             android:textColor="@color/color_purple"
             app:layout_constraintBottom_toTopOf="@+id/guideline_62_5pct"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline_62_5pct" />
 
-        <EditText
-            android:id="@+id/editText_email"
+        <com.tasomaniac.widget.EmailAutoCompleteLayout
+            android:id="@+id/email_auto_complete"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/left_margin"
-            android:layout_marginEnd="@dimen/right_margin"
-            android:backgroundTint="@color/color_purple"
-            android:ems="10"
-            android:text="@={viewmodel.email}"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/color_purple"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_40pct"
+            android:layout_height="78dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:permissionText="@string/permission_text">
+
+            <AutoCompleteTextView
+                android:layout_width="378dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:selectAllOnFocus="true"
+                app:layout_constraintBottom_toTopOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline_40pct" />
+
+        </com.tasomaniac.widget.EmailAutoCompleteLayout>
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/label_margin"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="40dp"
             android:text="@string/email"
             android:textColor="@color/color_purple"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/editText_email"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_curve_logo"
             tools:text="@string/email" />
 
         <TextView
@@ -99,6 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/label_margin"
+            android:layout_marginTop="348dp"
             android:layout_marginBottom="8dp"
             android:text="@string/password"
             android:textColor="@color/color_purple"

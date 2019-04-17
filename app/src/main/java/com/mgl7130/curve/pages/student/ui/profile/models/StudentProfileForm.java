@@ -26,7 +26,7 @@ public class StudentProfileForm extends BaseObservable {
         return valid;
     }
 
-    private boolean isDescriptionValid(boolean setMessage) {
+    public boolean isDescriptionValid(boolean setMessage) {
         String description = this.fields.getStudentDescription();
         if (description.length() < 30) {
             this.errors.setStudentBirthDate(null);
@@ -41,7 +41,7 @@ public class StudentProfileForm extends BaseObservable {
         }
     }
 
-    private boolean isBirthDateValid(boolean setMessage) {
+    public boolean isBirthDateValid(boolean setMessage) {
         String birthDate = this.fields.getStudentBirthDate();
         if (birthDate.indexOf("/") == 2 && birthDate.indexOf("/") == 5 && birthDate.length() == 10) {
             this.errors.setStudentBirthDate(null);
@@ -56,7 +56,7 @@ public class StudentProfileForm extends BaseObservable {
         }
     }
 
-    private boolean isFamilyNameValid(boolean setMessage) {
+    public boolean isFamilyNameValid(boolean setMessage) {
         String familyName = this.fields.getStudentFamilyName();
         if (familyName != null) {
             this.errors.setStudentFamilyName(null);
@@ -71,7 +71,7 @@ public class StudentProfileForm extends BaseObservable {
         }
     }
 
-    private boolean isFirstNameValid(boolean setMessage) {
+    public boolean isFirstNameValid(boolean setMessage) {
         String firstName = this.fields.getStudentFirstName();
         if (firstName != null) {
             this.errors.setStudentFirstName(null);
@@ -99,22 +99,22 @@ public class StudentProfileForm extends BaseObservable {
     }
 
     @Bindable
-    public Integer getTeacherFirstNameError() {
+    public Integer getStudentFirstNameError() {
         return this.errors.getStudentFirstName();
     }
 
     @Bindable
-    public Integer getTeacherFamilyNameError() {
+    public Integer getStudentFamilyNameError() {
         return this.errors.getStudentFamilyName();
     }
 
     @Bindable
-    public Integer getTeacherBirthDateError() {
+    public Integer getStudentBirthDateError() {
         return this.errors.getStudentBirthDate();
     }
 
     @Bindable
-    public Integer getTeacherDescriptionError() {
+    public Integer getStudentDescriptionError() {
         return this.errors.getStudentDescription();
     }
 

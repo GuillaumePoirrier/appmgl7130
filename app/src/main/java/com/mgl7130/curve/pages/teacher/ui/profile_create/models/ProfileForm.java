@@ -89,7 +89,7 @@ public class ProfileForm extends BaseObservable {
         }
     }
 
-    public MutableLiveData<ProfileFields> getSignUpFields() {
+    public MutableLiveData<ProfileFields> getProfileFields() {
         return this.saveButton;
     }
 

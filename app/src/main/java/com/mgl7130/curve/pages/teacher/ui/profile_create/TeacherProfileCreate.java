@@ -1,7 +1,9 @@
 package com.mgl7130.curve.pages.teacher.ui.profile_create;
 
 import android.app.Activity;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -30,12 +32,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.mgl7130.curve.R;
+import com.mgl7130.curve.databinding.TeacherProfileFormBinding;
 import com.mgl7130.curve.models.User;
+import com.mgl7130.curve.pages.teacher.ui.profile_create.viewmodels.ProfileViewModel;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -78,6 +80,38 @@ public class TeacherProfileCreate extends Fragment {
     private DatePickerDialog datePickerDialog;
     private String userConnectionId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private FirebaseFirestore db;
+
+
+    ////// NEW //////
+
+    private ProfileViewModel mViewModel;
+    private TeacherProfileFormBinding mBinding;
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setupBindings(savedInstanceState);
+    }
+
+    private void setupBindings(Bundle savedInstanceState) {
+     //   Log.d("Avant mBinding", "Avant mBinding");
+        mBinding = DataBindingUtil.setContentView(getActivity(), R.layout.teacher_profile_form);
+        mViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
+        if (savedInstanceState == null) mViewModel.init();
+        mBinding.setViewmodel(mViewModel);
+        //setupButtonClicked();
+    }
+/*
+    private void setupButtonClicked() {
+        mViewModel.getProfileFields().observe(this, signUpFields -> {
+            Snackbar.make(mBinding.getRoot(), R.string.modification_profile_user, Snackbar.LENGTH_LONG).show();
+        });
+    }
+*/
+
+
+    ////// Real Code suite //////
 
     public static Fragment newInstance() {
         return new TeacherProfileCreate();
@@ -125,16 +159,13 @@ public class TeacherProfileCreate extends Fragment {
         });
 
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (verifyForm(teacherDescription, teacherFirstName, teacherFamilyName, teacherBirthDate)) {
-                    try {
-                        createDbTeacher(teacherDescription, teacherFirstName, teacherFamilyName, teacherBirthDate);
-                        setFormProfileEditable(false);
-                    } catch (Exception e) {
-                        System.out.print(e);
-                    }
+        saveButton.setOnClickListener(view1 -> {
+            if (verifyForm(teacherDescription, teacherFirstName, teacherFamilyName, teacherBirthDate)) {
+                try {
+                    createDbTeacher(teacherDescription, teacherFirstName, teacherFamilyName, teacherBirthDate);
+                    setFormProfileEditable(false);
+                } catch (Exception e) {
+                    System.out.print(e);
                 }
             }
         });
@@ -189,7 +220,7 @@ public class TeacherProfileCreate extends Fragment {
             @Override
             public void onSuccess(byte[] bytes) {
                 Bitmap profilePicture = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                imageView.setImageBitmap(cropPicture(profilePicture));
+                imageView.setImageBitmap(mViewModel.cropPicture(profilePicture));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -224,54 +255,9 @@ public class TeacherProfileCreate extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             Bitmap profilePicture = (Bitmap) data.getExtras().get("data");
-            imageView.setImageBitmap(cropPicture(profilePicture));
+            imageView.setImageBitmap(mViewModel.cropPicture(profilePicture));
         }
     }
-
-    public Bitmap cropPicture(Bitmap picture) {
-        Bitmap dstBmp;
-        if (picture.getWidth() >= picture.getHeight()) {
-            dstBmp = Bitmap.createBitmap(
-                    picture,
-                    picture.getWidth() / 2 - picture.getHeight() / 2,
-                    0,
-                    picture.getHeight(),
-                    picture.getHeight()
-            );
-        } else {
-            dstBmp = Bitmap.createBitmap(
-                    picture,
-                    0,
-                    picture.getHeight() / 2 - picture.getWidth() / 2,
-                    picture.getWidth(),
-                    picture.getWidth()
-            );
-        }
-        saveCroppedPictureInFirebase(dstBmp);
-        return dstBmp;
-    }
-
-    private void saveCroppedPictureInFirebase(Bitmap picture) {
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        StorageReference imagesRef = storageRef.child("curve/" + userConnectionId + ".jpg");
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        picture.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] data = baos.toByteArray();
-        UploadTask uploadTask = imagesRef.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // TODO
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // TODO
-            }
-        });
-    }
-
 
     public boolean verifyForm(EditText description, EditText firstname, EditText familyName, EditText dayOfBirth) {
         if (firstname.getText().toString().equals("")) {
